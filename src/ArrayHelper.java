@@ -65,8 +65,12 @@ public class ArrayHelper {
 	 */
 	public static int binarySearch(int[] arr, int val) {
 		int left = 0;
-		int right = arr.length;
+		int right = arr.length - 1;
 
+		return binarySearch(arr, left, right, val);
+	}
+
+	public static int binarySearch(int[] arr, int left, int right, int val) {
 		while (left <= right) {
 
 			int mid = (left + right) / 2;
@@ -102,7 +106,7 @@ public class ArrayHelper {
 		while (left <= right) {
 
 			int mid = (left + right) / 2;
-			
+
 			if (mid == right && arr[mid] > arr[pivotIndex]) {
 				return mid;
 			} else if (arr[mid + 1] < arr[mid]) {
@@ -117,6 +121,25 @@ public class ArrayHelper {
 
 		return -1;
 
+	}
+
+	/**
+	 * Search an element in pivoted sorted array
+	 * 
+	 * @param arr
+	 * @param val
+	 * @return
+	 */
+	public static int searchElementInPivotedArray(int[] arr, int val) {
+
+		int pivotIndex = findPivotIndex(arr);
+		int searchIndex = binarySearch(arr, 0, pivotIndex, val);
+
+		if (searchIndex == -1) {
+			searchIndex = binarySearch(arr, pivotIndex, arr.length - 1, val);
+		}
+
+		return searchIndex;
 	}
 
 }
