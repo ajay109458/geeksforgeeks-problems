@@ -8,9 +8,17 @@ public class ArrayMain {
 		
 		System.out.println(Arrays.toString(arr));
 		
+		int pivotIndex = ArrayHelper.findPivotIndex(arr);
+		System.out.println("Pivot index is " + pivotIndex);
+		
 		// Array rotation 
 		ArrayHelper.rotateArray(arr, 2);
 		System.out.println(Arrays.toString(arr));
+		
+		
+		
+		pivotIndex = ArrayHelper.findPivotIndex(arr);
+		System.out.println("Pivot index is " + pivotIndex);
 		
 	}
 	
