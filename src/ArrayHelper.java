@@ -171,4 +171,33 @@ public class ArrayHelper {
 
 		return result;
 	}
+	
+	/**
+	 * Equilibrium index is an index of the array where sum on left and right of the array are equal. 
+	 * 
+	 * @param arr
+	 * @return
+	 */
+	public static int getEquilibriumIndex(int[] arr) {
+		
+		int index = -1;
+		
+		int sum = 0;
+		
+		for(int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		
+		int currSum = 0;
+		for(int i = 0; i < arr.length; i++) {
+			sum -= arr[i];
+			
+			if(currSum == sum)
+				return i;
+			
+			currSum += arr[i];
+		}
+		
+		return index;
+	}
 }

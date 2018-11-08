@@ -29,6 +29,11 @@ public class ArrayMain {
 		int[] arr1 = {1, 20, 2, 10};
 		System.out.println(ArrayHelper.maximumRotationSum(arr1));
 		
+		// Equilibrium index of an array - where sum on left and right are equal. 
+		
+		int[] arr2 = {-7, 1, 5, 2, -4, 3, 0};
+		System.out.println(ArrayHelper.getEquilibriumIndex(arr2));
+		
 	}
 	
 }
