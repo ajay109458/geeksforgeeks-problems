@@ -21,8 +21,13 @@ public class ArrayMain {
 		pivotIndex = ArrayHelper.findPivotIndex(arr);
 		System.out.println("Pivot index is " + pivotIndex);
 		
+		// Search an element in sorted pivoted array
 		int searchIndex = ArrayHelper.searchElementInPivotedArray(arr, 4);
 		System.out.println("Search index and value : " + searchIndex + " -- " + arr[searchIndex]);
+		
+		// Rotation sum
+		int[] arr1 = {1, 20, 2, 10};
+		System.out.println(ArrayHelper.maximumRotationSum(arr1));
 		
 	}
 	

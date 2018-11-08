@@ -142,4 +142,33 @@ public class ArrayHelper {
 		return searchIndex;
 	}
 
+	/**
+	 * Find maximum value of Sum( i*arr[i]) with only rotations on given array allowed
+	 * 
+	 * @param arr
+	 * @return
+	 */
+	public static int maximumRotationSum(int[] arr) {
+		int sum = 0;
+		int currSum = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+
+			currSum += (i * arr[i]);
+		}
+
+		int result = currSum;
+
+		for (int i = 1; i < arr.length; i++) {
+
+			int newSum = currSum + sum - (arr.length * arr[arr.length - i]);
+
+			result = Math.max(newSum, result);
+
+			currSum = newSum;
+		}
+
+		return result;
+	}
 }
