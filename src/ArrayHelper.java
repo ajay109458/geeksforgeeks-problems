@@ -143,7 +143,8 @@ public class ArrayHelper {
 	}
 
 	/**
-	 * Find maximum value of Sum( i*arr[i]) with only rotations on given array allowed
+	 * Find maximum value of Sum( i*arr[i]) with only rotations on given array
+	 * allowed
 	 * 
 	 * @param arr
 	 * @return
@@ -171,33 +172,51 @@ public class ArrayHelper {
 
 		return result;
 	}
-	
+
 	/**
-	 * Equilibrium index is an index of the array where sum on left and right of the array are equal. 
+	 * Equilibrium index is an index of the array where sum on left and right of the
+	 * array are equal.
 	 * 
 	 * @param arr
 	 * @return
 	 */
 	public static int getEquilibriumIndex(int[] arr) {
-		
+
 		int index = -1;
-		
+
 		int sum = 0;
-		
-		for(int i = 0; i < arr.length; i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			sum += arr[i];
 		}
-		
+
 		int currSum = 0;
-		for(int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			sum -= arr[i];
-			
-			if(currSum == sum)
+
+			if (currSum == sum)
 				return i;
-			
+
 			currSum += arr[i];
 		}
-		
+
 		return index;
+	}
+
+	/**
+	 * Elements lies in range 0 to n - 1
+	 * 
+	 * @param arr
+	 */
+	public static void printDuplicates(int[] arr) {
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[Math.abs(arr[i])] < 0) {
+				System.out.println(Math.abs(arr[i]));
+			} else {
+				arr[Math.abs(arr[i])] *= -1;
+			}
+		}
+
 	}
 }
