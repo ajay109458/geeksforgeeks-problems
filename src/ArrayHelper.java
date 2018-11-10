@@ -296,4 +296,39 @@ public class ArrayHelper {
 			}
 		}
 	}
+	
+	
+	/**
+	 * Search a ceil element in the array. Ceil element means element equal to an element or just greater than the element.
+	 * 
+	 * @param arr
+	 * @param left
+	 * @param right
+	 * @param val
+	 * @return
+	 */
+	public static int ceilSearch(int[] arr, int left, int right, int val) {
+		
+		if(right > left)
+			return -1;
+		
+		if(val <= arr[left]) {
+			return left;
+		}
+		
+		if (arr[right] < val)
+			return -1;
+		
+		int mid = (left + right) / 2;
+		
+		if (arr[mid] ==  val) {
+			return mid;
+		} else if (arr[mid] < val && val < arr[mid+1]) {
+			return mid + 1;
+		} else if (arr[mid] < val) {
+			return ceilSearch(arr, left, mid - 1, val);
+		} else {
+			return ceilSearch(arr, mid + 1, right, val);
+		}
+	}
 }
