@@ -38,6 +38,10 @@ public class ArrayMain {
 		System.out.println("Printing duplicate values");
 		ArrayHelper.printDuplicates(arr3);
 		
+		int[] arr4 = {10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60};
+		System.out.println("Minimum sorted length sorted :");
+		ArrayHelper.minimumLengthUnsortedArray(arr4);
+		
 	}
 	
 }
