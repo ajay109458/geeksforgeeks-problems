@@ -38,10 +38,16 @@ public class ArrayMain {
 		System.out.println("Printing duplicate values");
 		ArrayHelper.printDuplicates(arr3);
 		
+		// Print minimum length of unsorted array and sorting which makes complete array
 		int[] arr4 = {10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60};
 		System.out.println("Minimum sorted length sorted :");
 		ArrayHelper.minimumLengthUnsortedArray(arr4);
 		
+		
+		// Sort an array of 0, 1 and 2
+		int[] arr5 = {1, 0, 1, 1, 2, 2, 1, 1, 0, 0};
+		ArrayHelper.sortArrayOf012(arr5);
+		System.out.println(Arrays.toString(arr5));
 	}
 	
 }

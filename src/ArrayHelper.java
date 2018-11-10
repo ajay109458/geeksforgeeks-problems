@@ -219,59 +219,81 @@ public class ArrayHelper {
 		}
 
 	}
-	
+
 	/**
-	 * Print minimum length of unsorted array. Sorting which makes complete array sorted.
+	 * Print minimum length of unsorted array. Sorting which makes complete array
+	 * sorted.
 	 * 
 	 * @param arr
 	 */
 	public static void minimumLengthUnsortedArray(int[] arr) {
-		
+
 		int s = 0;
-		
-		for(int i = 0; i < arr.length - 1; i++) {
-			if(arr[i] > arr[i+1]) {
+
+		for (int i = 0; i < arr.length - 1; i++) {
+			if (arr[i] > arr[i + 1]) {
 				s = i;
 				break;
 			}
 		}
-		
+
 		int t = arr.length - 1;
-		
-		
-		for(int i = arr.length-1; i > 0; i--) {
-			if(arr[i] < arr[i-1]) {
+
+		for (int i = arr.length - 1; i > 0; i--) {
+			if (arr[i] < arr[i - 1]) {
 				t = i;
 				break;
 			}
 		}
-		
-		int min =  arr[s];
+
+		int min = arr[s];
 		int max = arr[s];
-		for(int i = s; i <= t; i++) {
-			if(arr[i] < min) {
+		for (int i = s; i <= t; i++) {
+			if (arr[i] < min) {
 				min = arr[i];
 			}
-			
-			if(arr[i] > max) {
-				max =  arr[i];
+
+			if (arr[i] > max) {
+				max = arr[i];
 			}
 		}
-		
-		while(true) {
-			if(s > 0 && arr[s-1] > min)
+
+		while (true) {
+			if (s > 0 && arr[s - 1] > min)
 				s--;
 			else
 				break;
 		}
-		
-		while(true) {
-			if(t < arr.length-1 && arr[t+1] < max)
+
+		while (true) {
+			if (t < arr.length - 1 && arr[t + 1] < max)
 				t++;
 			else
 				break;
 		}
-		
+
 		System.out.println("Max length : " + (t - s + 1));
+	}
+
+	/**
+	 * Sort an array of 0, 1 and 2
+	 * 
+	 * @param arr
+	 */
+	public static void sortArrayOf012(int[] arr) {
+		int i = -1;
+		int j = 0;
+		int k = arr.length;
+
+		while (j < k) {
+
+			if (arr[j] == 0) {
+				swap(arr, ++i, j++);
+			} else if (arr[j] == 1) {
+				j++;
+			} else if (arr[j] == 2) {
+				swap(arr, --k, j);
+			}
+		}
 	}
 }
