@@ -48,6 +48,13 @@ public class ArrayMain {
 		int[] arr5 = {1, 0, 1, 1, 2, 2, 1, 1, 0, 0};
 		ArrayHelper.sortArrayOf012(arr5);
 		System.out.println(Arrays.toString(arr5));
+		
+		// Union of two sorted array
+		int[] arr6 = { 1, 4, 5, 8, 10};
+		int[] arr7 = { 1, 3, 5, 7, 10};
+		
+		ArrayHelper.printUnionOfTwoSortedArray(arr6, arr7);
+		
 	}
 	
 }
