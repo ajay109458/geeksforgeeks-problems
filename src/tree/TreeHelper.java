@@ -77,6 +77,30 @@ public class TreeHelper {
 		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) &&  !isSublings(root, a, b));
 	}
 	
+	public static int heightOfTree(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		return Math.max(heightOfTree(root.left),  heightOfTree(root.right)) + 1;
+	}
+	
+	public static boolean checkAllLeafAtSameLevel(TreeNode root) {
+		int heightOfTree = heightOfTree(root);
+		return checkIfLeafsAreAtALevel(root, heightOfTree);
+	}
+	
+	public static boolean checkIfLeafsAreAtALevel(TreeNode root, int level) {
+		if (root == null) {
+			return true;
+		} 
+		
+		if (root.left == null && root.right == null)
+			return level == 1;
+		
+		return checkIfLeafsAreAtALevel(root.left, level - 1) 
+				&& checkIfLeafsAreAtALevel(root.right, level - 1);
+	}
+	
 	private static int getLevel(TreeNode root, int currentLevel, int val) {
 		
 		if (root == null)
