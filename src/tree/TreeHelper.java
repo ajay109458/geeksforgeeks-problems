@@ -84,6 +84,34 @@ public class TreeHelper {
 		return Math.max(heightOfTree(root.left),  heightOfTree(root.right)) + 1;
 	}
 	
+	public static int sizeOfTree(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		return heightOfTree(root.left) + heightOfTree(root.right) + 1;
+	}
+	
+	public static boolean checkIfEdgeDivideTreeEqually(TreeNode root) {
+		
+		int sizeOfTree = sizeOfTree(root);
+		
+		return checkIfSubtreeSizeIsHalf(root, sizeOfTree);
+		
+	} 
+	
+	private static boolean checkIfSubtreeSizeIsHalf(TreeNode root, int treeSize) {
+		
+		int subTreeSize = sizeOfTree(root);
+		
+		if (subTreeSize * 2 ==  treeSize)
+			return true;
+		
+		if (subTreeSize == 0)
+			return false;
+			
+		return checkIfSubtreeSizeIsHalf(root.left, treeSize) || checkIfSubtreeSizeIsHalf(root.right, treeSize); 
+	}
+	
 	public static boolean checkAllLeafAtSameLevel(TreeNode root) {
 		int heightOfTree = heightOfTree(root);
 		return checkIfLeafsAreAtALevel(root, heightOfTree);
