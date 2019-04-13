@@ -55,6 +55,44 @@ public class TreeHelper {
 		return root.data + sumOfNodes(root.left) + sumOfNodes(root.right);
 	}
 	
+	public static int getLevelOfNode(TreeNode root, int val) {
+		return getLevel(root, 0, val);
+	}
+	
+	public static boolean isSublings(TreeNode root, int a, int b) {
+		if (root == null)
+			return false;
+		
+		if (root.left == null || root.right == null)
+			return false;
+		
+		return (root.left.data == a && root.right.data == b) 
+				|| (root.left.data == b && root.right.data == a)
+				|| isSublings(root.left, a, b)
+				|| isSublings(root.right, a, b);
+				
+	}
+	
+	public static boolean isCousinsNode(TreeNode root, int a, int b) {
+		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) &&  !isSublings(root, a, b));
+	}
+	
+	private static int getLevel(TreeNode root, int currentLevel, int val) {
+		
+		if (root == null)
+			return -1;
+		
+		if (root.data == val)
+			return currentLevel;
+		
+		int leftLevel = getLevel(root.left, currentLevel + 1, val);
+		
+		if (leftLevel != -1)
+			return leftLevel;
+		
+		return getLevel(root.right, currentLevel + 1, val);
+	}
+	
 	private static int sumLeftUncovered(TreeNode root) {
 		if (root == null)
 			return 0;
@@ -67,6 +105,5 @@ public class TreeHelper {
 			return 0;
 		
 		return root.data + ((root.right != null) ? sumLeftUncovered(root.right) : sumLeftUncovered(root.left));
-	}
-		
+	}	
 }
