@@ -6,7 +6,7 @@ public class Main {
 		
 		TreeNode root = TreeCreator.createTree();
 		
-		// Print inorder traversal
+		// Print in order traversal
 		TreeHelper.inorder(root);
 		System.out.println();
 		
@@ -21,6 +21,13 @@ public class Main {
 		System.out.println("Is all leaves at same level : " + TreeHelper.checkAllLeafAtSameLevel(TreeCreator.createTreeForLeafLevelCheck()));
 		
 		System.out.println("If removal devides the tree equally : " + TreeHelper.checkIfEdgeDivideTreeEqually(root));
+		
+		
+		int inOrder[] = {4, 2, 5, 1, 3};  
+	    int preOrder[] = {1, 2, 4, 5, 3};  
+	    int postOrder[] = {4, 5, 2, 3, 1};  
+	    System.out.println("Is all traversals of same tree : " + TreeHelper.checkAllTraversalOfSameTree(preOrder, inOrder, postOrder));
+	    
 	}
 	
 }

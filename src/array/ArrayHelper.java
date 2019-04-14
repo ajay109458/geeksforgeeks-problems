@@ -1,3 +1,4 @@
+package array;
 
 public class ArrayHelper {
 
@@ -356,5 +357,15 @@ public class ArrayHelper {
 		while (j < arr2.length) {
 			System.out.print(arr2[j++] + " ");
 		}
+	}
+	
+	public static int linearSearch(int[] arr, int val) {
+		
+		for(int i = 0; i < arr.length; i++) {
+			if (arr[i] == val)
+				return i;
+		}
+		
+		return -1;
 	}
 }
