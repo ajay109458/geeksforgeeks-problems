@@ -1,6 +1,7 @@
 package tree;
 
 public class TreeCreator {
+
 	
 	public static TreeNode createTree() {
 		TreeNode root = new TreeNode(10);
@@ -36,4 +37,24 @@ public class TreeCreator {
         return root;
 	}
 
+	public static TreeNode createTree1ForLeafTraversal() {
+		  TreeNode root1 = new TreeNode(1); 
+	      root1.left = new TreeNode(2); 
+	      root1.right = new TreeNode(3); 
+	      root1.left.left = new TreeNode(4); 
+	      root1.right.left = new TreeNode(6); 
+	      root1.right.right = new TreeNode(7); 
+	      return root1;
+	}
+	
+	public static TreeNode createTree2ForLeafTraversal() {
+		  TreeNode root1 = new TreeNode(0); 
+	      root1.left = new TreeNode(1); 
+	      root1.right = new TreeNode(5); 
+	      root1.left.left = new TreeNode(4); 
+	      root1.right.left = new TreeNode(6); 
+	      root1.right.right = new TreeNode(7); 
+	      return root1;
+	}
+	
 }

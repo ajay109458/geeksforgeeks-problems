@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 import array.ArrayHelper;
 
@@ -145,10 +146,6 @@ public class TreeHelper {
 		TreeNode root = buildTree(inOrder, preOrder);
 
 		int[] postOrderArray = populatePostOrder(root);
-
-		System.out.println(Arrays.toString(postOrder));
-		System.out.println(Arrays.toString(postOrderArray));
-
 		return Arrays.equals(postOrder, postOrderArray);
 	}
 
@@ -178,6 +175,75 @@ public class TreeHelper {
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Leaf traversal is sequence of leaves traversed from left to right. The problem is to check if 
+	 * leaf traversals of two given Binary Trees are same or not.
+	 * 
+	 * @param root1
+	 * @param root2
+	 * @return
+	 */
+	public static boolean isLeafOrderTraversalSame(TreeNode root1, TreeNode root2) {
+		
+		Stack<TreeNode> s1 = new Stack<TreeNode>();
+		Stack<TreeNode> s2 = new Stack<TreeNode>();
+		
+		s1.push(root1);
+		s2.push(root2);
+		
+		while(!s1.isEmpty() || !s2.isEmpty()) {
+			
+			if (s1.isEmpty() || s2.isEmpty())
+				return false;
+			
+			TreeNode temp1 = s1.pop();
+			while(temp1 != null && !isLeafNode(temp1)) {
+				if (temp1.right != null) {
+					s1.push(temp1.right);
+				}
+				
+				if (temp1.left != null) {
+					s1.push(temp1.left);
+				}
+				
+				temp1 = s1.pop();
+			}
+			
+			TreeNode temp2 = s2.pop();
+			while(temp2 != null && !isLeafNode(temp2)) {
+				if (temp2.right != null) {
+					s2.push(temp2.right);
+				}
+				
+				if (temp2.left != null) {
+					s2.push(temp2.left);
+				}
+				
+				temp2 = s2.pop();
+			}
+			
+			if (temp1 == null && temp2 != null)
+				return false;
+			
+			if (temp1 != null && temp2 == null)
+				return false;
+			
+			if (temp1 != null && temp2 != null) {				
+				if (temp1.data != temp2.data)
+					return false;
+			}	
+		}
+ 		
+		return true;
+	}
+	
+	public static boolean isLeafNode(TreeNode root) {
+		if (root == null)
+			return false;
+		
+		return (root.left == null && root.right == null);
 	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {

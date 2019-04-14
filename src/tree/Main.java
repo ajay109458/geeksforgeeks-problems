@@ -2,6 +2,9 @@ package tree;
 
 public class Main {
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		TreeNode root = TreeCreator.createTree();
@@ -36,6 +39,13 @@ public class Main {
 	    System.out.println("Is min heap : " + TreeHelper.checkIfLevelOrderOfCompleteBinaryTreeSatisfyMinHeap(levelOrder));
 	    
 	    
+	    /**
+	     * Check if two trees have same leaf node traversals
+	     */
+	    TreeNode root1 = TreeCreator.createTree1ForLeafTraversal();
+	    TreeNode root2 = TreeCreator.createTree2ForLeafTraversal();
+	    
+	    System.out.println("Is leaf order traversal same : " + TreeHelper.isLeafOrderTraversalSame(root1, root2));
 	}
 	
 }
