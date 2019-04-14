@@ -46,6 +46,11 @@ public class Main {
 	    TreeNode root2 = TreeCreator.createTree2ForLeafTraversal();
 	    
 	    System.out.println("Is leaf order traversal same : " + TreeHelper.isLeafOrderTraversalSame(root1, root2));
+	    
+	    /**
+	     * Check if tree is a perfect tree
+	     */
+	    System.out.println("Is perfect tree : " + TreeHelper.isPerfectTree(TreeCreator.createPerfectTree()));
 	}
 	
 }

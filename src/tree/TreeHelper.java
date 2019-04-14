@@ -254,6 +254,23 @@ public class TreeHelper {
 		fillPostOrder(root.right, arr);
 		arr[traversalIndex++] = root.data;
 	}
+	
+	public static boolean isPerfectTree(TreeNode root) {
+		int heightOfTree = heightOfTree(root);
+		int leafNodes = countLeafNodes(root);
+		return leafNodes == Math.pow(2, heightOfTree - 1);
+	}
+	
+	public static int countLeafNodes(TreeNode root) {		
+		if (root == null)
+			return 0;
+		
+		if (isLeafNode(root)) {
+			return 1;
+		}
+		
+		return countLeafNodes(root.left) + countLeafNodes(root.right);
+	}
 
 	private static TreeNode buildTree(int[] inOrder, int[] preOrder, int startIndex, int endIndex) {
 
