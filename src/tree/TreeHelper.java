@@ -271,7 +271,28 @@ public class TreeHelper {
 		
 		return countLeafNodes(root.left) + countLeafNodes(root.right);
 	}
-
+	
+	/**
+	 * A full binary tree is defined as a binary tree in which all nodes have either zero or two child nodes
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public static boolean isFullBinaryTree(TreeNode root) {
+		if (root == null)
+			return true;
+		
+		if (isLeafNode(root))
+			return true;
+		
+		if (root.left != null 
+				&& root.right != null
+				&& isFullBinaryTree(root.left)
+				&& isFullBinaryTree(root.right))
+			return true;
+		return false;
+	}
+ 
 	private static TreeNode buildTree(int[] inOrder, int[] preOrder, int startIndex, int endIndex) {
 
 		if (startIndex > endIndex)
