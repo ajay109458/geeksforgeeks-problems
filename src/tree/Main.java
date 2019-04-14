@@ -62,6 +62,19 @@ public class Main {
 	     * 
 	     */
 	    System.out.println("Is a complete tree : " + TreeHelper.isCompleteTree(TreeCreator.createCompleteTree()));
+	    
+	    /**
+	     * Check if two trees are identical
+	     */
+	    System.out.println("Are tree identical : " + TreeHelper.isTreesIdentical(root, root));
+	    
+	    
+	    /**
+	     * Check if S is a subset of the original tree T
+	     */
+	    TreeNode T = TreeCreator.createMainTreeForSubsetProblem();
+	    TreeNode S = TreeCreator.createSubTreeForSubsetProblem();
+	    System.out.println("Is tree subset : " + TreeHelper.isTreeSubset(T, S));
 	}
 	
 }

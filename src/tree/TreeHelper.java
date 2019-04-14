@@ -289,6 +289,34 @@ public class TreeHelper {
 		return true;
 		
 	}
+	
+	public static boolean isTreesIdentical(TreeNode root1, TreeNode root2) {
+		if (root1 == null && root2 == null)
+			return true;
+		
+		if (root1 != null && root2 != null) {
+			return root1.data == root2.data &&
+					isTreesIdentical(root1.left, root2.left) &&
+					isTreesIdentical(root1.right, root2.right);
+		}
+		
+		return false;	
+	}
+	
+	public static boolean isTreeSubset(TreeNode root, TreeNode sRoot) {
+		
+		if (sRoot == null)
+			return true;
+		
+		if (root == null)
+			return false;
+		
+		if (isTreesIdentical(root, sRoot)) {
+			return true;
+		}
+		
+		return isTreeSubset(root.left, sRoot) || isTreeSubset(root.right, sRoot);
+	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {
 		if (root == null)

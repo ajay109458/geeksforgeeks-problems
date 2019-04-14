@@ -98,4 +98,23 @@ public class TreeCreator {
         root.right.left = new TreeNode(6); 
         return root;
 	}
+	
+	public static TreeNode createMainTreeForSubsetProblem() {
+		TreeNode root = new TreeNode(26); 
+        root.right = new TreeNode(3); 
+        root.right.right = new TreeNode(3); 
+        root.left = new TreeNode(10); 
+        root.left.left = new TreeNode(4); 
+        root.left.left.right = new TreeNode(30); 
+        root.left.right = new TreeNode(6);
+        return root;
+	}
+	
+	public static TreeNode createSubTreeForSubsetProblem() {
+		TreeNode root = new TreeNode(10); 
+        root.right = new TreeNode(6); 
+        root.left = new TreeNode(4); 
+        root.left.right = new TreeNode(30);
+        return root;
+	}
 }
