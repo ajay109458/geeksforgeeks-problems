@@ -164,6 +164,21 @@ public class TreeHelper {
 		fillPostOrder(root, arr);
 		return arr;
 	}
+	
+	public static boolean checkIfLevelOrderOfCompleteBinaryTreeSatisfyMinHeap(int[] levelOrder) {
+		
+		for(int i = 0; i < levelOrder.length /2; i++) {
+			if (levelOrder[i]  > levelOrder[2*i + 1]) {
+				return false;
+			}
+			
+			if ((2*i + 2 < levelOrder.length) && levelOrder[i] > levelOrder[2*i+2]) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {
 		if (root == null)

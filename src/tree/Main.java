@@ -28,6 +28,14 @@ public class Main {
 	    int postOrder[] = {4, 5, 2, 3, 1};  
 	    System.out.println("Is all traversals of same tree : " + TreeHelper.checkAllTraversalOfSameTree(preOrder, inOrder, postOrder));
 	    
+	    
+	    /**
+	     *   Given the level order traversal of a Complete Binary Tree, determine whether the Binary Tree is a valid Min-Heap
+	     */
+	    int[] levelOrder = new int[]{10, 15, 14, 25, 30}; 
+	    System.out.println("Is min heap : " + TreeHelper.checkIfLevelOrderOfCompleteBinaryTreeSatisfyMinHeap(levelOrder));
+	    
+	    
 	}
 	
 }
