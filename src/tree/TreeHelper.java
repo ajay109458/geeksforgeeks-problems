@@ -1,11 +1,11 @@
 package tree;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import array.ArrayHelper;
 
@@ -316,6 +316,25 @@ public class TreeHelper {
 		}
 		
 		return isTreeSubset(root.left, sRoot) || isTreeSubset(root.right, sRoot);
+	}
+	
+	public static boolean isBinaryTreeContainsDuplicate(TreeNode root) {
+		Set<Integer> nodeDataSet = new HashSet<Integer>();	
+		return isBinaryTreeContainsDuplicate(root, nodeDataSet);
+	}
+	
+	private static boolean isBinaryTreeContainsDuplicate(TreeNode root, Set<Integer> nodeDataSet) {
+		
+		if (root == null)
+			return false;
+		
+		if(nodeDataSet.contains(root.data)) {
+			return true;
+		} else {
+			nodeDataSet.add(root.data);
+		}
+		
+		return isBinaryTreeContainsDuplicate(root.left, nodeDataSet) || isBinaryTreeContainsDuplicate(root.right, nodeDataSet);
 	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {

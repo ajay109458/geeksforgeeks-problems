@@ -75,6 +75,11 @@ public class Main {
 	    TreeNode T = TreeCreator.createMainTreeForSubsetProblem();
 	    TreeNode S = TreeCreator.createSubTreeForSubsetProblem();
 	    System.out.println("Is tree subset : " + TreeHelper.isTreeSubset(T, S));
+	    
+	    /**
+	     * Check if a bianary tree contains duplicate values
+	     */
+	    System.out.println("Is binary tree contains duplicate values : " + TreeHelper.isBinaryTreeContainsDuplicate(T));
 	}
 	
 }
