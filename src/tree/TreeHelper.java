@@ -1,7 +1,11 @@
 package tree;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import array.ArrayHelper;
 
@@ -245,6 +249,46 @@ public class TreeHelper {
 		
 		return (root.left == null && root.right == null);
 	}
+	
+	public static boolean isCompleteTree(TreeNode root) {
+		
+		if (root == null)
+			return true;
+		
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		queue.add(root);
+		
+		boolean isNonFullNodeAlreadyExist = false;
+		
+		while(!queue.isEmpty()) {
+			
+			root = queue.poll();
+			
+			if (root.left != null) {
+				queue.add(root.left);
+				
+				if (isNonFullNodeAlreadyExist) {
+					return false;
+				}
+				
+			} else {
+				isNonFullNodeAlreadyExist = true;
+			}
+			
+			if (root.right != null) {
+				queue.add(root.right);
+				
+				if (isNonFullNodeAlreadyExist) {
+					return false;
+				}
+			} else {
+				isNonFullNodeAlreadyExist = true;
+			}
+		}
+		
+		return true;
+		
+	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {
 		if (root == null)
@@ -332,7 +376,7 @@ public class TreeHelper {
 		if (root == null)
 			return 0;
 
-		return root.data + ((root.left != null) ? sumLeftUncovered(root.left) : sumLeftUncovered(root.right));
+		return root.data + ((root.left != null) ? sumLeftUncovered(root.left) : sumRightUncovered(root.right));
 	}
 
 	private static int sumRightUncovered(TreeNode root) {

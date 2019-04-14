@@ -56,6 +56,12 @@ public class Main {
 	     * Check if a tree is full binary tree
 	     */
 	    System.out.println("Is full binary tree : " + TreeHelper.isFullBinaryTree(TreeCreator.createFullBinaryTree()));
+	    
+	    /**
+	     * Check if a tree is complete tree
+	     * 
+	     */
+	    System.out.println("Is a complete tree : " + TreeHelper.isCompleteTree(TreeCreator.createCompleteTree()));
 	}
 	
 }
