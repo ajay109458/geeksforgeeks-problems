@@ -91,6 +91,13 @@ public class Main {
 	     */
 	    System.out.println("Is tree symmetric : " + TreeHelper.isSymmetric(TreeCreator.createSymmetricTree()));
 	    
+	    /**
+	     * Check if a path exists from root to leaf node
+	     */
+	    
+	    int[] arr = {10, 8, 3};
+	    System.out.println("Is path exists : " + TreeHelper.isPathExists(root, arr));
+	    
 	}
 	
 }

@@ -342,6 +342,25 @@ public class TreeHelper {
 		return isMirror(root.left, root.right);
 	}
 	
+	public static boolean isPathExists(TreeNode root, int[] arr) {
+		return isPathExists(root, arr, 0);
+	}
+	
+	private static boolean isPathExists(TreeNode root, int[] arr, int level) {
+		
+		if (root == null) {
+			return level == arr.length;
+		}
+		
+		if (level >= arr.length) {
+			return false;
+		}
+		
+		return root.data == arr[level] &&
+				(isPathExists(root.left, arr, level + 1) ||
+						isPathExists(root.right, arr, level+1));
+	}
+	
 	private static boolean containsDuplicateNodes(TreeNode root, Set<Integer> nodeDataSet) {
 		
 		if (root == null)
