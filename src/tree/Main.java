@@ -80,6 +80,12 @@ public class Main {
 	     * Check if a bianary tree contains duplicate values
 	     */
 	    System.out.println("Is binary tree contains duplicate values : " + TreeHelper.isBinaryTreeContainsDuplicate(T));
+	    
+	    /**
+	     * Check if two tree are mirror
+	     */
+	    System.out.println("Is tree mirrors : " + TreeHelper.isTreeMirror(TreeCreator.createTree1ForMirror(), TreeCreator.createTree2ForMirror()));
+	    
 	}
 	
 }
