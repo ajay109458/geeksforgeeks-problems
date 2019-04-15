@@ -352,6 +352,16 @@ public class TreeHelper {
 		System.out.println();
 	}
 	
+	public static int getMaxDiameter(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		int leftHeight = height(root.left);
+		int rightHeight = height(root.right);
+		
+		return Math.max(Math.max(getMaxDiameter(root.left), getMaxDiameter(root.right)), leftHeight + rightHeight + 1);
+	}
+	
 	private static void printCousinNodesAtLevel(TreeNode root, int val, int level) {
 		
 		if (root == null || level == 0)

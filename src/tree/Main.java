@@ -107,6 +107,11 @@ public class Main {
 	     * Print all paths of the tree
 	     */
 	    TreeHelper.printAllPaths(root);
+	    
+	    /**
+	     * Print max diameter of the tree
+	     */
+	    System.out.println("Max diameter of tree : " + TreeHelper.getMaxDiameter(root));
 	}
 	
 }
