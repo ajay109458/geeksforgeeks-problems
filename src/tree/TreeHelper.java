@@ -346,6 +346,54 @@ public class TreeHelper {
 		return isPathExists(root, arr, 0);
 	}
 	
+	public static void printCousins(TreeNode root, int val) {
+		int level = getLevelOfNode(root, val);
+		printCousinNodesAtLevel(root, val, level);
+	}
+	
+	private static void printCousinNodesAtLevel(TreeNode root, int val, int level) {
+		
+		if (root == null || level == 0)
+			return;
+		
+		if (root.left == null && root.right == null)
+			return;
+		
+		if (level == 1) {
+			
+			if ((root.left != null && root.left.data == val) || (root.right != null && root.right.data == val))
+				return;
+			
+			if (root.left != null) {
+				System.out.print(root.left.data + " ");
+			}
+			
+			if (root.right != null) {
+				System.out.print(root.right.data + " ");
+			}
+			
+			return;
+		}
+		
+		printCousinNodesAtLevel(root.left, val, level - 1);
+		printCousinNodesAtLevel(root.right, val, level - 1);
+		
+	}
+	
+	public static void printNodesAtLevel(TreeNode root, int level) {
+		
+		if (root == null)
+			return;
+		
+		if (level == 0) {
+			System.out.print(root.data + " ");
+		}
+		
+		printNodesAtLevel(root.left, level - 1);
+		printNodesAtLevel(root.right, level - 1);
+		
+	}
+	
 	private static boolean isPathExists(TreeNode root, int[] arr, int level) {
 		
 		if (root == null) {

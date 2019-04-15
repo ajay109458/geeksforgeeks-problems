@@ -98,6 +98,10 @@ public class Main {
 	    int[] arr = {10, 8, 3};
 	    System.out.println("Is path exists : " + TreeHelper.isPathExists(root, arr));
 	    
+	    /**
+	     * Print cousin nodes
+	     */
+	    TreeHelper.printCousins(TreeCreator.createTreeForCousins(), 5);
 	}
 	
 }
