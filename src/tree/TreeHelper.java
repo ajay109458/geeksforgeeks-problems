@@ -349,6 +349,7 @@ public class TreeHelper {
 	public static void printCousins(TreeNode root, int val) {
 		int level = getLevelOfNode(root, val);
 		printCousinNodesAtLevel(root, val, level);
+		System.out.println();
 	}
 	
 	private static void printCousinNodesAtLevel(TreeNode root, int val, int level) {
@@ -377,7 +378,6 @@ public class TreeHelper {
 		
 		printCousinNodesAtLevel(root.left, val, level - 1);
 		printCousinNodesAtLevel(root.right, val, level - 1);
-		
 	}
 	
 	public static void printNodesAtLevel(TreeNode root, int level) {
@@ -392,6 +392,32 @@ public class TreeHelper {
 		printNodesAtLevel(root.left, level - 1);
 		printNodesAtLevel(root.right, level - 1);
 		
+	}
+	
+	public static void printAllPaths(TreeNode root) {
+		int heightOfTree = height(root);
+		int[] arr = new int[heightOfTree];
+		System.out.println("Printing all paths : ");
+		printAllPaths(root, arr, 0);
+	}
+	
+	public static void printAllPaths(TreeNode root, int[] arr, int index) {
+		
+		if (root == null)
+			return;
+		
+		arr[index] = root.data;
+		
+		if (isLeafNode(root)) {
+			for(int i = 0; i <= index; i++) {
+				System.out.print(arr[i] + " ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		printAllPaths(root.left, arr, index + 1);
+		printAllPaths(root.right, arr, index + 1);
 	}
 	
 	private static boolean isPathExists(TreeNode root, int[] arr, int level) {

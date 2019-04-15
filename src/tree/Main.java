@@ -102,6 +102,11 @@ public class Main {
 	     * Print cousin nodes
 	     */
 	    TreeHelper.printCousins(TreeCreator.createTreeForCousins(), 5);
+	    
+	    /**
+	     * Print all paths of the tree
+	     */
+	    TreeHelper.printAllPaths(root);
 	}
 	
 }
