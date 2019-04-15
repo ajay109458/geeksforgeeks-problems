@@ -14,29 +14,29 @@ public class Main {
 		System.out.println();
 		
 		// Is sum property satisfy
-		System.out.println("Is sum property satisfied in the tree : " + TreeHelper.isSumProperty(root));
+		System.out.println("Is sum property satisfied in the tree : " + TreeHelper.isSumPropertySatisfied(root));
 		
 		// Is covered nodes sum and uncovered nodes sum equal
 		System.out.println("Is covered nodes and uncovered nodes have equal sum " + TreeHelper.isCoveredAndUncoveredNodesSumEqual(root));
 		
-		System.out.println("Is given nodes are cousins : " + TreeHelper.isCousinsNode(TreeCreator.createTreeForCousinCheck(), 4, 7));
+		System.out.println("Is given nodes are cousins : " + TreeHelper.isCousinNodes(TreeCreator.createTreeForCousinCheck(), 4, 7));
 		
-		System.out.println("Is all leaves at same level : " + TreeHelper.checkAllLeafAtSameLevel(TreeCreator.createTreeForLeafLevelCheck()));
+		System.out.println("Is all leaves at same level : " + TreeHelper.isLeavesAtSameLevel(TreeCreator.createTreeForLeafLevelCheck()));
 		
-		System.out.println("If removal devides the tree equally : " + TreeHelper.checkIfEdgeDivideTreeEqually(root));
+		System.out.println("If removal devides the tree equally : " + TreeHelper.isAnEdgeDivideTreeEqually(root));
 		
 		
 		int inOrder[] = {4, 2, 5, 1, 3};  
 	    int preOrder[] = {1, 2, 4, 5, 3};  
 	    int postOrder[] = {4, 5, 2, 3, 1};  
-	    System.out.println("Is all traversals of same tree : " + TreeHelper.checkAllTraversalOfSameTree(preOrder, inOrder, postOrder));
+	    System.out.println("Is all traversals of same tree : " + TreeHelper.isTraversalsFromSameTree(preOrder, inOrder, postOrder));
 	    
 	    
 	    /**
 	     *   Given the level order traversal of a Complete Binary Tree, determine whether the Binary Tree is a valid Min-Heap
 	     */
 	    int[] levelOrder = new int[]{10, 15, 14, 25, 30}; 
-	    System.out.println("Is min heap : " + TreeHelper.checkIfLevelOrderOfCompleteBinaryTreeSatisfyMinHeap(levelOrder));
+	    System.out.println("Is min heap : " + TreeHelper.isLevelOrderSatisfyMinHeap(levelOrder));
 	    
 	    
 	    /**
@@ -45,7 +45,7 @@ public class Main {
 	    TreeNode root1 = TreeCreator.createTree1ForLeafTraversal();
 	    TreeNode root2 = TreeCreator.createTree2ForLeafTraversal();
 	    
-	    System.out.println("Is leaf order traversal same : " + TreeHelper.isLeafOrderTraversalSame(root1, root2));
+	    System.out.println("Is leaf order traversal same : " + TreeHelper.isLeavesTraversalHasSameOrder(root1, root2));
 	    
 	    /**
 	     * Check if tree is a perfect tree
@@ -66,7 +66,7 @@ public class Main {
 	    /**
 	     * Check if two trees are identical
 	     */
-	    System.out.println("Are tree identical : " + TreeHelper.isTreesIdentical(root, root));
+	    System.out.println("Are tree identical : " + TreeHelper.areIdentical(root, root));
 	    
 	    
 	    /**
@@ -79,12 +79,17 @@ public class Main {
 	    /**
 	     * Check if a bianary tree contains duplicate values
 	     */
-	    System.out.println("Is binary tree contains duplicate values : " + TreeHelper.isBinaryTreeContainsDuplicate(T));
+	    System.out.println("Is binary tree contains duplicate values : " + TreeHelper.containsDuplicateNodes(T));
 	    
 	    /**
 	     * Check if two tree are mirror
 	     */
-	    System.out.println("Is tree mirrors : " + TreeHelper.isTreeMirror(TreeCreator.createTree1ForMirror(), TreeCreator.createTree2ForMirror()));
+	    System.out.println("Is tree mirrors : " + TreeHelper.isMirror(TreeCreator.createTree1ForMirror(), TreeCreator.createTree2ForMirror()));
+	    
+	    /**
+	     * Check if a tree is symmetric
+	     */
+	    System.out.println("Is tree symmetric : " + TreeHelper.isSymmetric(TreeCreator.createSymmetricTree()));
 	    
 	}
 	

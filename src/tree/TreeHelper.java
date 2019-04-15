@@ -24,7 +24,7 @@ public class TreeHelper {
 		inorder(root.right);
 	}
 
-	public static boolean isSumProperty(TreeNode root) {
+	public static boolean isSumPropertySatisfied(TreeNode root) {
 
 		if (root == null || (root.left == null && root.right == null))
 			return true;
@@ -32,7 +32,7 @@ public class TreeHelper {
 		int leftSum = (root.left == null) ? 0 : root.left.data;
 		int rightSum = (root.right == null) ? 0 : root.right.data;
 
-		return isSumProperty(root.left) && isSumProperty(root.right) && (root.data == leftSum + rightSum);
+		return isSumPropertySatisfied(root.left) && isSumPropertySatisfied(root.right) && (root.data == leftSum + rightSum);
 
 	}
 
@@ -70,7 +70,7 @@ public class TreeHelper {
 		return getLevel(root, 0, val);
 	}
 
-	public static boolean isSublings(TreeNode root, int a, int b) {
+	public static boolean isSublingNodes(TreeNode root, int a, int b) {
 		if (root == null)
 			return false;
 
@@ -78,39 +78,36 @@ public class TreeHelper {
 			return false;
 
 		return (root.left.data == a && root.right.data == b) || (root.left.data == b && root.right.data == a)
-				|| isSublings(root.left, a, b) || isSublings(root.right, a, b);
+				|| isSublingNodes(root.left, a, b) || isSublingNodes(root.right, a, b);
 
 	}
 
-	public static boolean isCousinsNode(TreeNode root, int a, int b) {
-		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) && !isSublings(root, a, b));
+	public static boolean isCousinNodes(TreeNode root, int a, int b) {
+		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) && !isSublingNodes(root, a, b));
 	}
 
-	public static int heightOfTree(TreeNode root) {
+	public static int height(TreeNode root) {
 		if (root == null)
 			return 0;
 
-		return Math.max(heightOfTree(root.left), heightOfTree(root.right)) + 1;
+		return Math.max(height(root.left), height(root.right)) + 1;
 	}
 
-	public static int sizeOfTree(TreeNode root) {
+	public static int size(TreeNode root) {
 		if (root == null)
 			return 0;
 
-		return sizeOfTree(root.left) + sizeOfTree(root.right) + 1;
+		return size(root.left) + size(root.right) + 1;
 	}
 
-	public static boolean checkIfEdgeDivideTreeEqually(TreeNode root) {
-
-		int sizeOfTree = sizeOfTree(root);
-
-		return checkIfSubtreeSizeIsHalf(root, sizeOfTree);
-
+	public static boolean isAnEdgeDivideTreeEqually(TreeNode root) {
+		int sizeOfTree = size(root);
+		return isSubTreeHalfSized(root, sizeOfTree);
 	}
 
-	private static boolean checkIfSubtreeSizeIsHalf(TreeNode root, int treeSize) {
+	private static boolean isSubTreeHalfSized(TreeNode root, int treeSize) {
 
-		int subTreeSize = sizeOfTree(root);
+		int subTreeSize = size(root);
 
 		if (subTreeSize * 2 == treeSize)
 			return true;
@@ -118,15 +115,15 @@ public class TreeHelper {
 		if (subTreeSize == 0)
 			return false;
 
-		return checkIfSubtreeSizeIsHalf(root.left, treeSize) || checkIfSubtreeSizeIsHalf(root.right, treeSize);
+		return isSubTreeHalfSized(root.left, treeSize) || isSubTreeHalfSized(root.right, treeSize);
 	}
 
-	public static boolean checkAllLeafAtSameLevel(TreeNode root) {
-		int heightOfTree = heightOfTree(root);
-		return checkIfLeafsAreAtALevel(root, heightOfTree);
+	public static boolean isLeavesAtSameLevel(TreeNode root) {
+		int heightOfTree = height(root);
+		return isLeavesAtSameLevel(root, heightOfTree);
 	}
 
-	public static boolean checkIfLeafsAreAtALevel(TreeNode root, int level) {
+	public static boolean isLeavesAtSameLevel(TreeNode root, int level) {
 		if (root == null) {
 			return true;
 		}
@@ -134,7 +131,7 @@ public class TreeHelper {
 		if (root.left == null && root.right == null)
 			return level == 1;
 
-		return checkIfLeafsAreAtALevel(root.left, level - 1) && checkIfLeafsAreAtALevel(root.right, level - 1);
+		return isLeavesAtSameLevel(root.left, level - 1) && isLeavesAtSameLevel(root.right, level - 1);
 	}
 
 	public static void postOrder(TreeNode root) {
@@ -146,7 +143,7 @@ public class TreeHelper {
 		System.out.println(root.data);
 	}
 
-	public static boolean checkAllTraversalOfSameTree(int[] preOrder, int[] inOrder, int[] postOrder) {
+	public static boolean isTraversalsFromSameTree(int[] preOrder, int[] inOrder, int[] postOrder) {
 		TreeNode root = buildTree(inOrder, preOrder);
 
 		int[] postOrderArray = populatePostOrder(root);
@@ -160,13 +157,13 @@ public class TreeHelper {
 
 	public static int[] populatePostOrder(TreeNode root) {
 		traversalIndex = 0;
-		int[] arr = new int[sizeOfTree(root)];
+		int[] arr = new int[size(root)];
 
 		fillPostOrder(root, arr);
 		return arr;
 	}
 	
-	public static boolean checkIfLevelOrderOfCompleteBinaryTreeSatisfyMinHeap(int[] levelOrder) {
+	public static boolean isLevelOrderSatisfyMinHeap(int[] levelOrder) {
 		
 		for(int i = 0; i < levelOrder.length /2; i++) {
 			if (levelOrder[i]  > levelOrder[2*i + 1]) {
@@ -189,7 +186,7 @@ public class TreeHelper {
 	 * @param root2
 	 * @return
 	 */
-	public static boolean isLeafOrderTraversalSame(TreeNode root1, TreeNode root2) {
+	public static boolean isLeavesTraversalHasSameOrder(TreeNode root1, TreeNode root2) {
 		
 		Stack<TreeNode> s1 = new Stack<TreeNode>();
 		Stack<TreeNode> s2 = new Stack<TreeNode>();
@@ -290,14 +287,14 @@ public class TreeHelper {
 		
 	}
 	
-	public static boolean isTreesIdentical(TreeNode root1, TreeNode root2) {
+	public static boolean areIdentical(TreeNode root1, TreeNode root2) {
 		if (root1 == null && root2 == null)
 			return true;
 		
 		if (root1 != null && root2 != null) {
 			return root1.data == root2.data &&
-					isTreesIdentical(root1.left, root2.left) &&
-					isTreesIdentical(root1.right, root2.right);
+					areIdentical(root1.left, root2.left) &&
+					areIdentical(root1.right, root2.right);
 		}
 		
 		return false;	
@@ -311,19 +308,19 @@ public class TreeHelper {
 		if (root == null)
 			return false;
 		
-		if (isTreesIdentical(root, sRoot)) {
+		if (areIdentical(root, sRoot)) {
 			return true;
 		}
 		
 		return isTreeSubset(root.left, sRoot) || isTreeSubset(root.right, sRoot);
 	}
 	
-	public static boolean isBinaryTreeContainsDuplicate(TreeNode root) {
+	public static boolean containsDuplicateNodes(TreeNode root) {
 		Set<Integer> nodeDataSet = new HashSet<Integer>();	
-		return isBinaryTreeContainsDuplicate(root, nodeDataSet);
+		return containsDuplicateNodes(root, nodeDataSet);
 	}
 	
-	public static boolean isTreeMirror(TreeNode root1, TreeNode root2) {
+	public static boolean isMirror(TreeNode root1, TreeNode root2) {
 		
 		if (root1 == null && root2 == null)
 			return true;
@@ -332,12 +329,20 @@ public class TreeHelper {
 			return false;
 		
 		return root1.data == root2.data &&
-				isTreeMirror(root1.left, root2.right) &&
-				isTreeMirror(root1.right, root2.left);
+				isMirror(root1.left, root2.right) &&
+				isMirror(root1.right, root2.left);
 		
 	}
 	
-	private static boolean isBinaryTreeContainsDuplicate(TreeNode root, Set<Integer> nodeDataSet) {
+	public static boolean isSymmetric(TreeNode root) {
+		
+		if (root == null)
+			return true;
+		
+		return isMirror(root.left, root.right);
+	}
+	
+	private static boolean containsDuplicateNodes(TreeNode root, Set<Integer> nodeDataSet) {
 		
 		if (root == null)
 			return false;
@@ -348,7 +353,7 @@ public class TreeHelper {
 			nodeDataSet.add(root.data);
 		}
 		
-		return isBinaryTreeContainsDuplicate(root.left, nodeDataSet) || isBinaryTreeContainsDuplicate(root.right, nodeDataSet);
+		return containsDuplicateNodes(root.left, nodeDataSet) || containsDuplicateNodes(root.right, nodeDataSet);
 	}
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {
@@ -361,7 +366,7 @@ public class TreeHelper {
 	}
 	
 	public static boolean isPerfectTree(TreeNode root) {
-		int heightOfTree = heightOfTree(root);
+		int heightOfTree = height(root);
 		int leafNodes = countLeafNodes(root);
 		return leafNodes == Math.pow(2, heightOfTree - 1);
 	}
