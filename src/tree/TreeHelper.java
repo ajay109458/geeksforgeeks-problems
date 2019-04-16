@@ -465,6 +465,32 @@ public class TreeHelper {
 		printAllPaths(root.right, arr, index + 1);
 	}
 	
+	public static void printNodesBetweenLevels(TreeNode root, int low, int high) {
+		
+		System.out.println("Printing nodes between levels : " + low + " and " + high);
+		
+		printNodesBetweenLevels(root, low, high, 0);
+		
+		System.out.println();
+		
+		return;
+	}
+	
+	private static void printNodesBetweenLevels(TreeNode root, int low, int high, int currentLevel) {
+		
+		if (root == null)
+			return;
+		
+		if ( currentLevel >= low && currentLevel <= high) {
+			System.out.print(root.data + " ");
+		}
+		
+		printNodesBetweenLevels(root.left, low, high, currentLevel + 1);
+		printNodesBetweenLevels(root.right, low, high, currentLevel + 1);
+	}
+	
+	
+	
 	private static boolean isPathExists(TreeNode root, int[] arr, int level) {
 		
 		if (root == null) {

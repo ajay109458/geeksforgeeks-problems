@@ -123,6 +123,12 @@ public class Main {
 	     */
 	    System.out.println("Print full nodes : ");
 	    TreeHelper.printFullNodes(root);
+	    
+	    
+	    /**
+	     * Print nodes between level 
+	     */
+	    TreeHelper.printNodesBetweenLevels(root, 1, 2);
 	}
 	
 }
