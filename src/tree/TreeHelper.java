@@ -368,6 +368,20 @@ public class TreeHelper {
 		System.out.println();
 	}
 	
+	public static void printFullNodes(TreeNode root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		if(root.left != null && root.right != null) {
+			System.out.print(root.data + " ");
+		}
+		
+		printFullNodes(root.left);
+		printFullNodes(root.right);
+	}
+	
 	private static void printNodesAtOddLevel(TreeNode root, boolean shouldPrint) {
 		
 		if (root == null) {

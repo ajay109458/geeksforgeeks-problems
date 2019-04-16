@@ -117,6 +117,12 @@ public class Main {
 	     * Print nodes at odd level
 	     */
 	    TreeHelper.printNodesAtOddLevel(root);
+	    
+	    /**
+	     * Print full nodes of the tree 
+	     */
+	    System.out.println("Print full nodes : ");
+	    TreeHelper.printFullNodes(root);
 	}
 	
 }
