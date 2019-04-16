@@ -112,6 +112,11 @@ public class Main {
 	     * Print max diameter of the tree
 	     */
 	    System.out.println("Max diameter of tree : " + TreeHelper.getMaxDiameter(root));
+	    
+	    /**
+	     * Print nodes at odd level
+	     */
+	    TreeHelper.printNodesAtOddLevel(root);
 	}
 	
 }

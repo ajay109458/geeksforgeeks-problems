@@ -362,6 +362,27 @@ public class TreeHelper {
 		return Math.max(Math.max(getMaxDiameter(root.left), getMaxDiameter(root.right)), leftHeight + rightHeight + 1);
 	}
 	
+	public static void printNodesAtOddLevel(TreeNode root) {
+		System.out.println("Print nodes at odd levels : ");
+		printNodesAtOddLevel(root, true);
+		System.out.println();
+	}
+	
+	private static void printNodesAtOddLevel(TreeNode root, boolean shouldPrint) {
+		
+		if (root == null) {
+			return;
+		}
+		
+		if (shouldPrint)
+			System.out.print(root.data + " ");
+
+		shouldPrint = !shouldPrint;
+		
+		printNodesAtOddLevel(root.left, shouldPrint);
+		printNodesAtOddLevel(root.right, shouldPrint);
+	}
+	
 	private static void printCousinNodesAtLevel(TreeNode root, int val, int level) {
 		
 		if (root == null || level == 0)
