@@ -129,6 +129,12 @@ public class Main {
 	     * Print nodes between level 
 	     */
 	    TreeHelper.printNodesBetweenLevels(root, 1, 2);
+	    
+	    /**
+	     * Print nodes with sublings
+	     */
+	    System.out.println("Print nodes without sublings: ");
+	    TreeHelper.printNodesWithoutSublings2(root);
 	}
 	
 }

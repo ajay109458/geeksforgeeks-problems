@@ -476,6 +476,58 @@ public class TreeHelper {
 		return;
 	}
 	
+	public static void printNodesWithoutSublings1(TreeNode root) {
+		
+		if (root == null)
+			return;
+		
+		if (root.left != null && root.right != null) {
+			printNodesWithoutSublings1(root.left);
+			printNodesWithoutSublings1(root.right);
+			return;
+		}
+		
+		if (root.left != null) {
+			System.out.println(root.left.data + " ");
+			printNodesWithoutSublings1(root.left);
+		}
+		
+		if (root.right != null) {
+			System.out.println(root.right.data + " ");
+			printNodesWithoutSublings1(root.right);
+		}
+		
+	}
+	
+	public static void printNodesWithoutSublings2(TreeNode root) {
+		printNodesWithoutSublings2(root, null);
+	}
+	
+	private static void printNodesWithoutSublings2(TreeNode root, TreeNode parent) {
+		
+		if (root == null) {
+			return;
+		}
+		
+		if (parent == null) {
+			System.out.println(root.data + " ");
+		} else {
+		
+			if (parent.left != null && parent.right == null) {
+				System.out.println(root.data + " ");
+			}
+			
+			if (parent.right != null && parent.left == null) {
+				System.out.println(root.data + " ");
+			}
+		}
+		
+		printNodesWithoutSublings2(root.left, root);
+		printNodesWithoutSublings2(root.right, root);
+		
+	}
+	
+	
 	private static void printNodesBetweenLevels(TreeNode root, int low, int high, int currentLevel) {
 		
 		if (root == null)
