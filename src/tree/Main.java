@@ -141,6 +141,12 @@ public class Main {
 	     */
 	    System.out.println("Printing tree with level : ");
 	    TreeHelper.printNodeWithLevel(root);
+	    
+	    /**
+	     * Print a tree vertically
+	     */
+	    System.out.println("Print a tree vertically");
+	    TreeHelper.printTreeVertically(root);
 	}
 	
 }

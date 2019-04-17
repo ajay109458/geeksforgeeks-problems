@@ -1,8 +1,13 @@
 package tree;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -621,6 +626,42 @@ public class TreeHelper {
 	
 	public static void printNodeWithLevel(TreeNode root) {
 		printNodeWithLevel(root, 1);
+	}
+	
+	public static void printTreeVertically(TreeNode root) {
+		Map<Integer, List<TreeNode>> nodesByColMap = new HashMap<>();
+		printTreeVertically(root, 0, nodesByColMap);
+		
+		List<Integer> keys = new ArrayList(nodesByColMap.keySet()); 
+		Collections.sort(keys);
+		
+		for (Integer key : keys) {
+			List<TreeNode> nodes =  nodesByColMap.get(key);
+			
+			for(TreeNode node : nodes) {
+				System.out.print(node.data + " ");
+			}
+			
+			System.out.println();
+		}
+	}
+	
+	private static void printTreeVertically(TreeNode root, int currCol, Map<Integer, List<TreeNode>> nodesByColMap) {
+		
+		if (root == null)
+			return;
+		
+		List<TreeNode> nodes = nodesByColMap.get(currCol);
+		if (nodes == null) {
+			nodes = new ArrayList<TreeNode>();
+			nodesByColMap.put(currCol, nodes);
+		}
+		
+		nodes.add(root);
+		
+		printTreeVertically(root.left, currCol - 1, nodesByColMap);
+		printTreeVertically(root.right, currCol + 1, nodesByColMap);
+		
 	}
 	
 	private static void printNodeWithLevel(TreeNode root, int level) {
