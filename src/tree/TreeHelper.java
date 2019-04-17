@@ -37,7 +37,8 @@ public class TreeHelper {
 		int leftSum = (root.left == null) ? 0 : root.left.data;
 		int rightSum = (root.right == null) ? 0 : root.right.data;
 
-		return isSumPropertySatisfied(root.left) && isSumPropertySatisfied(root.right) && (root.data == leftSum + rightSum);
+		return isSumPropertySatisfied(root.left) && isSumPropertySatisfied(root.right)
+				&& (root.data == leftSum + rightSum);
 
 	}
 
@@ -167,119 +168,120 @@ public class TreeHelper {
 		fillPostOrder(root, arr);
 		return arr;
 	}
-	
+
 	public static boolean isLevelOrderSatisfyMinHeap(int[] levelOrder) {
-		
-		for(int i = 0; i < levelOrder.length /2; i++) {
-			if (levelOrder[i]  > levelOrder[2*i + 1]) {
+
+		for (int i = 0; i < levelOrder.length / 2; i++) {
+			if (levelOrder[i] > levelOrder[2 * i + 1]) {
 				return false;
 			}
-			
-			if ((2*i + 2 < levelOrder.length) && levelOrder[i] > levelOrder[2*i+2]) {
+
+			if ((2 * i + 2 < levelOrder.length) && levelOrder[i] > levelOrder[2 * i + 2]) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
-	 * Leaf traversal is sequence of leaves traversed from left to right. The problem is to check if 
-	 * leaf traversals of two given Binary Trees are same or not.
+	 * Leaf traversal is sequence of leaves traversed from left to right. The
+	 * problem is to check if leaf traversals of two given Binary Trees are same or
+	 * not.
 	 * 
 	 * @param root1
 	 * @param root2
 	 * @return
 	 */
 	public static boolean isLeavesTraversalHasSameOrder(TreeNode root1, TreeNode root2) {
-		
+
 		Stack<TreeNode> s1 = new Stack<TreeNode>();
 		Stack<TreeNode> s2 = new Stack<TreeNode>();
-		
+
 		s1.push(root1);
 		s2.push(root2);
-		
-		while(!s1.isEmpty() || !s2.isEmpty()) {
-			
+
+		while (!s1.isEmpty() || !s2.isEmpty()) {
+
 			if (s1.isEmpty() || s2.isEmpty())
 				return false;
-			
+
 			TreeNode temp1 = s1.pop();
-			while(temp1 != null && !isLeafNode(temp1)) {
+			while (temp1 != null && !isLeafNode(temp1)) {
 				if (temp1.right != null) {
 					s1.push(temp1.right);
 				}
-				
+
 				if (temp1.left != null) {
 					s1.push(temp1.left);
 				}
-				
+
 				temp1 = s1.pop();
 			}
-			
+
 			TreeNode temp2 = s2.pop();
-			while(temp2 != null && !isLeafNode(temp2)) {
+			while (temp2 != null && !isLeafNode(temp2)) {
 				if (temp2.right != null) {
 					s2.push(temp2.right);
 				}
-				
+
 				if (temp2.left != null) {
 					s2.push(temp2.left);
 				}
-				
+
 				temp2 = s2.pop();
 			}
-			
+
 			if (temp1 == null && temp2 != null)
 				return false;
-			
+
 			if (temp1 != null && temp2 == null)
 				return false;
-			
-			if (temp1 != null && temp2 != null) {				
+
+			if (temp1 != null && temp2 != null) {
 				if (temp1.data != temp2.data)
 					return false;
-			}	
+			}
 		}
- 		
+
 		return true;
 	}
-	
+
 	public static boolean isLeafNode(TreeNode root) {
 		if (root == null)
 			return false;
-		
+
 		return (root.left == null && root.right == null);
 	}
-	
+
 	public static boolean isCompleteTree(TreeNode root) {
-		
+
 		if (root == null)
 			return true;
-		
+
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.add(root);
-		
+
 		boolean isNonFullNodeAlreadyExist = false;
-		
-		while(!queue.isEmpty()) {
-			
+
+		while (!queue.isEmpty()) {
+
 			root = queue.poll();
-			
+
 			if (root.left != null) {
 				queue.add(root.left);
-				
+
 				if (isNonFullNodeAlreadyExist) {
 					return false;
 				}
-				
+
 			} else {
 				isNonFullNodeAlreadyExist = true;
 			}
-			
+
 			if (root.right != null) {
 				queue.add(root.right);
-				
+
 				if (isNonFullNodeAlreadyExist) {
 					return false;
 				}
@@ -287,293 +289,286 @@ public class TreeHelper {
 				isNonFullNodeAlreadyExist = true;
 			}
 		}
-		
+
 		return true;
-		
+
 	}
-	
+
 	public static boolean areIdentical(TreeNode root1, TreeNode root2) {
 		if (root1 == null && root2 == null)
 			return true;
-		
+
 		if (root1 != null && root2 != null) {
-			return root1.data == root2.data &&
-					areIdentical(root1.left, root2.left) &&
-					areIdentical(root1.right, root2.right);
+			return root1.data == root2.data && areIdentical(root1.left, root2.left)
+					&& areIdentical(root1.right, root2.right);
 		}
-		
-		return false;	
+
+		return false;
 	}
-	
+
 	public static boolean isTreeSubset(TreeNode root, TreeNode sRoot) {
-		
+
 		if (sRoot == null)
 			return true;
-		
+
 		if (root == null)
 			return false;
-		
+
 		if (areIdentical(root, sRoot)) {
 			return true;
 		}
-		
+
 		return isTreeSubset(root.left, sRoot) || isTreeSubset(root.right, sRoot);
 	}
-	
+
 	public static boolean containsDuplicateNodes(TreeNode root) {
-		Set<Integer> nodeDataSet = new HashSet<Integer>();	
+		Set<Integer> nodeDataSet = new HashSet<Integer>();
 		return containsDuplicateNodes(root, nodeDataSet);
 	}
-	
+
 	public static boolean isMirror(TreeNode root1, TreeNode root2) {
-		
+
 		if (root1 == null && root2 == null)
 			return true;
-		
+
 		if (root1 == null || root2 == null)
 			return false;
-		
-		return root1.data == root2.data &&
-				isMirror(root1.left, root2.right) &&
-				isMirror(root1.right, root2.left);
-		
+
+		return root1.data == root2.data && isMirror(root1.left, root2.right) && isMirror(root1.right, root2.left);
+
 	}
-	
+
 	public static boolean isSymmetric(TreeNode root) {
-		
+
 		if (root == null)
 			return true;
-		
+
 		return isMirror(root.left, root.right);
 	}
-	
+
 	public static boolean isPathExists(TreeNode root, int[] arr) {
 		return isPathExists(root, arr, 0);
 	}
-	
+
 	public static void printCousins(TreeNode root, int val) {
 		int level = getLevelOfNode(root, val);
 		printCousinNodesAtLevel(root, val, level);
 		System.out.println();
 	}
-	
+
 	public static int getMaxDiameter(TreeNode root) {
 		if (root == null)
 			return 0;
-		
+
 		int leftHeight = height(root.left);
 		int rightHeight = height(root.right);
-		
+
 		return Math.max(Math.max(getMaxDiameter(root.left), getMaxDiameter(root.right)), leftHeight + rightHeight + 1);
 	}
-	
+
 	public static void printNodesAtOddLevel(TreeNode root) {
 		System.out.println("Print nodes at odd levels : ");
 		printNodesAtOddLevel(root, true);
 		System.out.println();
 	}
-	
+
 	public static void printFullNodes(TreeNode root) {
-		
-		if(root == null) {
-			return;
-		}
-		
-		if(root.left != null && root.right != null) {
-			System.out.print(root.data + " ");
-		}
-		
-		printFullNodes(root.left);
-		printFullNodes(root.right);
-	}
-	
-	private static void printNodesAtOddLevel(TreeNode root, boolean shouldPrint) {
-		
+
 		if (root == null) {
 			return;
 		}
-		
+
+		if (root.left != null && root.right != null) {
+			System.out.print(root.data + " ");
+		}
+
+		printFullNodes(root.left);
+		printFullNodes(root.right);
+	}
+
+	private static void printNodesAtOddLevel(TreeNode root, boolean shouldPrint) {
+
+		if (root == null) {
+			return;
+		}
+
 		if (shouldPrint)
 			System.out.print(root.data + " ");
 
 		shouldPrint = !shouldPrint;
-		
+
 		printNodesAtOddLevel(root.left, shouldPrint);
 		printNodesAtOddLevel(root.right, shouldPrint);
 	}
-	
+
 	private static void printCousinNodesAtLevel(TreeNode root, int val, int level) {
-		
+
 		if (root == null || level == 0)
 			return;
-		
+
 		if (root.left == null && root.right == null)
 			return;
-		
+
 		if (level == 1) {
-			
+
 			if ((root.left != null && root.left.data == val) || (root.right != null && root.right.data == val))
 				return;
-			
+
 			if (root.left != null) {
 				System.out.print(root.left.data + " ");
 			}
-			
+
 			if (root.right != null) {
 				System.out.print(root.right.data + " ");
 			}
-			
+
 			return;
 		}
-		
+
 		printCousinNodesAtLevel(root.left, val, level - 1);
 		printCousinNodesAtLevel(root.right, val, level - 1);
 	}
-	
+
 	public static void printNodesAtLevel(TreeNode root, int level) {
-		
+
 		if (root == null)
 			return;
-		
+
 		if (level == 0) {
 			System.out.print(root.data + " ");
 		}
-		
+
 		printNodesAtLevel(root.left, level - 1);
 		printNodesAtLevel(root.right, level - 1);
-		
+
 	}
-	
+
 	public static void printAllPaths(TreeNode root) {
 		int heightOfTree = height(root);
 		int[] arr = new int[heightOfTree];
 		System.out.println("Printing all paths : ");
 		printAllPaths(root, arr, 0);
 	}
-	
+
 	public static void printAllPaths(TreeNode root, int[] arr, int index) {
-		
+
 		if (root == null)
 			return;
-		
+
 		arr[index] = root.data;
-		
+
 		if (isLeafNode(root)) {
-			for(int i = 0; i <= index; i++) {
+			for (int i = 0; i <= index; i++) {
 				System.out.print(arr[i] + " ");
 			}
 			System.out.println();
 			return;
 		}
-		
+
 		printAllPaths(root.left, arr, index + 1);
 		printAllPaths(root.right, arr, index + 1);
 	}
-	
+
 	public static void printNodesBetweenLevels(TreeNode root, int low, int high) {
-		
+
 		System.out.println("Printing nodes between levels : " + low + " and " + high);
-		
+
 		printNodesBetweenLevels(root, low, high, 0);
-		
+
 		System.out.println();
-		
+
 		return;
 	}
-	
+
 	public static void printNodesWithoutSublings1(TreeNode root) {
-		
+
 		if (root == null)
 			return;
-		
+
 		if (root.left != null && root.right != null) {
 			printNodesWithoutSublings1(root.left);
 			printNodesWithoutSublings1(root.right);
 			return;
 		}
-		
+
 		if (root.left != null) {
 			System.out.println(root.left.data + " ");
 			printNodesWithoutSublings1(root.left);
 		}
-		
+
 		if (root.right != null) {
 			System.out.println(root.right.data + " ");
 			printNodesWithoutSublings1(root.right);
 		}
-		
+
 	}
-	
+
 	public static void printNodesWithoutSublings2(TreeNode root) {
 		printNodesWithoutSublings2(root, null);
 	}
-	
+
 	private static void printNodesWithoutSublings2(TreeNode root, TreeNode parent) {
-		
+
 		if (root == null) {
 			return;
 		}
-		
+
 		if (parent == null) {
 			System.out.println(root.data + " ");
 		} else {
-		
+
 			if (parent.left != null && parent.right == null) {
 				System.out.println(root.data + " ");
 			}
-			
+
 			if (parent.right != null && parent.left == null) {
 				System.out.println(root.data + " ");
 			}
 		}
-		
+
 		printNodesWithoutSublings2(root.left, root);
 		printNodesWithoutSublings2(root.right, root);
-		
+
 	}
-	
-	
+
 	private static void printNodesBetweenLevels(TreeNode root, int low, int high, int currentLevel) {
-		
+
 		if (root == null)
 			return;
-		
-		if ( currentLevel >= low && currentLevel <= high) {
+
+		if (currentLevel >= low && currentLevel <= high) {
 			System.out.print(root.data + " ");
 		}
-		
+
 		printNodesBetweenLevels(root.left, low, high, currentLevel + 1);
 		printNodesBetweenLevels(root.right, low, high, currentLevel + 1);
 	}
-	
-	
-	
+
 	private static boolean isPathExists(TreeNode root, int[] arr, int level) {
-		
+
 		if (root == null) {
 			return level == arr.length;
 		}
-		
+
 		if (level >= arr.length) {
 			return false;
 		}
-		
-		return root.data == arr[level] &&
-				(isPathExists(root.left, arr, level + 1) ||
-						isPathExists(root.right, arr, level+1));
+
+		return root.data == arr[level]
+				&& (isPathExists(root.left, arr, level + 1) || isPathExists(root.right, arr, level + 1));
 	}
-	
+
 	private static boolean containsDuplicateNodes(TreeNode root, Set<Integer> nodeDataSet) {
-		
+
 		if (root == null)
 			return false;
-		
-		if(nodeDataSet.contains(root.data)) {
+
+		if (nodeDataSet.contains(root.data)) {
 			return true;
 		} else {
 			nodeDataSet.add(root.data);
 		}
-		
+
 		return containsDuplicateNodes(root.left, nodeDataSet) || containsDuplicateNodes(root.right, nodeDataSet);
 	}
 
@@ -585,26 +580,27 @@ public class TreeHelper {
 		fillPostOrder(root.right, arr);
 		arr[traversalIndex++] = root.data;
 	}
-	
+
 	public static boolean isPerfectTree(TreeNode root) {
 		int heightOfTree = height(root);
 		int leafNodes = countLeafNodes(root);
 		return leafNodes == Math.pow(2, heightOfTree - 1);
 	}
-	
-	public static int countLeafNodes(TreeNode root) {		
+
+	public static int countLeafNodes(TreeNode root) {
 		if (root == null)
 			return 0;
-		
+
 		if (isLeafNode(root)) {
 			return 1;
 		}
-		
+
 		return countLeafNodes(root.left) + countLeafNodes(root.right);
 	}
-	
+
 	/**
-	 * A full binary tree is defined as a binary tree in which all nodes have either zero or two child nodes
+	 * A full binary tree is defined as a binary tree in which all nodes have either
+	 * zero or two child nodes
 	 * 
 	 * @param root
 	 * @return
@@ -612,68 +608,98 @@ public class TreeHelper {
 	public static boolean isFullBinaryTree(TreeNode root) {
 		if (root == null)
 			return true;
-		
+
 		if (isLeafNode(root))
 			return true;
-		
-		if (root.left != null 
-				&& root.right != null
-				&& isFullBinaryTree(root.left)
-				&& isFullBinaryTree(root.right))
+
+		if (root.left != null && root.right != null && isFullBinaryTree(root.left) && isFullBinaryTree(root.right))
 			return true;
 		return false;
 	}
-	
+
 	public static void printNodeWithLevel(TreeNode root) {
 		printNodeWithLevel(root, 1);
 	}
-	
+
 	public static void printTreeVertically(TreeNode root) {
 		Map<Integer, List<TreeNode>> nodesByColMap = new HashMap<>();
-		printTreeVertically(root, 0, nodesByColMap);
-		
-		List<Integer> keys = new ArrayList(nodesByColMap.keySet()); 
+		populateVerticalTree(root, 0, nodesByColMap);
+
+		List<Integer> keys = new ArrayList(nodesByColMap.keySet());
 		Collections.sort(keys);
-		
+
 		for (Integer key : keys) {
-			List<TreeNode> nodes =  nodesByColMap.get(key);
-			
-			for(TreeNode node : nodes) {
+			List<TreeNode> nodes = nodesByColMap.get(key);
+
+			for (TreeNode node : nodes) {
 				System.out.print(node.data + " ");
 			}
-			
+
 			System.out.println();
 		}
 	}
-	
-	private static void printTreeVertically(TreeNode root, int currCol, Map<Integer, List<TreeNode>> nodesByColMap) {
+
+	public static void printLeftView(TreeNode root) {
+		Map<Integer, TreeNode> nodeByLevelMap = new HashMap<Integer, TreeNode>();
 		
+		populateLeftView(root, 0, nodeByLevelMap);
+		
+		List<Integer> keys = new ArrayList(nodeByLevelMap.keySet());
+		Collections.sort(keys);
+		
+		for (Integer key : keys) {
+			TreeNode node = nodeByLevelMap.get(key);
+
+			System.out.print(node.data + " ");
+		}
+		
+		System.out.println();
+	}
+
+	private static void populateLeftView(TreeNode root, int currLevel, Map<Integer, TreeNode> nodeByLevelMap) {
+
 		if (root == null)
 			return;
+
+		TreeNode node = nodeByLevelMap.get(currLevel);
 		
+		if (node == null) {
+			nodeByLevelMap.put(currLevel, root);
+		}
+
+		populateLeftView(root.left, currLevel + 1, nodeByLevelMap);
+		populateLeftView(root.right, currLevel + 1, nodeByLevelMap);
+
+	}
+
+	private static void populateVerticalTree(TreeNode root, int currCol, Map<Integer, List<TreeNode>> nodesByColMap) {
+
+		if (root == null)
+			return;
+
 		List<TreeNode> nodes = nodesByColMap.get(currCol);
 		if (nodes == null) {
 			nodes = new ArrayList<TreeNode>();
 			nodesByColMap.put(currCol, nodes);
 		}
-		
+
 		nodes.add(root);
-		
-		printTreeVertically(root.left, currCol - 1, nodesByColMap);
-		printTreeVertically(root.right, currCol + 1, nodesByColMap);
-		
+
+		populateVerticalTree(root.left, currCol - 1, nodesByColMap);
+		populateVerticalTree(root.right, currCol + 1, nodesByColMap);
+
 	}
-	
+
 	private static void printNodeWithLevel(TreeNode root, int level) {
-		
+
 		if (root == null)
 			return;
-		
+
 		printNodeWithLevel(root.left, level + 1);
 		System.out.println("Level of " + root.data + " is " + level);
 		printNodeWithLevel(root.right, level + 1);
 	}
- 
+
 	private static TreeNode buildTree(int[] inOrder, int[] preOrder, int startIndex, int endIndex) {
 
 		if (startIndex > endIndex)
