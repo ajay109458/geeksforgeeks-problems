@@ -160,6 +160,17 @@ public class Main {
 	    System.out.println("Printing left view of the tree : ");
 	    BinaryTreeCheckingAndPrintingHelper.printRightView(root);
 	    
+	    /**
+	     * print sum of all nodes of the tree
+	     */
+	    System.out.println("Sum of all nodes of tree: " + BinaryTreeSumationHelper.sumOfNodes(root));
+	    
+	    /**
+	     * Print sum of parent node with child x
+	     */
+	    System.out.println("Sum of parent nodes : " + BinaryTreeSumationHelper.sumOfParentNodesWithChildX(TreeCreator.createSymmetricTree(), 4));
+	    
+	    
 	}
 	
 }
