@@ -37,5 +37,18 @@ public class BinaryTreeSumationHelper {
 				sumOfParentNodesWithChildX(root.right, x);
 	}
 	
+	public static int sumOfLeaves(TreeNode root) {
+		
+		if (root == null) {
+			return 0;
+		}
+		
+		if (BinaryTreeCheckingAndPrintingHelper.isLeafNode(root)) {
+			return root.data;
+		}
+		
+		return sumOfLeaves(root.left) + sumOfLeaves(root.right);
+	}
+	
 
 }

@@ -170,6 +170,11 @@ public class Main {
 	     */
 	    System.out.println("Sum of parent nodes : " + BinaryTreeSumationHelper.sumOfParentNodesWithChildX(TreeCreator.createSymmetricTree(), 4));
 	    
+	    /**
+	     * Print sum of the leaf nodes
+	     */
+	    System.out.println("Sum of the leaf nodes : " + BinaryTreeSumationHelper.sumOfLeaves(root));
+	    
 	    
 	}
 	
