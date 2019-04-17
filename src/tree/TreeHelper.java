@@ -618,6 +618,20 @@ public class TreeHelper {
 			return true;
 		return false;
 	}
+	
+	public static void printNodeWithLevel(TreeNode root) {
+		printNodeWithLevel(root, 1);
+	}
+	
+	private static void printNodeWithLevel(TreeNode root, int level) {
+		
+		if (root == null)
+			return;
+		
+		printNodeWithLevel(root.left, level + 1);
+		System.out.println("Level of " + root.data + " is " + level);
+		printNodeWithLevel(root.right, level + 1);
+	}
  
 	private static TreeNode buildTree(int[] inOrder, int[] preOrder, int startIndex, int endIndex) {
 
