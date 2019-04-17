@@ -14,7 +14,7 @@ import java.util.Stack;
 
 import array.ArrayHelper;
 
-public class TreeHelper {
+public class BinaryTreeCheckingAndPrintingHelper {
 
 	// Reset it always before builidng tree using inorder and pre order traversal
 	public static int preIndex = 0;
