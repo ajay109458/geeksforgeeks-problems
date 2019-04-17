@@ -50,5 +50,21 @@ public class BinaryTreeSumationHelper {
 		return sumOfLeaves(root.left) + sumOfLeaves(root.right);
 	}
 	
+	/**
+	 * Find sum of nodes of a perfect sum tree 
+	 * https://www.geeksforgeeks.org/find-sum-nodes-given-perfect-binary-tree/
+	 * 
+	 * @param level
+	 * @return
+	 */
+	public static int sumOfNodesOfPerfectTree(int level) {
+		
+		int leafNodesCount = (int) Math.pow(2, level - 1);
+		
+		int sumLastLevel = (leafNodesCount * (leafNodesCount + 1)) / 2;
+		
+		return level * sumLastLevel;
+	}
+	
 
 }

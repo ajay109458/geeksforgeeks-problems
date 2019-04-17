@@ -175,6 +175,11 @@ public class Main {
 	     */
 	    System.out.println("Sum of the leaf nodes : " + BinaryTreeSumationHelper.sumOfLeaves(root));
 	    
+	    /**
+	     * Sum of the nodes of the perfect tree
+	     */
+	    System.out.println("Sum of nodes of the perfect tree: " + BinaryTreeSumationHelper.sumOfNodesOfPerfectTree(3));
+	    
 	    
 	}
 	
