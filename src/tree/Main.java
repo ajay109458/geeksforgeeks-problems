@@ -154,6 +154,11 @@ public class Main {
 	    System.out.println("Printing left view of the tree : ");
 	    TreeHelper.printLeftView(root);
 	    
+	    /**
+	     * Print right view of the tree 
+	     */
+	    System.out.println("Printing left view of the tree : ");
+	    TreeHelper.printRightView(root);
 	    
 	}
 	

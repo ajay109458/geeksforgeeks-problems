@@ -656,6 +656,39 @@ public class TreeHelper {
 		System.out.println();
 	}
 
+	public static void printRightView(TreeNode root) {
+		Map<Integer, TreeNode> nodeByLevelMap = new HashMap<Integer, TreeNode>();
+		
+		populateRightView(root, 0, nodeByLevelMap);
+		
+		List<Integer> keys = new ArrayList(nodeByLevelMap.keySet());
+		Collections.sort(keys);
+		
+		for (Integer key : keys) {
+			TreeNode node = nodeByLevelMap.get(key);
+
+			System.out.print(node.data + " ");
+		}
+		
+		System.out.println();
+	}
+
+	private static void populateRightView(TreeNode root, int currLevel, Map<Integer, TreeNode> nodeByLevelMap) {
+
+		if (root == null)
+			return;
+
+		TreeNode node = nodeByLevelMap.get(currLevel);
+		
+		if (node == null) {
+			nodeByLevelMap.put(currLevel, root);
+		}
+
+		populateRightView(root.right, currLevel + 1, nodeByLevelMap);
+		populateRightView(root.left, currLevel + 1, nodeByLevelMap);
+
+	}
+	
 	private static void populateLeftView(TreeNode root, int currLevel, Map<Integer, TreeNode> nodeByLevelMap) {
 
 		if (root == null)
@@ -671,6 +704,8 @@ public class TreeHelper {
 		populateLeftView(root.right, currLevel + 1, nodeByLevelMap);
 
 	}
+	
+	
 
 	private static void populateVerticalTree(TreeNode root, int currCol, Map<Integer, List<TreeNode>> nodesByColMap) {
 
