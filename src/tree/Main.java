@@ -213,6 +213,12 @@ public class Main {
 	     * Non adjacent nodes max sum 
 	     */
 	    System.out.println("Non adjacent nodes max sum : " + BinaryTreeSumationHelper.nonAdjacentNodesMaxSum(root));
+	    
+	    /**
+	     * Max sub tree sum 
+	     * 
+	     */
+	    System.out.println("Max subtree sum : "  + BinaryTreeSumationHelper.maxSubTreeSum(root));
 	}
 	
 }

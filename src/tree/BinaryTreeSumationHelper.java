@@ -12,6 +12,14 @@ import utils.MaxLenSum;
 
 public class BinaryTreeSumationHelper {
 
+	static class INT {
+		int v;
+
+		INT(int a) {
+			v = a;
+		}
+	}
+
 	/**
 	 * Give an algorithm for finding the sum of all elements in a binary tree.
 	 * 
@@ -87,92 +95,109 @@ public class BinaryTreeSumationHelper {
 		}
 		System.out.println();
 	}
-	
+
 	public static boolean isPairInPathWithSumEqualToRoot(TreeNode root) {
-		
+
 		if (root == null)
 			return false;
-		
+
 		return isTwoNodesWithSumExists(root.left, root.data) || isTwoNodesWithSumExists(root.right, root.data);
 	}
 
 	public static boolean isTwoNodesWithSumExists(TreeNode root, int sum) {
 		return isTwoNodesWithSumExists(root, sum, new HashSet<Integer>());
 	}
-	
+
 	public static int sumOfLongestPath(TreeNode root) {
 		MaxLenSum maxLenSum = new MaxLenSum();
 		sumOfLongestPath(root, 0, 0, maxLenSum);
 		return maxLenSum.maxSum;
 	}
-	
+
 	public static int maxDiameterSum(TreeNode root) {
 		if (root == null)
 			return 0;
-		
+
 		int leftTreePathSum = maxSumPath(root.left);
 		int rightTreePathSum = maxSumPath(root.right);
-		
-		return Math.max(Math.max(maxDiameterSum(root.left), maxDiameterSum(root.right)), leftTreePathSum + rightTreePathSum + root.data);
+
+		return Math.max(Math.max(maxDiameterSum(root.left), maxDiameterSum(root.right)),
+				leftTreePathSum + rightTreePathSum + root.data);
 	}
-	
+
 	public static int maxSumPath(TreeNode root) {
 		if (root == null)
 			return 0;
-		
+
 		return root.data + Math.max(maxSumPath(root.left), maxSumPath(root.right));
 	}
-	
+
 	public static int nonAdjacentNodesMaxSum(TreeNode root) {
 		Map<TreeNode, Integer> map = new HashMap<>();
 		return nonAdjacentNodesMaxSum(root, map);
 	}
 	
-	private static int nonAdjacentGrandChildNodesSum(TreeNode root, Map<TreeNode, Integer> map) {
-		int sum = 0;
-		
-		if (root.left != null) {
-			sum += nonAdjacentNodesMaxSum(root.left.left, map) + nonAdjacentNodesMaxSum(root.left.right, map);
-		}
-		
-		if (root.right != null) {
-			sum += nonAdjacentNodesMaxSum(root.right.left, map) + nonAdjacentNodesMaxSum(root.right.right, map);
-		}
-		
-		return sum;
+	public static int maxSubTreeSum(TreeNode root) {
+		return maxSubTreeSum(root, new INT(0));	
 	}
-	
-	private static int nonAdjacentNodesMaxSum(TreeNode root, Map<TreeNode, Integer> map) {
+	 
+	private static int maxSubTreeSum(TreeNode root, INT maxSum) {
 		
 		if (root == null)
 			return 0;
 		
+		int currSum = root.data + maxSubTreeSum(root.left) + maxSubTreeSum(root.right);
+		
+		maxSum.v = Math.max(currSum, maxSum.v);
+		
+		return maxSum.v;
+	}
+
+	private static int nonAdjacentGrandChildNodesSum(TreeNode root, Map<TreeNode, Integer> map) {
+		int sum = 0;
+
+		if (root.left != null) {
+			sum += nonAdjacentNodesMaxSum(root.left.left, map) + nonAdjacentNodesMaxSum(root.left.right, map);
+		}
+
+		if (root.right != null) {
+			sum += nonAdjacentNodesMaxSum(root.right.left, map) + nonAdjacentNodesMaxSum(root.right.right, map);
+		}
+
+		return sum;
+	}
+
+	private static int nonAdjacentNodesMaxSum(TreeNode root, Map<TreeNode, Integer> map) {
+
+		if (root == null)
+			return 0;
+
 		if (map.containsKey(root))
 			return map.get(root);
-		
-		int incl = root.data  + nonAdjacentGrandChildNodesSum(root, map);
+
+		int incl = root.data + nonAdjacentGrandChildNodesSum(root, map);
 		int excl = nonAdjacentNodesMaxSum(root.left, map) + nonAdjacentNodesMaxSum(root.right, map);
-		
+
 		map.put(root, Math.max(incl, excl));
-		
+
 		return map.get(root);
 	}
-	
+
 	private static void sumOfLongestPath(TreeNode root, int len, int sum, MaxLenSum maxLenSum) {
-		
+
 		if (root == null) {
 			if (len > maxLenSum.maxLen) {
-				maxLenSum.maxLen  = len;
+				maxLenSum.maxLen = len;
 				maxLenSum.maxSum = sum;
 			} else if (len == maxLenSum.maxLen && sum > maxLenSum.maxSum) {
 				maxLenSum.maxSum = sum;
 			}
 			return;
 		}
-		
-		sumOfLongestPath(root.left, len + 1 , sum + root.data, maxLenSum);
-		sumOfLongestPath(root.right, len + 1 , sum + root.data, maxLenSum);
-	} 
+
+		sumOfLongestPath(root.left, len + 1, sum + root.data, maxLenSum);
+		sumOfLongestPath(root.right, len + 1, sum + root.data, maxLenSum);
+	}
 
 	private static boolean isTwoNodesWithSumExists(TreeNode root, int sum, Set<Integer> pathNodes) {
 
@@ -189,7 +214,7 @@ public class BinaryTreeSumationHelper {
 				|| isTwoNodesWithSumExists(root.right, sum, pathNodes);
 
 		pathNodes.remove(root.data);
-		
+
 		return isSumExist;
 	}
 
@@ -215,4 +240,3 @@ public class BinaryTreeSumationHelper {
 	}
 
 }
-
