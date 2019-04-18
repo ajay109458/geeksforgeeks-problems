@@ -219,6 +219,11 @@ public class Main {
 	     * 
 	     */
 	    System.out.println("Max subtree sum : "  + BinaryTreeSumationHelper.maxSubTreeSum(root));
+	    
+	    /**
+	     * Sum of height of all the nodes 
+	     */
+	    System.out.println("Sum of heights of all the nodes : " + BinaryTreeSumationHelper.sumOfHeightsOfAllNodes(root));
 	}
 	
 }

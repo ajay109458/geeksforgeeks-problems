@@ -140,6 +140,17 @@ public class BinaryTreeSumationHelper {
 	public static int maxSubTreeSum(TreeNode root) {
 		return maxSubTreeSum(root, new INT(0));	
 	}
+	
+	public static int sumOfHeightsOfAllNodes(TreeNode root) {
+		
+		if (root == null)
+			return 0;
+		
+		return BinaryTreeCheckingAndPrintingHelper.height(root) + 
+				sumOfHeightsOfAllNodes(root.left) + 
+				sumOfHeightsOfAllNodes(root.right);
+		
+	}
 	 
 	private static int maxSubTreeSum(TreeNode root, INT maxSum) {
 		
