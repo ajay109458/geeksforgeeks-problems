@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import utils.MaxLenSum;
@@ -178,7 +179,7 @@ public class BinaryTreeSumationHelper {
 	
 	public static void printSumAtEachLevel(TreeNode root) {
 		Map<Integer, Integer> sumAtEachLevelMap = getSumAtEachLevel(root);
-		List<Integer> keys = new ArrayList(sumAtEachLevelMap.keySet());
+		List<Integer> keys = new ArrayList<Integer>(sumAtEachLevelMap.keySet());
 		Collections.sort(keys);
 		
 		for (Integer key : keys) {
@@ -186,6 +187,20 @@ public class BinaryTreeSumationHelper {
 		}
 		System.out.println();
 	}
+	
+	public static int getMaxSumAtLevel(TreeNode root) {
+		Map<Integer, Integer> sumByLevelMap = getSumAtEachLevel(root);
+		
+		int max = 0;
+		
+		for(Entry<Integer, Integer> entry : sumByLevelMap.entrySet()) {
+			if (entry.getValue() > max)
+				max = entry.getValue();
+		}
+		
+		return max;
+	}
+	
 	
 	public static Map<Integer, Integer> getSumAtEachLevel(TreeNode root) {
 		Map<Integer, Integer> map = new HashMap<>();
