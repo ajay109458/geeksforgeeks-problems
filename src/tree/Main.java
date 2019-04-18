@@ -180,6 +180,12 @@ public class Main {
 	     */
 	    System.out.println("Sum of nodes of the perfect tree: " + BinaryTreeSumationHelper.sumOfNodesOfPerfectTree(3));
 	    
+	    /**
+	     * Print diagnoal sum of the tree
+	     */
+	    System.out.println("Print diagonal sum of the tree : ");
+	    BinaryTreeSumationHelper.printDiagonalSum(root);
+	    
 	    
 	}
 	

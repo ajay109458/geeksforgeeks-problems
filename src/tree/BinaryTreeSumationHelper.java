@@ -1,5 +1,11 @@
 package tree;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class BinaryTreeSumationHelper {
 	
 	/**
@@ -66,5 +72,37 @@ public class BinaryTreeSumationHelper {
 		return level * sumLastLevel;
 	}
 	
+	public static void printDiagonalSum(TreeNode root) {
+		Map<Integer, Integer> diagonalSumByIndexMap = new HashMap<>();
+		populateDiagonalSum(root, diagonalSumByIndexMap, 0, 0);
+		
+		List<Integer> keys = new ArrayList(diagonalSumByIndexMap.keySet());
+		Collections.sort(keys);
+
+		for (Integer key : keys) {
+			System.out.print(diagonalSumByIndexMap.get(key) + " ");
+		}
+		System.out.println();
+	}
+	
+	private static void populateDiagonalSum(TreeNode root, Map<Integer, Integer> diagonalSumByIndexMap, int level, int col) {
+		
+		if (root == null) {
+			return;
+		}
+		
+		int index = level + col;
+		
+		Integer sum  = diagonalSumByIndexMap.get(index);
+		if (sum == null) {
+			sum = root.data;
+		} else {
+			sum += root.data;
+		}
+		diagonalSumByIndexMap.put(index, sum);
+		
+		populateDiagonalSum(root.left, diagonalSumByIndexMap, level + 1 , col + 1);
+		populateDiagonalSum(root.right, diagonalSumByIndexMap, level + 1 , col - 1);
+	}
 
 }
