@@ -203,6 +203,11 @@ public class Main {
 	     */
 	    System.out.println("Max tree diameter sum : " + BinaryTreeSumationHelper.maxDiameterSum(root));
 	    
+	    
+	    /**
+	     * Maximum root to leaf path
+	     */
+	    System.out.println("Maximum path sum : " + BinaryTreeSumationHelper.maxSumPath(root));
 	}
 	
 }
