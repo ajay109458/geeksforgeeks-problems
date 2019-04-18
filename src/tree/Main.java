@@ -224,6 +224,16 @@ public class Main {
 	     * Sum of height of all the nodes 
 	     */
 	    System.out.println("Sum of heights of all the nodes : " + BinaryTreeSumationHelper.sumOfHeightsOfAllNodes(root));
+	    
+	    /**
+	     * Sub tree exists with a given sum 
+	     */
+	    System.out.println("Does subtree with a given sum exists : " + BinaryTreeSumationHelper.isSubTreeWithGivenSumExists(root, 16));
+	    
+	    /**
+	     * Count sub tree with given sum
+	     */
+	    System.out.println("Count subtree with a given sum : " + BinaryTreeSumationHelper.countSubTreeWithGivenSum(root, 16));
 	}
 	
 }

@@ -151,6 +151,50 @@ public class BinaryTreeSumationHelper {
 				sumOfHeightsOfAllNodes(root.right);
 		
 	}
+	
+	public static boolean isSubTreeWithGivenSumExists(TreeNode root, int sum) {
+		INT currSum = new INT(0);
+		return isSubTreeWithGivenSumExists(root, currSum, sum);
+	}
+	
+	public static int countSubTreeWithGivenSum(TreeNode root, int sum) {
+		INT currSum = new INT(0);
+		return countSubTreeWithGivenSum(root, currSum, sum);
+	}
+	
+	private static int countSubTreeWithGivenSum(TreeNode root, INT currSum, int sum) {
+		if (root == null) {
+			currSum = new INT(0);
+			return 0;
+		}
+		
+		INT leftSum = new INT(0);
+		INT rightSum = new INT(0);
+		
+		boolean isLeftSubTreeExists = isSubTreeWithGivenSumExists(root.left, leftSum, sum);
+		boolean isRightSubTreeExists = isSubTreeWithGivenSumExists(root.right, rightSum, sum);
+		
+		currSum.v = leftSum.v + rightSum.v  + root.data;
+		
+		return ( isLeftSubTreeExists || isRightSubTreeExists || currSum.v == sum) ? 1 : 0;
+	}
+	
+	private static boolean isSubTreeWithGivenSumExists(TreeNode root, INT currSum, int sum) {
+		if (root == null) {
+			currSum = new INT(0);
+			return false;
+		}
+		
+		INT leftSum = new INT(0);
+		INT rightSum = new INT(0);
+		
+		boolean isLeftSubTreeExists = isSubTreeWithGivenSumExists(root.left, leftSum, sum);
+		boolean isRightSubTreeExists = isSubTreeWithGivenSumExists(root.right, rightSum, sum);
+		
+		currSum.v = leftSum.v + rightSum.v  + root.data;
+		
+		return isLeftSubTreeExists || isRightSubTreeExists || currSum.v == sum;
+	}
 	 
 	private static int maxSubTreeSum(TreeNode root, INT maxSum) {
 		
@@ -238,7 +282,7 @@ public class BinaryTreeSumationHelper {
 
 		int index = level + col;
 
-		Integer sum = diagonalSumByIndexMap.get(index);
+		Integer sum = diagonalSumByIndexMap.get(index);		
 		if (sum == null) {
 			sum = root.data;
 		} else {
