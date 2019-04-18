@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import utils.MaxLenSum;
+
 public class BinaryTreeSumationHelper {
 
 	/**
@@ -97,6 +99,45 @@ public class BinaryTreeSumationHelper {
 	public static boolean isTwoNodesWithSumExists(TreeNode root, int sum) {
 		return isTwoNodesWithSumExists(root, sum, new HashSet<Integer>());
 	}
+	
+	public static int sumOfLongestPath(TreeNode root) {
+		MaxLenSum maxLenSum = new MaxLenSum();
+		sumOfLongestPath(root, 0, 0, maxLenSum);
+		return maxLenSum.maxSum;
+	}
+	
+	public static int maxDiameterSum(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		int leftTreePathSum = maxSumPath(root.left);
+		int rightTreePathSum = maxSumPath(root.right);
+		
+		return Math.max(Math.max(maxDiameterSum(root.left), maxDiameterSum(root.right)), leftTreePathSum + rightTreePathSum + root.data);
+	}
+	
+	public static int maxSumPath(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		return root.data + Math.max(maxSumPath(root.left), maxSumPath(root.right));
+	}
+	
+	private static void sumOfLongestPath(TreeNode root, int len, int sum, MaxLenSum maxLenSum) {
+		
+		if (root == null) {
+			if (len > maxLenSum.maxLen) {
+				maxLenSum.maxLen  = len;
+				maxLenSum.maxSum = sum;
+			} else if (len == maxLenSum.maxLen && sum > maxLenSum.maxSum) {
+				maxLenSum.maxSum = sum;
+			}
+			return;
+		}
+		
+		sumOfLongestPath(root.left, len + 1 , sum + root.data, maxLenSum);
+		sumOfLongestPath(root.right, len + 1 , sum + root.data, maxLenSum);
+	} 
 
 	private static boolean isTwoNodesWithSumExists(TreeNode root, int sum, Set<Integer> pathNodes) {
 
@@ -139,3 +180,4 @@ public class BinaryTreeSumationHelper {
 	}
 
 }
+

@@ -191,6 +191,18 @@ public class Main {
 	     * https://www.geeksforgeeks.org/find-pair-root-leaf-path-sum-equals-roots-data/
 	     */
 	    System.out.println("Is a pair with sum equal to root node exists : " + BinaryTreeSumationHelper.isPairInPathWithSumEqualToRoot(TreeCreator.createTreeForRootSumEqualToTwoNodesSum()));
+	    
+	    
+	    /**
+	     * Sum of the longest path
+	     */
+	    System.out.println("Sum of the longest Path : " + BinaryTreeSumationHelper.sumOfLongestPath(root));
+	    
+	    /**
+	     * Max diameter tree sum 
+	     */
+	    System.out.println("Max tree diameter sum : " + BinaryTreeSumationHelper.maxDiameterSum(root));
+	    
 	}
 	
 }
