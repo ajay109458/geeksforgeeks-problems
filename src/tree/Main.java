@@ -186,7 +186,11 @@ public class Main {
 	    System.out.println("Print diagonal sum of the tree : ");
 	    BinaryTreeSumationHelper.printDiagonalSum(root);
 	    
-	    
+	    /**
+	     * Find if there is a pair in root to a leaf path with sum equals to root’s data
+	     * https://www.geeksforgeeks.org/find-pair-root-leaf-path-sum-equals-roots-data/
+	     */
+	    System.out.println("Is a pair with sum equal to root node exists : " + BinaryTreeSumationHelper.isPairInPathWithSumEqualToRoot(TreeCreator.createTreeForRootSumEqualToTwoNodesSum()));
 	}
 	
 }

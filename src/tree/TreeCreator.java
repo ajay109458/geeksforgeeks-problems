@@ -158,4 +158,19 @@ public class TreeCreator {
 		root.right.left.right = new TreeNode(8);
 		return root;
 	}
+	
+	public static TreeNode createTreeForRootSumEqualToTwoNodesSum() {
+		TreeNode root = new TreeNode(8);
+		root.left = new TreeNode(5);
+		root.right = new TreeNode(4);
+		root.left.left = new TreeNode(9);
+		root.left.right = new TreeNode(7);
+		root.left.right.left = new TreeNode(1);
+		root.left.right.right = new TreeNode(12);
+		root.left.right.right.right = new TreeNode(2);
+		root.right.right = new TreeNode(11);
+		root.right.right.left = new TreeNode(3);
+		
+		return root;
+	}
 }
