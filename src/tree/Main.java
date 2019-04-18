@@ -208,6 +208,11 @@ public class Main {
 	     * Maximum root to leaf path
 	     */
 	    System.out.println("Maximum path sum : " + BinaryTreeSumationHelper.maxSumPath(root));
+	    
+	    /**
+	     * Non adjacent nodes max sum 
+	     */
+	    System.out.println("Non adjacent nodes max sum : " + BinaryTreeSumationHelper.nonAdjacentNodesMaxSum(root));
 	}
 	
 }

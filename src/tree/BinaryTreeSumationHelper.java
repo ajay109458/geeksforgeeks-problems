@@ -123,6 +123,41 @@ public class BinaryTreeSumationHelper {
 		return root.data + Math.max(maxSumPath(root.left), maxSumPath(root.right));
 	}
 	
+	public static int nonAdjacentNodesMaxSum(TreeNode root) {
+		Map<TreeNode, Integer> map = new HashMap<>();
+		return nonAdjacentNodesMaxSum(root, map);
+	}
+	
+	private static int nonAdjacentGrandChildNodesSum(TreeNode root, Map<TreeNode, Integer> map) {
+		int sum = 0;
+		
+		if (root.left != null) {
+			sum += nonAdjacentNodesMaxSum(root.left.left, map) + nonAdjacentNodesMaxSum(root.left.right, map);
+		}
+		
+		if (root.right != null) {
+			sum += nonAdjacentNodesMaxSum(root.right.left, map) + nonAdjacentNodesMaxSum(root.right.right, map);
+		}
+		
+		return sum;
+	}
+	
+	private static int nonAdjacentNodesMaxSum(TreeNode root, Map<TreeNode, Integer> map) {
+		
+		if (root == null)
+			return 0;
+		
+		if (map.containsKey(root))
+			return map.get(root);
+		
+		int incl = root.data  + nonAdjacentGrandChildNodesSum(root, map);
+		int excl = nonAdjacentNodesMaxSum(root.left, map) + nonAdjacentNodesMaxSum(root.right, map);
+		
+		map.put(root, Math.max(incl, excl));
+		
+		return map.get(root);
+	}
+	
 	private static void sumOfLongestPath(TreeNode root, int len, int sum, MaxLenSum maxLenSum) {
 		
 		if (root == null) {
