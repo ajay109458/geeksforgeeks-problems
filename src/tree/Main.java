@@ -239,6 +239,12 @@ public class Main {
 	     * Difference is sum of even level nodes and odd level nodes
 	     */
 	    System.out.println("Differnce in sum of nodes of even and odd level : " + BinaryTreeSumationHelper.diffInSumOfOddEvenLevelNodes(root));
+	    
+	    /**
+	     * Sum at each level 
+	     */
+	    System.out.println("Print sum of nodes at each level : ");
+	    BinaryTreeSumationHelper.printSumAtEachLevel(root);
 	} 
 	
 }

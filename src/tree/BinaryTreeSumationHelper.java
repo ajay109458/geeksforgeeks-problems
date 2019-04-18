@@ -163,7 +163,6 @@ public class BinaryTreeSumationHelper {
 	}
 	
 	public static int diffInSumOfOddEvenLevelNodes(TreeNode root) {
-		
 		int oddLevelNodesSum = sumOfAlternateLevelNodes(root, true);
 
 		int evenLevelNodesSum = 0;
@@ -175,7 +174,40 @@ public class BinaryTreeSumationHelper {
 			evenLevelNodesSum += sumOfAlternateLevelNodes(root.right, true);
 		
 		return Math.abs(evenLevelNodesSum - oddLevelNodesSum);
+	}
+	
+	public static void printSumAtEachLevel(TreeNode root) {
+		Map<Integer, Integer> sumAtEachLevelMap = getSumAtEachLevel(root);
+		List<Integer> keys = new ArrayList(sumAtEachLevelMap.keySet());
+		Collections.sort(keys);
 		
+		for (Integer key : keys) {
+			System.out.println(sumAtEachLevelMap.get(key));
+		}
+		System.out.println();
+	}
+	
+	public static Map<Integer, Integer> getSumAtEachLevel(TreeNode root) {
+		Map<Integer, Integer> map = new HashMap<>();
+		sumAtEachLevel(root, map, 0);
+		return map;
+	}
+	
+	public static void sumAtEachLevel(TreeNode root, Map<Integer, Integer> map, int currLevel) {
+		
+		if (root ==  null)
+			return;
+		
+		Integer currSum = map.get(currLevel);
+		
+		if (currSum == null) {
+			map.put(currLevel, root.data);
+		} else {
+			map.put(currLevel, root.data + currSum);
+		}
+		
+		sumAtEachLevel(root.left, map, currLevel + 1);
+		sumAtEachLevel(root.right, map, currLevel + 1);
 	}
 	
 	private static int sumOfAlternateLevelNodes(TreeNode root, boolean shouldAdd) {
