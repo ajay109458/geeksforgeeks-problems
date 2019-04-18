@@ -234,6 +234,11 @@ public class Main {
 	     * Count sub tree with given sum
 	     */
 	    System.out.println("Count subtree with a given sum : " + BinaryTreeSumationHelper.countSubTreeWithGivenSum(root, 16));
-	}
+	    
+	    /**
+	     * Difference is sum of even level nodes and odd level nodes
+	     */
+	    System.out.println("Differnce in sum of nodes of even and odd level : " + BinaryTreeSumationHelper.diffInSumOfOddEvenLevelNodes(root));
+	} 
 	
 }

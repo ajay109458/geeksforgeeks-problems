@@ -162,6 +162,41 @@ public class BinaryTreeSumationHelper {
 		return countSubTreeWithGivenSum(root, currSum, sum);
 	}
 	
+	public static int diffInSumOfOddEvenLevelNodes(TreeNode root) {
+		
+		int oddLevelNodesSum = sumOfAlternateLevelNodes(root, true);
+
+		int evenLevelNodesSum = 0;
+		
+		if (root.left != null)
+			evenLevelNodesSum += sumOfAlternateLevelNodes(root.left, true);
+		
+		if (root.right != null)
+			evenLevelNodesSum += sumOfAlternateLevelNodes(root.right, true);
+		
+		return Math.abs(evenLevelNodesSum - oddLevelNodesSum);
+		
+	}
+	
+	private static int sumOfAlternateLevelNodes(TreeNode root, boolean shouldAdd) {
+		if (root == null)
+			return 0;
+		
+		int currSum = 0;
+		
+		
+		if (shouldAdd) {
+			currSum += root.data;
+		}
+		
+		shouldAdd = !shouldAdd;
+		
+		currSum += sumOfAlternateLevelNodes(root.left, shouldAdd);
+		currSum += sumOfAlternateLevelNodes(root.right, shouldAdd);
+		
+		return currSum;
+	}
+	
 	private static int countSubTreeWithGivenSum(TreeNode root, INT currSum, int sum) {
 		if (root == null) {
 			currSum = new INT(0);
