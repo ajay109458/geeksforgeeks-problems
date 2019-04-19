@@ -202,6 +202,17 @@ public class BinaryTreeSumationHelper {
 	}
 	
 	
+	public static int sumOfLeafNodes(TreeNode root) {
+		if (root == null)
+			return 0;
+		
+		if (BinaryTreeCheckingAndPrintingHelper.isLeafNode(root)) {
+			return root.data;
+		}
+		
+		return sumOfLeafNodes(root.left) + sumOfLeafNodes(root.right);
+	}
+	
 	public static Map<Integer, Integer> getSumAtEachLevel(TreeNode root) {
 		Map<Integer, Integer> map = new HashMap<>();
 		sumAtEachLevel(root, map, 0);

@@ -250,6 +250,11 @@ public class Main {
 	     * Get max sum among level 
 	     */
 	    System.out.println("Get max sum at level : " + BinaryTreeSumationHelper.getMaxSumAtLevel(root));
+	    
+	    /**\
+	     * Sum of leaf nodes 
+	     */
+	    System.out.println("Sum of leaf nodes: " + BinaryTreeSumationHelper.sumOfLeafNodes(root));
 	} 
 	
 }
