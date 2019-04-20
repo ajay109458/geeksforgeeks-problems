@@ -265,6 +265,16 @@ public class Main {
 	    
 	    System.out.println("Print vertical sum : ");
 	    BinaryTreeSumationHelper.printVerticalSum(root);
+	    
+	    /**
+	     * Construct tree from given inorder and preorder
+	     * 
+	     */
+	    System.out.println("Print tree from given inorder and preorder : ");
+	    TreeNode node1 = BinaryTreeConversionHelper.buildTree(inOrder, preOrder);
+	    BinaryTreeCheckingAndPrintingHelper.inorder(node1);
+	    
+	    
 	} 
 	
 }
