@@ -1,16 +1,54 @@
 package tree;
 
+import java.util.Arrays;
+
 import array.ArrayHelper;
 
 public class BinaryTreeConversionHelper {
 	
 	public static int preIndex = 0;
 	
-	public static TreeNode buildTree(int[] inOrder, int[] preOrder) {
+	public static TreeNode buildTreeFromInOrderAndPreOrder(int[] inOrder, int[] preOrder) {
 		
 		preIndex = 0;
 		return buildTree(inOrder, preOrder, 0, inOrder.length - 1);
 		
+	}
+	
+	public static TreeNode buildTreeFromInOrderAndLevelOrder(int[] inOrder, int[] levelOrder) {
+		TreeNode startNode = null;
+		return buildTreeFromInOrderAndLevelOrder(startNode, inOrder, levelOrder, 0, inOrder.length - 1);
+	}
+	
+	private static TreeNode buildTreeFromInOrderAndLevelOrder(TreeNode startNode, int[] inOrder, int[] levelOrder, int startIndex, int endIndex) {
+		
+		if (startIndex > endIndex)
+			return null;
+		
+		if (startIndex == endIndex)
+			return new TreeNode(inOrder[startIndex++]);
+	
+		int index = 0;
+		
+		for (int i = 0; i < levelOrder.length; i++) {
+			int data = levelOrder[i];			
+			
+			index = ArrayHelper.linearSearch(inOrder, data, startIndex, endIndex);
+			
+			System.out.println(index);
+			
+			if (index != -1) {
+				startNode = new TreeNode(data);
+				break;
+			}
+		}
+		
+		if (startNode != null) {
+			startNode.left = buildTreeFromInOrderAndLevelOrder(startNode, inOrder, levelOrder, startIndex, index - 1);
+			startNode.right = buildTreeFromInOrderAndLevelOrder(startNode, inOrder, levelOrder, index + 1, endIndex);			
+		}
+		
+		return startNode;
 	}
 	
 	private static TreeNode buildTree(int[] inOrder, int[] preOrder, int startIndex, int endIndex) {

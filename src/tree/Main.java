@@ -271,10 +271,19 @@ public class Main {
 	     * 
 	     */
 	    System.out.println("Print tree from given inorder and preorder : ");
-	    TreeNode node1 = BinaryTreeConversionHelper.buildTree(inOrder, preOrder);
+	    TreeNode node1 = BinaryTreeConversionHelper.buildTreeFromInOrderAndPreOrder(inOrder, preOrder);
 	    BinaryTreeCheckingAndPrintingHelper.inorder(node1);
 	    
-	    
+	    /**
+	     * Build tree from level order and in order
+	     */
+	    System.out.println("Build tree from level order and in order : ");
+	    int in[] = new int[]{4, 8, 10, 12, 14, 20, 22}; 
+        int level[] = new int[]{20, 8, 22, 4, 12, 10, 14}; 
+        TreeNode node2 = BinaryTreeConversionHelper.buildTreeFromInOrderAndLevelOrder(in, level);
+        BinaryTreeCheckingAndPrintingHelper.inorder(node2);
+        
+        
 	} 
 	
 }

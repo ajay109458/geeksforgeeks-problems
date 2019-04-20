@@ -368,4 +368,15 @@ public class ArrayHelper {
 		
 		return -1;
 	}
+	
+	public static int linearSearch(int[] arr, int val, int startIndex, int endIndex) {
+		
+		for(int i = startIndex; i <= endIndex; i++) {
+			if (arr[i] == val)
+				return i;
+		}
+		
+		return -1;
+	}
+	
 }
