@@ -137,175 +137,194 @@ public class BinaryTreeSumationHelper {
 		Map<TreeNode, Integer> map = new HashMap<>();
 		return nonAdjacentNodesMaxSum(root, map);
 	}
-	
+
 	public static int maxSubTreeSum(TreeNode root) {
-		return maxSubTreeSum(root, new INT(0));	
+		return maxSubTreeSum(root, new INT(0));
 	}
-	
+
 	public static int sumOfHeightsOfAllNodes(TreeNode root) {
-		
+
 		if (root == null)
 			return 0;
-		
-		return BinaryTreeCheckingAndPrintingHelper.height(root) + 
-				sumOfHeightsOfAllNodes(root.left) + 
-				sumOfHeightsOfAllNodes(root.right);
-		
+
+		return BinaryTreeCheckingAndPrintingHelper.height(root) + sumOfHeightsOfAllNodes(root.left)
+				+ sumOfHeightsOfAllNodes(root.right);
+
 	}
-	
+
 	public static boolean isSubTreeWithGivenSumExists(TreeNode root, int sum) {
 		INT currSum = new INT(0);
 		return isSubTreeWithGivenSumExists(root, currSum, sum);
 	}
-	
+
 	public static int countSubTreeWithGivenSum(TreeNode root, int sum) {
 		INT currSum = new INT(0);
 		return countSubTreeWithGivenSum(root, currSum, sum);
 	}
-	
+
 	public static int diffInSumOfOddEvenLevelNodes(TreeNode root) {
 		int oddLevelNodesSum = sumOfAlternateLevelNodes(root, true);
 
 		int evenLevelNodesSum = 0;
-		
+
 		if (root.left != null)
 			evenLevelNodesSum += sumOfAlternateLevelNodes(root.left, true);
-		
+
 		if (root.right != null)
 			evenLevelNodesSum += sumOfAlternateLevelNodes(root.right, true);
-		
+
 		return Math.abs(evenLevelNodesSum - oddLevelNodesSum);
 	}
-	
+
 	public static void printSumAtEachLevel(TreeNode root) {
 		Map<Integer, Integer> sumAtEachLevelMap = getSumAtEachLevel(root);
 		List<Integer> keys = new ArrayList<Integer>(sumAtEachLevelMap.keySet());
 		Collections.sort(keys);
-		
+
 		for (Integer key : keys) {
 			System.out.println(sumAtEachLevelMap.get(key));
 		}
 		System.out.println();
 	}
-	
+
 	public static int getMaxSumAtLevel(TreeNode root) {
 		Map<Integer, Integer> sumByLevelMap = getSumAtEachLevel(root);
-		
+
 		int max = 0;
-		
-		for(Entry<Integer, Integer> entry : sumByLevelMap.entrySet()) {
+
+		for (Entry<Integer, Integer> entry : sumByLevelMap.entrySet()) {
 			if (entry.getValue() > max)
 				max = entry.getValue();
 		}
-		
+
 		return max;
 	}
-	
-	
+
 	public static int sumOfLeafNodes(TreeNode root) {
 		if (root == null)
 			return 0;
-		
+
 		if (BinaryTreeCheckingAndPrintingHelper.isLeafNode(root)) {
 			return root.data;
 		}
-		
+
 		return sumOfLeafNodes(root.left) + sumOfLeafNodes(root.right);
 	}
-	
+
 	public static Map<Integer, Integer> getSumAtEachLevel(TreeNode root) {
 		Map<Integer, Integer> map = new HashMap<>();
 		sumAtEachLevel(root, map, 0);
 		return map;
 	}
-	
+
 	public static void sumAtEachLevel(TreeNode root, Map<Integer, Integer> map, int currLevel) {
-		
-		if (root ==  null)
+
+		if (root == null)
 			return;
-		
+
 		Integer currSum = map.get(currLevel);
-		
+
 		if (currSum == null) {
 			map.put(currLevel, root.data);
 		} else {
 			map.put(currLevel, root.data + currSum);
 		}
-		
+
 		sumAtEachLevel(root.left, map, currLevel + 1);
 		sumAtEachLevel(root.right, map, currLevel + 1);
 	}
-	
+
 	public static boolean isRootToLeafSumExists(TreeNode root, int sum) {
-		
+
 		if (root == null)
 			return sum == 0;
-		
-		return isRootToLeafSumExists(root.left, sum - root.data) || isRootToLeafSumExists(root.right, sum - root.data);	
+
+		return isRootToLeafSumExists(root.left, sum - root.data) || isRootToLeafSumExists(root.right, sum - root.data);
 	}
-	
+
+	public static int sumOfRootToLeafPath(TreeNode root) {
+		return sumOfRootToLeafPath(root, 0, 0);
+	}
+
+	private static int sumOfRootToLeafPath(TreeNode root, int currResult, int number) {
+
+		if (root == null)
+			return 0;
+
+		number = number * 10 + root.data;
+
+		if (BinaryTreeCheckingAndPrintingHelper.isLeafNode(root)) {
+			currResult += number;
+			return currResult;
+		}
+
+		currResult = sumOfRootToLeafPath(root.left, currResult, number);
+		currResult = sumOfRootToLeafPath(root.right, currResult, number);
+		
+		return currResult;
+	}
+
 	private static int sumOfAlternateLevelNodes(TreeNode root, boolean shouldAdd) {
 		if (root == null)
 			return 0;
-		
+
 		int currSum = 0;
-		
-		
+
 		if (shouldAdd) {
 			currSum += root.data;
 		}
-		
+
 		shouldAdd = !shouldAdd;
-		
+
 		currSum += sumOfAlternateLevelNodes(root.left, shouldAdd);
 		currSum += sumOfAlternateLevelNodes(root.right, shouldAdd);
-		
+
 		return currSum;
 	}
-	
+
 	private static int countSubTreeWithGivenSum(TreeNode root, INT currSum, int sum) {
 		if (root == null) {
 			currSum = new INT(0);
 			return 0;
 		}
-		
+
 		INT leftSum = new INT(0);
 		INT rightSum = new INT(0);
-		
+
 		boolean isLeftSubTreeExists = isSubTreeWithGivenSumExists(root.left, leftSum, sum);
 		boolean isRightSubTreeExists = isSubTreeWithGivenSumExists(root.right, rightSum, sum);
-		
-		currSum.v = leftSum.v + rightSum.v  + root.data;
-		
-		return ( isLeftSubTreeExists || isRightSubTreeExists || currSum.v == sum) ? 1 : 0;
+
+		currSum.v = leftSum.v + rightSum.v + root.data;
+
+		return (isLeftSubTreeExists || isRightSubTreeExists || currSum.v == sum) ? 1 : 0;
 	}
-	
+
 	private static boolean isSubTreeWithGivenSumExists(TreeNode root, INT currSum, int sum) {
 		if (root == null) {
 			currSum = new INT(0);
 			return false;
 		}
-		
+
 		INT leftSum = new INT(0);
 		INT rightSum = new INT(0);
-		
+
 		boolean isLeftSubTreeExists = isSubTreeWithGivenSumExists(root.left, leftSum, sum);
 		boolean isRightSubTreeExists = isSubTreeWithGivenSumExists(root.right, rightSum, sum);
-		
-		currSum.v = leftSum.v + rightSum.v  + root.data;
-		
+
+		currSum.v = leftSum.v + rightSum.v + root.data;
+
 		return isLeftSubTreeExists || isRightSubTreeExists || currSum.v == sum;
 	}
-	 
+
 	private static int maxSubTreeSum(TreeNode root, INT maxSum) {
-		
+
 		if (root == null)
 			return 0;
-		
+
 		int currSum = root.data + maxSubTreeSum(root.left) + maxSubTreeSum(root.right);
-		
+
 		maxSum.v = Math.max(currSum, maxSum.v);
-		
+
 		return maxSum.v;
 	}
 
@@ -383,7 +402,7 @@ public class BinaryTreeSumationHelper {
 
 		int index = level + col;
 
-		Integer sum = diagonalSumByIndexMap.get(index);		
+		Integer sum = diagonalSumByIndexMap.get(index);
 		if (sum == null) {
 			sum = root.data;
 		} else {

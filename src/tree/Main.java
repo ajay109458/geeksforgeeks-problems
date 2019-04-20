@@ -260,6 +260,8 @@ public class Main {
 	     * Is root to leaf path equal to a given  no. 
 	     */
 	    System.out.println("Is root to leaf path exists : " + BinaryTreeSumationHelper.isRootToLeafSumExists(root, 21));
+	    
+	    System.out.println("Root to leaf path sum " + BinaryTreeSumationHelper.sumOfRootToLeafPath(root));
 	} 
 	
 }
