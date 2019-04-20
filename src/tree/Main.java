@@ -262,6 +262,9 @@ public class Main {
 	    System.out.println("Is root to leaf path exists : " + BinaryTreeSumationHelper.isRootToLeafSumExists(root, 21));
 	    
 	    System.out.println("Root to leaf path sum " + BinaryTreeSumationHelper.sumOfRootToLeafPath(root));
+	    
+	    System.out.println("Print vertical sum : ");
+	    BinaryTreeSumationHelper.printVerticalSum(root);
 	} 
 	
 }

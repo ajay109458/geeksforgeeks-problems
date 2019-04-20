@@ -245,6 +245,36 @@ public class BinaryTreeSumationHelper {
 	public static int sumOfRootToLeafPath(TreeNode root) {
 		return sumOfRootToLeafPath(root, 0, 0);
 	}
+	
+	public static void printVerticalSum(TreeNode root) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		populateVerticalSum(root, map, 0);
+		
+		List<Integer> keys = new ArrayList<>(map.keySet());
+		Collections.sort(keys);
+		
+		for(Integer key : keys) {
+			System.out.println(map.get(key));
+		}
+		System.out.println();
+	}
+	
+	private static void populateVerticalSum(TreeNode root, Map<Integer, Integer> map, int col) {
+		
+		if (root == null)
+			return;
+		
+		Integer currSum = map.get(col);
+		
+		if (currSum == null) {
+			map.put(col, root.data);
+		} else {
+			map.put(col, currSum + root.data);
+		}
+		
+		populateVerticalSum(root.left, map, col - 1);
+		populateVerticalSum(root.right, map, col + 1);
+	}
 
 	private static int sumOfRootToLeafPath(TreeNode root, int currResult, int number) {
 
