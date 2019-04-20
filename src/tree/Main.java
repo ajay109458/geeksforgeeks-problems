@@ -255,6 +255,11 @@ public class Main {
 	     * Sum of leaf nodes 
 	     */
 	    System.out.println("Sum of leaf nodes: " + BinaryTreeSumationHelper.sumOfLeafNodes(root));
+	    
+	    /**
+	     * Is root to leaf path equal to a given  no. 
+	     */
+	    System.out.println("Is root to leaf path exists : " + BinaryTreeSumationHelper.isRootToLeafSumExists(root, 21));
 	} 
 	
 }

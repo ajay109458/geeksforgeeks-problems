@@ -236,6 +236,14 @@ public class BinaryTreeSumationHelper {
 		sumAtEachLevel(root.right, map, currLevel + 1);
 	}
 	
+	public static boolean isRootToLeafSumExists(TreeNode root, int sum) {
+		
+		if (root == null)
+			return sum == 0;
+		
+		return isRootToLeafSumExists(root.left, sum - root.data) || isRootToLeafSumExists(root.right, sum - root.data);	
+	}
+	
 	private static int sumOfAlternateLevelNodes(TreeNode root, boolean shouldAdd) {
 		if (root == null)
 			return 0;
