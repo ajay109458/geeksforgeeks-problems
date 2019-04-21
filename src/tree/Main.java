@@ -282,6 +282,17 @@ public class Main {
         int level[] = new int[]{20, 8, 22, 4, 12, 10, 14}; 
         TreeNode node2 = BinaryTreeConversionHelper.buildTreeFromInOrderAndLevelOrder(in, level);
         BinaryTreeCheckingAndPrintingHelper.inorder(node2);
+        System.out.println();
+        
+        
+        /**
+         * Build tree from an array
+         */
+        System.out.println("Binary tree from an array : ");
+        int[] arr1 = {36, 30, 25, 15, 12, 10};
+        TreeNode node3 = BinaryTreeConversionHelper.buildTreeFromArray(arr1);
+        BinaryTreeCheckingAndPrintingHelper.inorder(node3);
+        System.out.println();
         
         
 	} 

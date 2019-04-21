@@ -1,6 +1,7 @@
 package tree;
 
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import array.ArrayHelper;
 
@@ -18,6 +19,44 @@ public class BinaryTreeConversionHelper {
 	public static TreeNode buildTreeFromInOrderAndLevelOrder(int[] inOrder, int[] levelOrder) {
 		TreeNode startNode = null;
 		return buildTreeFromInOrderAndLevelOrder(startNode, inOrder, levelOrder, 0, inOrder.length - 1);
+	}
+	
+	public static TreeNode buildTreeFromArray(int[] arr) {
+		
+		if(arr.length == 0)
+			return null;
+		
+		
+		int index = 0;
+		
+		TreeNode root = new TreeNode(arr[index++]);
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(root);
+		
+		TreeNode result = root;
+		
+		while (index < arr.length && !queue.isEmpty())
+		{
+			root = queue.poll();
+			
+			if (root == null)
+				break;
+			
+			TreeNode left = new TreeNode(arr[index++]);
+			queue.add(left);
+			root.left = left;
+
+			if (index >= arr.length)
+				break;
+			
+			TreeNode right = new TreeNode(arr[index++]);
+			
+			queue.add(right);
+			
+			root.right = right;
+		}
+		
+		return result;
 	}
 	
 	private static TreeNode buildTreeFromInOrderAndLevelOrder(TreeNode startNode, int[] inOrder, int[] levelOrder, int startIndex, int endIndex) {
