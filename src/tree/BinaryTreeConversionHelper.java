@@ -59,6 +59,40 @@ public class BinaryTreeConversionHelper {
 		return result;
 	}
 	
+	public static TreeNode binaryTreeToList(TreeNode root) {
+		
+		if (root == null)
+			return root;
+		
+		root = binaryTreeToList(root);
+		
+		while(root.left != null)
+			root = root.left;
+		
+		return root;
+	}
+	
+	private static TreeNode binaryTreeToListUtils(TreeNode root) {
+		
+		if (root == null)
+			return root;
+		
+		if (root.left != null) {
+			TreeNode left = binaryTreeToList(root.left);
+			left.right = root;
+			root.left = left;
+		}
+		
+		if (root.right != null) {
+			TreeNode right = binaryTreeToList(root.right);
+			right.left = root;
+			root.right = right;
+		}
+		
+		return root;
+		
+	}
+	
 	private static TreeNode buildTreeFromInOrderAndLevelOrder(TreeNode startNode, int[] inOrder, int[] levelOrder, int startIndex, int endIndex) {
 		
 		if (startIndex > endIndex)

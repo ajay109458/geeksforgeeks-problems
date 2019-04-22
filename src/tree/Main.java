@@ -294,6 +294,11 @@ public class Main {
         BinaryTreeCheckingAndPrintingHelper.inorder(node3);
         System.out.println();
         
+        /***
+         * Print binary tree to list
+         */
+        TreeNode list = BinaryTreeConversionHelper.binaryTreeToList(root);
+        
         
 	} 
 	
