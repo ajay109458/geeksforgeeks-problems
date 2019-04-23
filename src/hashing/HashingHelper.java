@@ -3,6 +3,7 @@ package hashing;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import utils.Pair;
@@ -61,6 +62,40 @@ public class HashingHelper {
 		}
 		
 		return result;
+	}
+	
+	public static int minDeleteOperationsToMakeAllSame(int[] arr) {
+		
+		Map<Integer, Integer> freqByNum = getFrequencyByElementMap(arr);
+		
+		int maxFreq = 0;
+		
+		for(Entry<Integer, Integer> entry : freqByNum.entrySet()) {
+			if (maxFreq < entry.getValue())
+				maxFreq = entry.getValue();
+		}
+		
+		return arr.length - maxFreq;
+		
+	}
+	
+	public static Map<Integer, Integer> getFrequencyByElementMap(int[] arr) {
+		
+		Map<Integer, Integer> map = new HashMap<>();
+		
+		for(int num : arr ) {
+			
+			Integer freq = map.get(num);
+			
+			if (freq == null) {
+				map.put(num, 1);
+			} else {
+				map.put(num, freq + 1);
+			}
+			
+		}
+		
+		return map;
 	}
 	
 }

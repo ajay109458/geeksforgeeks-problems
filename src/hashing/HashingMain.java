@@ -20,6 +20,9 @@ public class HashingMain {
         if (pair != null) {
         	System.out.println("Piar elements : " + pair.x + " - " + pair.y);
         }
+        
+        int[] arr4 = {4, 3, 4, 4, 2, 4};
+        System.out.println("Minimum delete operation to make all equals : " + HashingHelper.minDeleteOperationsToMakeAllSame(arr4));
 
 	}
 	
