@@ -1,7 +1,11 @@
 package hashing;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+
+import utils.Pair;
 
 public class HashingHelper {
 
@@ -35,7 +39,28 @@ public class HashingHelper {
 				System.out.print(num + " ");
 			}
 		}
+	}
+	
+	public static Pair getPairForSumX(int[] arr, int sum) {
+		Pair result = null;
 		
+		Map<Integer, Integer> indexByElement = new HashMap<>();
+		
+		for(int i = 0;  i < arr.length; i++) {
+			indexByElement.put(arr[i], i);
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+			Integer index = indexByElement.get(sum - arr[i]);
+			
+			if (index != null) {
+				result = new Pair();
+				result.x = arr[index];
+				result.y = arr[i];
+			}
+		}
+		
+		return result;
 	}
 	
 }

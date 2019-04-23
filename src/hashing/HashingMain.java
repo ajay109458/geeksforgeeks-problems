@@ -1,5 +1,7 @@
 package hashing;
 
+import utils.Pair;
+
 public class HashingMain {
 
 	public static void main(String[] args) {
@@ -11,6 +13,14 @@ public class HashingMain {
 		
         System.out.println("Print intersection of two array : ");
         HashingHelper.printIntersection(arr1, arr2);
+        
+        System.out.println("Check if an pair exists with given sum in the array :");
+        int arr3[] = {1, 4, 45, 6, 10, -8}; 
+        Pair pair = HashingHelper.getPairForSumX(arr3, 16);
+        if (pair != null) {
+        	System.out.println("Piar elements : " + pair.x + " - " + pair.y);
+        }
+
 	}
 	
 }
