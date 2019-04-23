@@ -22,4 +22,20 @@ public class HashingHelper {
 		return true;
 	}
 	
+	public static void printIntersection(int[] arr1, int[] arr2) {
+		
+		Set<Integer> hash = new HashSet<>();
+		
+		for(int num: arr1) {
+			hash.add(num);
+		}
+		
+		for(int num: arr2) {
+			if(hash.contains(num)) {
+				System.out.print(num + " ");
+			}
+		}
+		
+	}
+	
 }

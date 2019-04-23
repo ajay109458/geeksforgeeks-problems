@@ -9,6 +9,8 @@ public class HashingMain {
         
         System.out.println("Is arr2 subarray of arr1 : " + HashingHelper.isSubArray(arr1, arr2));
 		
+        System.out.println("Print intersection of two array : ");
+        HashingHelper.printIntersection(arr1, arr2);
 	}
 	
 }
