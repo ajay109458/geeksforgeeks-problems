@@ -98,4 +98,41 @@ public class HashingHelper {
 		return map;
 	}
 	
+	/**
+	 * Minimum insertions to form a palindrome with permutations allowed
+	 * 
+	 * Example :
+	 * Input : geeksforgeeks
+			Output : 2
+			geeksforgeeks can be changed as:
+			geeksroforskeeg
+			geeksorfroskeeg
+			and many more
+	 */
+	
+	 public static int minInsersion(String str) {
+		 
+		 Map<Character, Integer> countByChar = new HashMap<Character, Integer>();
+		 
+		 for (int i = 0; i < str.length(); i++) {
+			 Integer count = countByChar.get(str.charAt(i));
+			 if (count == null) {
+				 count = 0;
+			 }
+			 
+			 count += 1;
+			 countByChar.put(str.charAt(i), count);
+		 }
+		 
+		 int res = 0;
+		 
+		 for (Entry<Character, Integer> entry : countByChar.entrySet()) {
+			 if (entry.getValue() % 2 != 0) {
+				 res++;
+			 }
+		 }
+		 
+		 return (res == 0) ? 0  : res - 1;
+		 
+	 }
 }

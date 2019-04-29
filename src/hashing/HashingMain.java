@@ -24,6 +24,11 @@ public class HashingMain {
         int[] arr4 = {4, 3, 4, 4, 2, 4};
         System.out.println("Minimum delete operation to make all equals : " + HashingHelper.minDeleteOperationsToMakeAllSame(arr4));
 
+        /**
+         * Min insersion 
+         */
+        System.out.println("Min insertions : " + HashingHelper.minInsersion("geeksforgeeks"));
+        
 	}
 	
 }
