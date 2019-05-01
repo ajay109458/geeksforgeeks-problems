@@ -346,6 +346,39 @@ public class StringHelper {
 		return result.reverse().toString();
 	}
 	
+	public static void printCharacterCount(String input) {
+		
+		
+		int digitCount = 0;
+		int lowerCaseCount = 0;
+		int upperCaseCount = 0;
+		int specialCharCount = 0;
+		
+		for (int i = 0; i < input.length(); i++) {
+			
+			Character ch = input.charAt(i);
+			
+			if (Character.isDigit(ch)) {
+				digitCount ++;
+			} else if (Character.isAlphabetic(ch)) {
+				if (Character.isLowerCase(ch)) {
+					lowerCaseCount ++;
+				} else if (Character.isUpperCase(ch)) {
+					upperCaseCount ++;
+				}
+			} else {
+				specialCharCount ++;
+			}
+			
+		}
+		
+		System.out.println("Digits : " + digitCount);
+		System.out.println("Uppercase : " + upperCaseCount);
+		System.out.println("Lowercase : " + lowerCaseCount);
+		System.out.println("Special char : " + specialCharCount);
+		
+	}
+	
 	static class IntCompare implements Comparator<Integer>{ 
         @Override
         public int compare(Integer arg0, Integer arg1) { 

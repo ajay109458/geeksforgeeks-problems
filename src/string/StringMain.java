@@ -34,6 +34,9 @@ public class StringMain {
 		
 		
 		System.out.println("Difference of '11443333311111111100' and '1144422222221111' : " + StringHelper.subtract("11443333311111111100", "1144422222221111"));
+		
+		System.out.println("Character count");
+		StringHelper.printCharacterCount("#GeeKs01fOr@gEEks07");
 	}
 	
 }
