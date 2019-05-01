@@ -31,6 +31,9 @@ public class StringMain {
 		System.out.println("Maximum result with operators for string '01231' : " + StringHelper.getMaxValueWithOperator("01231"));
 		
 		System.out.println("Max seg value for string '8754' : " + StringHelper.getMaxSegmentValue("8754", 2));
+		
+		
+		System.out.println("Difference of '11443333311111111100' and '1144422222221111' : " + StringHelper.subtract("11443333311111111100", "1144422222221111"));
 	}
 	
 }

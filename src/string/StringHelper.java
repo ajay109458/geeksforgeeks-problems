@@ -290,6 +290,62 @@ public class StringHelper {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * Assume input1 is always greater than input2
+	 * @param input1
+	 * @param input2
+	 * @return
+	 */
+	public static String subtract(String input1, String input2) {
+		
+		input1 = new StringBuilder(input1).reverse().toString();
+		input2 = new StringBuilder(input2).reverse().toString();
+		
+		
+		int i = 0, j = 0;
+		int carry = 0;
+		
+		StringBuilder result = new StringBuilder();
+		
+		while (i < input1.length() && j < input2.length()) {
+			
+			int num1 = input1.charAt(i) - '0';
+			int num2 = input2.charAt(j) - '0';
+
+			
+			if (carry == 1) {
+				num1 -= 1;
+				carry = 0;
+			}
+			
+			int diff = num1 - num2;
+			
+			if (diff < 0) {
+				diff += 10;
+				carry = 1;
+			} 
+			
+			result.append(diff);
+			i++;
+			j++;
+			
+		}
+		
+		while (i < input1.length()) {
+			int num1 = input1.charAt(i) - '0';
+			if (carry == 1) {
+				num1 -= 1;
+				carry = 0;
+			}
+			
+			result.append(num1);
+			i++;
+		}
+		
+		return result.reverse().toString();
+	}
+	
 	static class IntCompare implements Comparator<Integer>{ 
         @Override
         public int compare(Integer arg0, Integer arg1) { 
