@@ -29,6 +29,8 @@ public class StringMain {
 		System.out.println("Extract maximum number in string '100klh564abc365bg' : " + StringHelper.extractMaxNumRegex("100klh564abc365bg"));
 		
 		System.out.println("Maximum result with operators for string '01231' : " + StringHelper.getMaxValueWithOperator("01231"));
+		
+		System.out.println("Max seg value for string '8754' : " + StringHelper.getMaxSegmentValue("8754", 2));
 	}
 	
 }

@@ -228,6 +228,45 @@ public class StringHelper {
 		return result;
 	}
 	
+	/**
+	 * Maximum segment value after putting k breakpoints in a number
+	 * 
+	 * One important observation is, the maximum would always be of length “string-length – k"
+	 * 
+	 * @param input
+	 * @param k
+	 * @return
+	 */
+	public static int getMaxSegmentValue(String input, int k) {
+		int segmentSize = input.length() - k;
+		
+		int segNum = 0;
+		int i = 0;
+		for (i = 0; i < segmentSize; i++) {
+			int num = input.charAt(i) - '0';
+			
+			segNum = segNum * 10 + num;
+		}
+		
+		int maxSegNum = segNum;
+		
+		int divident = 1;
+		for(int j = 0; j < segmentSize - 1; j++ ) {
+			divident *= 10;
+		}
+		
+		for(; i < input.length(); i++) {
+			segNum %= divident;
+			int num = input.charAt(i) - '0';
+			segNum = segNum * 10 + num;
+			
+			if (maxSegNum < segNum)
+				maxSegNum = segNum;
+		}
+		
+		return maxSegNum;
+	}
+	
 	private static boolean isSumSubstringUtils(String input, int beg, int len1, int len2) {
 		
 		String s1 = input.substring(beg, len1);
