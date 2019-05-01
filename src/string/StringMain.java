@@ -12,6 +12,12 @@ public class StringMain {
 		 */
 		System.out.println("Min Square value " + StringHelper.minStringValue("abccc", 1));
 		
+		
+		/**
+		 * Given two numbers as strings. The numbers may be very large (may not fit in long long int), the task is to find sum of these two numbers.
+		 */
+		System.out.println("Sum of 3333311111111111 and 44422222221111 : " + StringHelper.findSum("3333311111111111", "44422222221111"));
+		
 	}
 	
 }
