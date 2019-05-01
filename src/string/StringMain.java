@@ -23,7 +23,12 @@ public class StringMain {
 		 * Given a string containing alphanumeric characters, calculate sum of all numbers present in the string.
 		 */
 		System.out.println("Sum of numbers in string '1abc2x30yz67' : " + StringHelper.sumOfNumbersInString("1abc2x30yz67"));
+		System.out.println("Sum of numbers in string '1abc2x30yz67' : " + StringHelper.sumOfNumbersInStringRegex("1abc2x30yz67"));
 		
+		
+		System.out.println("Extract maximum number in string '100klh564abc365bg' : " + StringHelper.extractMaxNumRegex("100klh564abc365bg"));
+		
+		System.out.println("Maximum result with operators for string '01231' : " + StringHelper.getMaxValueWithOperator("01231"));
 	}
 	
 }

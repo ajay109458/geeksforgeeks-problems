@@ -2,6 +2,8 @@ package string;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringHelper {
 	
@@ -158,6 +160,70 @@ public class StringHelper {
 		}
 		
 		result += currNum;
+		
+		return result;
+	}
+	
+	public static int sumOfNumbersInStringRegex(String input) {
+		
+		String regex = "\\d+";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(input);
+		
+		
+		int sum = 0;
+		while(m.find()) {
+			Integer num = Integer.parseInt(m.group());
+			sum += num;
+		}
+		
+		return sum;
+	}
+	
+	public static int extractMaxNumRegex(String input) {
+		
+		String regex = "\\d+";
+		
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(input);
+		
+		int max = 0;
+		
+		while(m.find()) {
+			Integer num = Integer.parseInt(m.group());
+			
+			if (num > max)
+				max = num;
+		}
+		
+		return max;
+	}
+	
+	/**
+	 * Calculate maximum value using ‘+’ or ‘*’ sign between two numbers in a string
+	 * @param input
+	 * @return
+	 */
+	public static int getMaxValueWithOperator(String input) {
+		
+		if (input == null || input.isEmpty())
+			return 0;
+		
+		int result = input.charAt(0) - '0';
+		
+		for (int i = 1; i < input.length(); i++) {
+			
+			int num = input.charAt(i) - '0';
+			
+			if ( num  < 2 || result  < 2) {
+				result += num;
+			} else {
+				result *= num;
+			}
+			
+		}
 		
 		return result;
 	}
