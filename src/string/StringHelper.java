@@ -137,6 +137,31 @@ public class StringHelper {
 		return result.toString();
 	}
 	
+	/**
+	 * Given a string containing alphanumeric characters, calculate sum of all numbers present in the string.
+	 * @param input
+	 * @return
+	 */
+	public static int sumOfNumbersInString(String input) {
+		
+		int len = input.length();
+		
+		int result = 0;
+		int currNum = 0;
+		for (int i = 0; i < len; i++) {
+			if (Character.isDigit(input.charAt(i))) {
+				currNum = currNum*10 + (input.charAt(i) - '0');
+			} else {
+				result += currNum;
+				currNum = 0;
+			}
+		}
+		
+		result += currNum;
+		
+		return result;
+	}
+	
 	private static boolean isSumSubstringUtils(String input, int beg, int len1, int len2) {
 		
 		String s1 = input.substring(beg, len1);

@@ -18,6 +18,12 @@ public class StringMain {
 		 */
 		System.out.println("Sum of 3333311111111111 and 44422222221111 : " + StringHelper.findSum("3333311111111111", "44422222221111"));
 		
+		
+		/**
+		 * Given a string containing alphanumeric characters, calculate sum of all numbers present in the string.
+		 */
+		System.out.println("Sum of numbers in string '1abc2x30yz67' : " + StringHelper.sumOfNumbersInString("1abc2x30yz67"));
+		
 	}
 	
 }
