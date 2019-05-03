@@ -379,6 +379,22 @@ public class StringHelper {
 		
 	}
 	
+	public static String findSmallestWindow(String input, String pattern) {
+		
+		int inputLen = input.length();
+		int patLen = pattern.length();
+		
+		if (inputLen < patLen) {
+			System.out.println("No window exists");
+			return "";
+		}
+		
+		
+		
+		
+		return input;
+	}
+	
 	static class IntCompare implements Comparator<Integer>{ 
         @Override
         public int compare(Integer arg0, Integer arg1) { 
