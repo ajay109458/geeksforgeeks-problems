@@ -1,5 +1,7 @@
 package Search;
 
+import java.util.Arrays;
+
 public class SearchHelper {
 	
 	/**
@@ -21,6 +23,43 @@ public class SearchHelper {
 		int sumN = ( n * (n+1))/2;
 		
 		return sumN - sumOfArray;
+	}
+	
+	
+	public static void printPairWithSumClosestToZero(int[] arr) {
+		
+		Arrays.sort(arr);
+		
+		int left = 0; 
+		int right = arr.length - 1;
+		
+		int minSum = Integer.MAX_VALUE;
+		
+		int minL;
+		int minR;
+		
+		
+		while (left < right) {
+			
+			int sum = arr[left] + arr[right];
+			
+			if (Math.abs(sum) < minSum) {
+				minSum = Math.abs(sum);
+				minL = left;
+				minR =right;
+			}
+			
+			if (sum > 0) {
+				right--;
+			} else {
+				left ++;
+			}
+			
+			
+		}
+		
+		System.out.println("Min abs possible sum is : " + minSum);
+		
 	}
 
 }

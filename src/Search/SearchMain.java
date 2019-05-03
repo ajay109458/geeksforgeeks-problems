@@ -12,6 +12,10 @@ public class SearchMain {
 		
 		int[] arr2 =  {5, 6, 7, 8, 9, 10, 1, 2, 3};
 		ArrayHelper.searchElementInPivotedArray(arr2, 3);
+		
+		
+		int[] arr3 = {1, 60, -10, 70, -80, 85}; 
+		SearchHelper.printPairWithSumClosestToZero(arr3);
 	}
 	
 }
