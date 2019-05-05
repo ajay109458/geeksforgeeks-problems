@@ -18,6 +18,9 @@ public class SearchMain {
 		SearchHelper.printPairWithSumClosestToZero(arr3);
 		
 		System.out.println("Second largets element in the given array : " + SearchHelper.findSecondLargest(arr3));
+		
+		System.out.println("Print k largest elements");
+		SearchHelper.printKLargest(arr2, 3);
 	}
 	
 }
