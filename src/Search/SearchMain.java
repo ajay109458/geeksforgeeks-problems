@@ -16,6 +16,8 @@ public class SearchMain {
 		
 		int[] arr3 = {1, 60, -10, 70, -80, 85}; 
 		SearchHelper.printPairWithSumClosestToZero(arr3);
+		
+		System.out.println("Second largets element in the given array : " + SearchHelper.findSecondLargest(arr3));
 	}
 	
 }
