@@ -1,6 +1,7 @@
 package sorting;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 import array.ArrayHelper;
 
@@ -69,22 +70,44 @@ public class SortingHelper {
 	}
 
 	public static void sort012(int[] arr) {
-		
+
 		int i = -1;
 		int j = 0;
 		int k = arr.length;
-		
-		while ( j < k) {
-			
+
+		while (j < k) {
+
 			if (arr[j] == 0) {
 				ArrayHelper.swap(arr, ++i, j++);
 			} else if (arr[j] == 1) {
 				j++;
-			} else if(arr[j] == 2) {
+			} else if (arr[j] == 2) {
 				ArrayHelper.swap(arr, j, --k);
 			}
 		}
+
+	}
+
+	public static void sortNearlySortedArray(int[] arr, int k) {
+
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+		int i = 0;
+		while (i <= k) {
+			pq.add(arr[i++]);
+		}
+
+		int rIndex = 0;
+		while (i < arr.length) {
+
+			arr[rIndex++] = pq.remove();
+			pq.add(arr[i++]);
+		}
+
 		
+		while(!pq.isEmpty()) {
+			arr[rIndex++] = pq.remove();
+		}
 	}
 
 }

@@ -34,6 +34,13 @@ public class SortMain {
 		SortingHelper.sort012(arr2);
 		System.out.println(Arrays.toString(arr2));
 		
+		/**
+		 * Sort a nearly sorted array
+		 */
+		int[] arr3 = {6, 5, 3, 2, 8, 10, 9};
+		System.out.println("Sort a nearly sorted array : ");
+		SortingHelper.sortNearlySortedArray(arr3, 3);
+		System.out.println(Arrays.toString(arr3));
 		
 	}
 	
