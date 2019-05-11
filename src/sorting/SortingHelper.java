@@ -7,26 +7,34 @@ public class SortingHelper {
 	public static void mergeSort(int[] arr) {
 		mergeSort(arr, 0, arr.length - 1);
 	}
+	
+	public static int mergeSortInversionCount(int[] arr) {
+		return mergeSort(arr, 0, arr.length - 1);
+	}
 
-	private static void mergeSort(int[] arr, int left, int right) {
+	private static int mergeSort(int[] arr, int left, int right) {
 
 		if (right <= left) {
-			return;
+			return 0;
 		}
 
 		int mid = (left + right) / 2;
 
-		mergeSort(arr, left, mid);
-		mergeSort(arr, mid + 1, right);
+		int invCount = mergeSort(arr, left, mid);
+		invCount += mergeSort(arr, mid + 1, right);
 
-		merge(arr, left, mid, right);
+		invCount += merge(arr, left, mid, right);
+		
+		return invCount;
 	}
 
-	private static void merge(int[] arr, int left, int mid, int right) {
+	private static int merge(int[] arr, int left, int mid, int right) {
 
 		int i = left;
 		int j = mid + 1;
 
+		int invCount = 0;
+		
 		if (left <= right) {
 
 			int[] temp = new int[right - left + 1];
@@ -37,6 +45,7 @@ public class SortingHelper {
 					temp[index++] = arr[i++];
 				} else {
 					temp[index++] = arr[j++];
+					invCount += (mid - i + 1);
 				}
 			}
 
@@ -52,6 +61,8 @@ public class SortingHelper {
 				arr[left + i] = temp[i];
 			}
 		}
+		
+		return invCount;
 
 	}
 

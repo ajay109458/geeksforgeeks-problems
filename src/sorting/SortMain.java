@@ -21,8 +21,15 @@ public class SortMain {
 		 * Sort an array by merge sort
 		 */
 		System.out.println("Sorting array by merge sort : ");
-		SortingHelper.mergeSort(arr1);
+		//SortingHelper.mergeSort(arr1);
 		System.out.println(Arrays.toString(arr1));
+		
+		/**
+		 * Print inversion count using merge sort
+		 */
+		System.out.println("Print inversion count of the array : " + SortingHelper.mergeSortInversionCount(arr1));
+		
+		
 	}
 	
 }
