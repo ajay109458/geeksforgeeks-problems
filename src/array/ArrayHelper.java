@@ -1,5 +1,13 @@
 package array;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import utils.Pair;
+
 public class ArrayHelper {
 
 	/**
@@ -33,8 +41,7 @@ public class ArrayHelper {
 	 * Swap elements at two indices of the array
 	 * 
 	 * @param arr
-	 * @param firstIndex
-	 *            *
+	 * @param firstIndex *
 	 * @param lastIndex
 	 */
 	public static void swap(int[] arr, int firstIndex, int lastIndex) {
@@ -297,10 +304,10 @@ public class ArrayHelper {
 			}
 		}
 	}
-	
-	
+
 	/**
-	 * Search a ceil element in the array. Ceil element means element equal to an element or just greater than the element.
+	 * Search a ceil element in the array. Ceil element means element equal to an
+	 * element or just greater than the element.
 	 * 
 	 * @param arr
 	 * @param left
@@ -309,22 +316,22 @@ public class ArrayHelper {
 	 * @return
 	 */
 	public static int ceilSearch(int[] arr, int left, int right, int val) {
-		
-		if(right > left)
+
+		if (right > left)
 			return -1;
-		
-		if(val <= arr[left]) {
+
+		if (val <= arr[left]) {
 			return left;
 		}
-		
+
 		if (arr[right] < val)
 			return -1;
-		
+
 		int mid = (left + right) / 2;
-		
-		if (arr[mid] ==  val) {
+
+		if (arr[mid] == val) {
 			return mid;
-		} else if (arr[mid] < val && val < arr[mid+1]) {
+		} else if (arr[mid] < val && val < arr[mid + 1]) {
 			return mid + 1;
 		} else if (arr[mid] < val) {
 			return ceilSearch(arr, left, mid - 1, val);
@@ -332,14 +339,14 @@ public class ArrayHelper {
 			return ceilSearch(arr, mid + 1, right, val);
 		}
 	}
-	
+
 	public static void printUnionOfTwoSortedArray(int[] arr1, int[] arr2) {
-		
-		int i = 0; 
+
+		int i = 0;
 		int j = 0;
-		
-		while ( i < arr1.length && j < arr2.length) {
-			
+
+		while (i < arr1.length && j < arr2.length) {
+
 			if (arr1[i] == arr2[j]) {
 				System.out.print(arr1[i++] + " ");
 				j++;
@@ -349,34 +356,94 @@ public class ArrayHelper {
 				System.out.print(arr2[j++] + " ");
 			}
 		}
-		
-		while(i < arr1.length) {
+
+		while (i < arr1.length) {
 			System.out.print(arr1[i++] + " ");
 		}
-		
+
 		while (j < arr2.length) {
 			System.out.print(arr2[j++] + " ");
 		}
 	}
-	
+
 	public static int linearSearch(int[] arr, int val) {
-		
-		for(int i = 0; i < arr.length; i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == val)
 				return i;
 		}
-		
+
 		return -1;
 	}
-	
+
 	public static int linearSearch(int[] arr, int val, int startIndex, int endIndex) {
-		
-		for(int i = startIndex; i <= endIndex; i++) {
+
+		for (int i = startIndex; i <= endIndex; i++) {
 			if (arr[i] == val)
 				return i;
 		}
-		
+
 		return -1;
 	}
-	
+
+	public static Map<Integer, Integer> getFreqByElementMap(int[] arr) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		for (int ele : arr) {
+			Integer count = map.get(ele);
+
+			if (count == null) {
+				count = 1;
+			} else {
+				count++;
+			}
+
+			map.put(ele, count);
+		}
+
+		return map;
+	}
+
+	/**
+	 * Print the elements of an array in the decreasing frequency if 2 numbers have same frequency then print the one which came first.
+	 * 
+	 * Input:  arr[] = {2, 5, 2, 8, 5, 6, 8, 8}    Output: arr[] = {8, 8, 8, 2, 2, 5, 5, 6}
+	 * 
+	 * @param arr
+	 */
+	public static void sortArrayByFreq(int[] arr) {
+
+		Map<Integer, Integer> freqByEleMap = getFreqByElementMap(arr);
+
+		Pair[] sortedFreqArr = new Pair[freqByEleMap.size()];
+
+		int index = 0;
+		for (Entry<Integer, Integer> entry : freqByEleMap.entrySet()) {
+			sortedFreqArr[index++] = new Pair(entry.getKey(), entry.getValue());
+		}
+
+		Arrays.sort(sortedFreqArr, new Comparator<Pair>() {
+
+			@Override
+			public int compare(Pair o1, Pair o2) {
+				if (o1.y > o2.y) {
+					return -1;
+				} else if (o1.y < o2.y) {
+					return 1;
+				} else
+					return 0;
+			}
+		});
+
+		
+		index = 0;
+		for(Pair p : sortedFreqArr) {
+			int count = freqByEleMap.get(p.x);
+			
+			while(count-- > 0) {
+				arr[index++] = p.x;
+			}
+		}
+	}
+
 }
