@@ -29,6 +29,11 @@ public class SortMain {
 		 */
 		System.out.println("Print inversion count of the array : " + SortingHelper.mergeSortInversionCount(arr1));
 		
+		int[] arr2 = {0, 1, 2, 0, 1, 2};
+		System.out.println("Sorting array of 012 : ");
+		SortingHelper.sort012(arr2);
+		System.out.println(Arrays.toString(arr2));
+		
 		
 	}
 	
