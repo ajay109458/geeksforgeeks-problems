@@ -16,6 +16,13 @@ public class SortMain {
 		ArrayHelper.sortArrayByFreq(arr1);
 		System.out.println(Arrays.toString(arr1));
 		
+		
+		/**
+		 * Sort an array by merge sort
+		 */
+		System.out.println("Sorting array by merge sort : ");
+		SortingHelper.mergeSort(arr1);
+		System.out.println(Arrays.toString(arr1));
 	}
 	
 }
