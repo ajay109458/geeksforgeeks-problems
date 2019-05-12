@@ -3,6 +3,7 @@ package sorting;
 import java.util.Arrays;
 
 import array.ArrayHelper;
+import utils.Pair;
 
 public class SortMain {
 
@@ -54,6 +55,13 @@ public class SortMain {
 		int[] arr5 = {2, 5, 2, 8, 5, 6, 8, 8};
 		SortingHelper.bubbleSort(arr5);
 		System.out.println(Arrays.toString(arr5));
+		
+		/**
+		 * Given a sorted array and a number x, find the pair in array whose sum is closest to x
+		 */
+		int[] arr6 = {10, 22, 28, 29, 30, 40};
+		Pair p = SortingHelper.getPairWithClosestSum(arr6, 54);
+		System.out.println("Numbers with closest sum in above array are : " + arr6[p.x] + " : " + arr6[p.y]);
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 import array.ArrayHelper;
+import utils.Pair;
 
 public class SortingHelper {
 
@@ -146,6 +147,43 @@ public class SortingHelper {
 		}
 		
 	}
+	
+	/**
+	 * Given a sorted array and a number x, find the pair in array whose sum is closest to x
+	 */
+	public static Pair getPairWithClosestSum(int[] arr, int x) {
+		Pair p = new Pair();
+		
+		Arrays.sort(arr);
+		
+		int left = 0;
+		int right = arr.length - 1;
+		
+		int minDiff = Integer.MAX_VALUE;
+		
+		while(left < right) {
+		
+			int currSum = arr[left] + arr[right];
+			int diff = currSum - x;
+			
+			if (Math.abs(diff) < minDiff) {
+				minDiff = Math.abs(diff);
+				p.x = left;
+				p.y = right;
+			}
+		 
+			if (diff > 0) {
+				right--;
+			} else if (diff < 0) {
+				left++;
+			} else {
+				break;
+			}
+		}
+		
+		return p;
+	}
+	
 		
 
 }
