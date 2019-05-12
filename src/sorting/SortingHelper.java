@@ -184,6 +184,21 @@ public class SortingHelper {
 		return p;
 	}
 	
+	public static void waveFormSort(int[] arr) {
 		
+		int index = 1;
+		
+		while (index < arr.length) {
+			if (arr[index-1] > arr[index]) {
+				ArrayHelper.swap(arr, index - 1, index);
+			}
+			
+			if (index + 1 < arr.length && arr[index + 1] > arr[index]) {
+				ArrayHelper.swap(arr, index + 1, index);
+			}	
+			
+			index = index + 2;
+		}
+	}	
 
 }

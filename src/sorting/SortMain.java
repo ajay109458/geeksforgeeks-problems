@@ -62,6 +62,15 @@ public class SortMain {
 		int[] arr6 = {10, 22, 28, 29, 30, 40};
 		Pair p = SortingHelper.getPairWithClosestSum(arr6, 54);
 		System.out.println("Numbers with closest sum in above array are : " + arr6[p.x] + " : " + arr6[p.y]);
+		
+		
+		/**
+		 * Wave form sort an array
+		 */
+		int[] arr7 = {10, 5, 6, 3, 2, 20, 100, 80};
+		System.out.println("Sort an array in wave form : ");
+		SortingHelper.waveFormSort(arr7);
+		System.out.println(Arrays.toString(arr7));
 	}
 	
 }
