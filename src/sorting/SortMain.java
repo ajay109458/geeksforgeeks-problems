@@ -42,6 +42,11 @@ public class SortMain {
 		SortingHelper.sortNearlySortedArray(arr3, 3);
 		System.out.println(Arrays.toString(arr3));
 		
+		/**
+		 * Count all distinct pairs with difference equal to k
+		 */
+		int arr4[] = {1, 5, 3, 4, 2};
+		System.out.println("Distint pairs count with diff equal to k : " + SortingHelper.countDistinctPairWithDiffK(arr4, 3));
 	}
 	
 }

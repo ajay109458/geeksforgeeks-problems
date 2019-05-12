@@ -109,5 +109,31 @@ public class SortingHelper {
 			arr[rIndex++] = pq.remove();
 		}
 	}
+	
+	public static int countDistinctPairWithDiffK(int[] arr, int k) {
+		
+		Arrays.sort(arr); 
+		
+		int i = 0;
+		int j = 1;
+		
+		int count = 0;
+		
+		while(j < arr.length) {
+			int diff = arr[j] - arr[i];
+			
+			if (diff == k) {
+				count++;
+				i++;
+			} else if (diff > k) {
+				i++;
+			} else {
+				j++;
+			}
+		}
+		
+		return count;
+	}
+		
 
 }
