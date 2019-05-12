@@ -47,6 +47,13 @@ public class SortMain {
 		 */
 		int arr4[] = {1, 5, 3, 4, 2};
 		System.out.println("Distint pairs count with diff equal to k : " + SortingHelper.countDistinctPairWithDiffK(arr4, 3));
+		
+		/**
+		 * Sort an array using bubble sort
+		 */
+		int[] arr5 = {2, 5, 2, 8, 5, 6, 8, 8};
+		SortingHelper.bubbleSort(arr5);
+		System.out.println(Arrays.toString(arr5));
 	}
 	
 }
