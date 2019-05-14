@@ -1,6 +1,7 @@
 package sorting;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import array.ArrayHelper;
@@ -200,5 +201,26 @@ public class SortingHelper {
 			index = index + 2;
 		}
 	}	
+	
+	public static boolean isIntervalOverlaps(Pair[] pairs) {
+		
+		Arrays.sort(pairs, new Comparator<Pair>() {
+
+			@Override
+			public int compare(Pair o1, Pair o2) {
+				if (o1.x > o2.x)
+					return 1;
+				else if (o1.x < o2.x)
+					return -1;
+				else 
+					return 0;
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
 
 }
