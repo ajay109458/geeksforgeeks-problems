@@ -21,6 +21,21 @@ public class SearchMain {
 		
 		System.out.println("Print k largest elements");
 		SearchHelper.printKLargest(arr2, 3);
+		
+		
+		/**
+		 * Get median of two sorted array of different size 
+		 */
+		int ar4[] = {900};  
+	    int ar5[] = {5, 8, 10, 20};  
+		System.out.println("Median of the above arrays : " + SearchHelper.getMedian1(ar4, ar5));
+		
+		
+		/**
+		 * Get peak element in the array
+		 */
+		int[] arr6 = {1, 3, 20, 4, 1, 0}; 
+		System.out.println("Get peak element in the array linearly : " + SearchHelper.findPeakLinearly(arr6));
 	}
 	
 }

@@ -83,11 +83,64 @@ public class SearchHelper {
 	public static void printKLargest(int[] arr, int k) {
 
 		Arrays.sort(arr);
-		
+
 		for (int i = 0; i < k; i++) {
 			System.out.print(arr[arr.length - i - 1] + " ");
 		}
 		System.out.println();
+	}
+
+	public static int getMedian1(int[] arr1, int[] arr2) {
+
+		int m = arr1.length;
+		int n = arr2.length;
+
+		int m1 = 0;
+		int m2 = 0;
+
+		int i = 0;
+		int j = 0;
+
+		int totalSize = m + n;
+
+		for (int k = 0; k <= totalSize / 2; k++) {
+
+			if (totalSize % 2 == 0) {
+				m2 = m1;
+			}
+
+			if (i != m && j != n) {
+				m1 = (arr1[i] < arr2[j]) ? arr1[i++] : arr2[j++];
+			} else if (i < n) {
+				m1 = arr1[i++];
+			} else {
+				m1 = arr2[j++];
+			}
+		}
+
+		return (totalSize % 2 == 1) ? m1 : (m1 + m2) / 2;
+
+	}
+	
+	
+	public static int findPeakLinearly(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			boolean isPeak = true;
+			
+			if ( i > 0) {
+				isPeak = (arr[i] > arr[i-1]);
+			}
+			
+			if (i < arr.length - 1) {
+				isPeak = (arr[i] > arr[i+1]);
+			}
+			
+			if (isPeak)
+				return arr[i];
+			
+		}
+		
+		return -1; 
 	}
 
 }
