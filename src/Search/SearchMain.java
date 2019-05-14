@@ -36,6 +36,7 @@ public class SearchMain {
 		 */
 		int[] arr6 = {1, 3, 20, 4, 1, 0}; 
 		System.out.println("Get peak element in the array linearly : " + SearchHelper.findPeakLinearly(arr6));
+		System.out.println("Get peak element in the array BS : " + SearchHelper.findPeakBS(arr6));
 	}
 	
 }

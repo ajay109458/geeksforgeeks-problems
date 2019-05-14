@@ -142,5 +142,24 @@ public class SearchHelper {
 		
 		return -1; 
 	}
+	
+	public static int findPeakBS(int[] arr) {
+		return findPeakBS(arr, 0, arr.length - 1);
+	}
+	
+	private static int findPeakBS(int[] arr, int left, int right) {
+		
+		int mid = (left + right) / 2;
+		
+		
+		if ((mid == 0 || arr[mid-1] < arr[mid]) && (mid == arr.length -1 || arr[mid+1] < arr[mid])) {
+			return arr[mid];
+		} else if (mid > 0 && arr[mid-1] > arr[mid]) {
+			return findPeakBS(arr, left, mid -1 );
+		} else {
+			return findPeakBS(arr, mid + 1, right);
+		}
+		
+	}
 
 }
