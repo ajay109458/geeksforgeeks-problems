@@ -127,4 +127,12 @@ public class BitHelper {
 	public static int multiply3_5(int n) {
 		return (n >> 1) + n + (n << 1);
 	}
+	
+	public static int unsetRightMostBit(int n) {
+		
+		if (n == 0)
+			return 0;
+		
+		return n & (n-1);
+	}
 }
