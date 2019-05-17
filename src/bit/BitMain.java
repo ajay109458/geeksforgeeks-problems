@@ -13,5 +13,7 @@ public class BitMain {
 		System.out.println("Binary addition of 3 and 5 : " + BitHelper.add(5, 3));
 		
 		System.out.println("Smallest of three number : " + BitHelper.smallest(4, 3, 5));
+		
+		System.out.println("Next higher number with same bits : " + BitHelper.getNextHigherElementWithSameBits(156));
 	}
 }	

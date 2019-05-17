@@ -69,4 +69,41 @@ public class BitHelper {
 		
 		return count;
 	}
+	
+	
+	public static int getNextHigherElementWithSameBits(int n) {
+		
+		int prevBit = 0;
+		
+		int count1Bits = 0;
+		int i = 0;
+	
+		
+		// Identify bit with 01 pattern.
+	    for(i = 0; i < Integer.BYTES * 8; i++) {
+	    
+	    	int currBit = n & (1 << i);
+	    	
+	    	if (currBit != 0)
+	    		count1Bits++;
+	    	
+	    	if (prevBit != 0 && currBit == 0) {
+	    		break;
+	    	}
+	    	
+	    	// unset if a bit is being set.
+	    	n = n & ~(1<<i);
+	    	
+	    	prevBit = currBit;
+	    }
+		
+	    n = n | (1 << i);
+	    count1Bits--;
+	    
+	    for (int j = 0; j < count1Bits; j++) {
+	    	n = n | (1 << j);
+	    }
+	    
+	    return n;
+	}
 }
