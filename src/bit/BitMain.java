@@ -7,5 +7,7 @@ public class BitMain {
 		System.out.println("Number of set bits in number 5 : " + BitHelper.countSetBit(5));
 		
 		System.out.println("Number of set bits in all numbers until 5: " + BitHelper.countSetBitsInAllNumbersUntilN(5));
+		
+		System.out.println("Swap bits of number 28 is " + BitHelper.swapBits(28, 0, 3, 2));
 	}
 }	
