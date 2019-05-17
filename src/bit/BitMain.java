@@ -17,5 +17,7 @@ public class BitMain {
 		System.out.println("Next higher number with same bits : " + BitHelper.getNextHigherElementWithSameBits(156));
 		
  		System.out.println("Add 1 to a number : " + BitHelper.add1ToNumber(5));
+ 		 
+ 		System.out.println("Multiply number with 3.5 : " + BitHelper.multiply3_5(2));
 	}
 }	

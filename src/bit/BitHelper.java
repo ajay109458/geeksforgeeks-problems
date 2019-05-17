@@ -123,4 +123,8 @@ public class BitHelper {
 		return n;
 		
 	}
+	
+	public static int multiply3_5(int n) {
+		return (n >> 1) + n + (n << 1);
+	}
 }
