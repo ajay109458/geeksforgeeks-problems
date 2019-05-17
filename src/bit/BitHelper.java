@@ -57,4 +57,16 @@ public class BitHelper {
 	}
 	
 
+	public static int smallest(int a, int b, int c) {
+		int count = 0;
+		
+		while ( a > 0  && b > 0 && c > 0) {
+			a--;
+			b--;
+			c--;
+			count++;
+		}
+		
+		return count;
+	}
 }

@@ -11,5 +11,7 @@ public class BitMain {
 		System.out.println("Swap bits of number 28 is " + BitHelper.swapBits(28, 0, 3, 2));
 		
 		System.out.println("Binary addition of 3 and 5 : " + BitHelper.add(5, 3));
+		
+		System.out.println("Smallest of three number : " + BitHelper.smallest(4, 3, 5));
 	}
 }	
