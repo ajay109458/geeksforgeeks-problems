@@ -106,4 +106,21 @@ public class BitHelper {
 	    
 	    return n;
 	}
+	
+	public static int add1ToNumber(int n) {
+		
+		for (int i = 0; i < Integer.BYTES * 8 ; i++) {
+			int currBit = n & (1 << i);
+			
+			if (currBit == 0) {
+				n |= (1 << i);
+				break;
+			} else {
+				n &= ~(1 << i);
+			}
+		}
+		
+		return n;
+		
+	}
 }
