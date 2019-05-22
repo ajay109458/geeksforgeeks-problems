@@ -32,5 +32,7 @@ public class BitMain {
  		
  		System.out.println("Count set bits  #1 : " + BitHelper.countSetBits1(5));
  		System.out.println("Count set bits  #2 : " + BitHelper.countSetBits2(5));
+ 		
+ 		System.out.println("Number of bits to flip: " + BitHelper.numberOfBitsToFlip(10, 20));
 	}
 }	

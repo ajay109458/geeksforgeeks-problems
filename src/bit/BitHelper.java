@@ -193,4 +193,9 @@ public class BitHelper {
 		
 		return count;
 	}
+	
+	public static int numberOfBitsToFlip(int a, int b) {
+		int xorNum = a ^ b;
+		return countSetBit(xorNum);
+	}
 }
