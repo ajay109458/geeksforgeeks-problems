@@ -36,5 +36,7 @@ public class BitMain {
  		System.out.println("Number of bits to flip: " + BitHelper.numberOfBitsToFlip(10, 20));
  		
  		System.out.println("Multiply number with 7 : " + BitHelper.multiply7(5));
+ 		
+ 		System.out.println("Is power of 2 : " + BitHelper.isPowerOf2(8));
 	}
 }	
