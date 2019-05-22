@@ -21,5 +21,8 @@ public class BitMain {
  		System.out.println("Multiply number with 3.5 : " + BitHelper.multiply3_5(2));
  		
  		System.out.println("Unset right most set bit : " + BitHelper.unsetRightMostBit(5));
+ 		
+ 		System.out.println("Left rotate : " + BitHelper.leftRotate(16, 2));
+ 		System.out.println("Left rotate : " + BitHelper.rightRotate(16, 2));
 	}
 }	

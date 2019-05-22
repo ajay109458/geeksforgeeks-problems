@@ -135,4 +135,13 @@ public class BitHelper {
 		
 		return n & (n-1);
 	}
+	
+	public static int leftRotate(int n, int k) {
+		return (n << k) | (n >> (Integer.BYTES * 8 - k));
+	}
+	
+	
+	public static int rightRotate(int n, int k) {
+		return (n >> k) | (n << (Integer.BYTES * 8 - k ));
+	}
 }
