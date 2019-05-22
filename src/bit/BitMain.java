@@ -29,5 +29,8 @@ public class BitMain {
  		System.out.println("Element occuring odd number of times : " + BitHelper.findNumberWithOddOccurance(arr));
  		
  		System.out.println("Is add results into integer overflow : "  + BitHelper.isAddResultOverflow(2147483640, 10));
+ 		
+ 		System.out.println("Count set bits  #1 : " + BitHelper.countSetBits1(5));
+ 		System.out.println("Count set bits  #2 : " + BitHelper.countSetBits2(5));
 	}
 }	
