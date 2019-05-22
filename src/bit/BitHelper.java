@@ -198,4 +198,8 @@ public class BitHelper {
 		int xorNum = a ^ b;
 		return countSetBit(xorNum);
 	}
+	
+	public static int multiply7(int n) {
+		return (n << 2) + (n << 1) + n;
+	}
 }
