@@ -24,5 +24,10 @@ public class BitMain {
  		
  		System.out.println("Left rotate : " + BitHelper.leftRotate(16, 2));
  		System.out.println("Left rotate : " + BitHelper.rightRotate(16, 2));
+ 		
+ 		int[] arr = {1, 2, 3, 2, 3, 1, 3};
+ 		System.out.println("Element occuring odd number of times : " + BitHelper.findNumberWithOddOccurance(arr));
+ 		
+ 		System.out.println("Is add results into integer overflow : "  + BitHelper.isAddResultOverflow(2147483640, 10));
 	}
 }	

@@ -144,4 +144,25 @@ public class BitHelper {
 	public static int rightRotate(int n, int k) {
 		return (n >> k) | (n << (Integer.BYTES * 8 - k ));
 	}
+	
+	
+	public static int findNumberWithOddOccurance(int[] arr) {
+		int result = 0;
+		
+		for(int ele : arr) {
+			result ^= ele;
+		}
+		
+		return result;
+	}
+	
+	public static boolean isAddResultOverflow(int a, int b) {
+		
+		if (b > Integer.MAX_VALUE - a) {
+			return true;
+		}
+		
+		return false;
+		
+	}
 }
