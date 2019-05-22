@@ -206,4 +206,23 @@ public class BitHelper {
 	public static boolean isPowerOf2(int n) {
 		return (n != 0 && ((n & (n-1)) == 0)) ? true : false;		
 	}
+	
+	public static int indexOfRightMostBit(int n) {
+		
+		int index  = -1;
+		
+		while (n != 0) {
+			
+			index++;
+			
+			if ((n & 1) != 0) {
+				break;
+			}
+			
+			n >>= 1;
+		}
+		
+		return index  ;
+		
+	}
 }

@@ -38,5 +38,7 @@ public class BitMain {
  		System.out.println("Multiply number with 7 : " + BitHelper.multiply7(5));
  		
  		System.out.println("Is power of 2 : " + BitHelper.isPowerOf2(8));
+ 		
+ 		System.out.println("Index of rightmost set bit : " + BitHelper.indexOfRightMostBit(12));
 	}
 }	
