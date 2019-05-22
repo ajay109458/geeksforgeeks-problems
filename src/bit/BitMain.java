@@ -40,5 +40,7 @@ public class BitMain {
  		System.out.println("Is power of 2 : " + BitHelper.isPowerOf2(8));
  		
  		System.out.println("Index of rightmost set bit : " + BitHelper.indexOfRightMostBit(12));
+ 		
+ 		System.out.println("Get binary of the number : " + BitHelper.getBinary(6));
 	}
 }	
