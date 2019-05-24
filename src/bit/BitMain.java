@@ -45,5 +45,8 @@ public class BitMain {
  		
  		
  		System.out.println("Add binary string : " + BitHelper.addBitString("1100011", "10"));
+ 		
+ 		System.out.println("Xor from 1 to n : " + BitHelper.xor1ToN(6));
+ 		System.out.println("Xor from 1 to n efficient: " + BitHelper.xor1ToNEfficient(6));
 	}
 }	
