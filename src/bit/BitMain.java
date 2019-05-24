@@ -42,5 +42,8 @@ public class BitMain {
  		System.out.println("Index of rightmost set bit : " + BitHelper.indexOfRightMostBit(12));
  		
  		System.out.println("Get binary of the number : " + BitHelper.getBinary(6));
+ 		
+ 		
+ 		System.out.println("Add binary string : " + BitHelper.addBitString("1100011", "10"));
 	}
 }	

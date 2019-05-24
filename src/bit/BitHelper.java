@@ -237,5 +237,45 @@ public class BitHelper {
 		return result;
 	}
 	
-	
+	public static String addBitString(String a, String b) {
+		
+		int len1 = a.length();
+		int len2 = b.length();
+		
+		int diff = len1 - len2;
+		
+		// Make both string as equal
+		if (len1 > 0) {
+			for(int i = 0; i < diff; i++) {
+				b = '0' + b;
+			}
+		} else {
+			diff = Math.abs(diff);
+			for(int i = 0; i < diff; i++) {
+				a = '0' + a;
+			}
+		}
+		
+		String result = "";
+		
+		int carry = 0 ;
+		for (int i = a.length() - 1; i >= 0; i--) {
+			int numA = a.charAt(i) - '0';
+			int numB = b.charAt(i) - '0';
+			
+			int sum = numA ^ numB ^ carry;
+			
+			result = ((char)(sum + '0'))  + result;
+			
+			carry = (numA & numB) | (numA & carry) | (numB & carry);
+		}
+		
+		
+		if (carry == 1) {
+			result = '1' + result;
+		}
+		
+		return result;
+		
+	}
 }
