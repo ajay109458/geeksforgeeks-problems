@@ -48,5 +48,7 @@ public class BitMain {
  		
  		System.out.println("Xor from 1 to n : " + BitHelper.xor1ToN(6));
  		System.out.println("Xor from 1 to n efficient: " + BitHelper.xor1ToNEfficient(6));
+ 		
+ 		System.out.println("Is alternate bit pattern : " + BitHelper.isAltBitPattern(5));
 	}
 }	

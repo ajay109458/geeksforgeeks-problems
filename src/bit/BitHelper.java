@@ -301,4 +301,23 @@ public class BitHelper {
 		return 0;
 
 	}
+	
+	public static boolean isAltBitPattern(int n) {
+		
+		boolean result = true;
+		int prevBit = n & 1;
+		n >>= 1;
+		
+		while (n != 0) {
+			int currBit = n & 1;
+			if ((prevBit ^ currBit) == 0) {
+				return false;
+			}
+			
+			prevBit = currBit;
+			n >>= 1;
+		}
+		
+		return result;
+	}
 }
