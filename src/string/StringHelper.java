@@ -415,6 +415,24 @@ public class StringHelper {
 		
 	}
 	
+	
+	public static boolean isSubSeqRec(String a, String b) {
+		return isSubSeqRec(a, b, a.length(), b.length());
+	}	
+	
+	private static boolean isSubSeqRec(String a, String b, int m, int n) {
+		
+		if (m == 0 && n == 0)
+			return true;
+		
+		if (a.charAt(m-1) == b.charAt(n-1)) {
+			return isSubSeqRec(a, b, m-1, n-1);
+		}
+		
+		return isSubSeqRec(a, b, m, n-1);
+	}
+	
+	
 	static class IntCompare implements Comparator<Integer>{ 
         @Override
         public int compare(Integer arg0, Integer arg1) { 

@@ -40,6 +40,9 @@ public class StringMain {
 		
 		System.out.println("Longest subsequence where every character appears at-least k times : ");
 		StringHelper.printLongestSubSeq("geeksforgeek", 2);
+		
+		
+		System.out.println("Check if first string is subsequence of string 2 : " + StringHelper.isSubSeqRec("AXY", "ADXCPY"));
 	}
 	
 }
