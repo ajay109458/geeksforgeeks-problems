@@ -43,6 +43,7 @@ public class StringMain {
 		
 		
 		System.out.println("Check if first string is subsequence of string 2 : " + StringHelper.isSubSeqRec("AXY", "ADXCPY"));
+		System.out.println("Check if first string is subsequence of string 2 : " + StringHelper.isSubStringItr("AXY", "ADXCPY"));
 	}
 	
 }

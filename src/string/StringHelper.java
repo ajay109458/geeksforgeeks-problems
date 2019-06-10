@@ -415,6 +415,24 @@ public class StringHelper {
 		
 	}
 	
+	public static boolean isSubStringItr(String a, String b) {
+		int i = 0;
+		for(int j = 0; j < b.length(); j++) {
+		
+		 
+			
+			if (a.charAt(i) == b.charAt(j)) {
+				i++;
+			}
+		
+			if (i == a.length())
+				return true;
+			
+		}
+		
+		return false;
+	}
+	
 	
 	public static boolean isSubSeqRec(String a, String b) {
 		return isSubSeqRec(a, b, a.length(), b.length());
