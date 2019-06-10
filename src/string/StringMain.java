@@ -37,6 +37,9 @@ public class StringMain {
 		
 		System.out.println("Character count");
 		StringHelper.printCharacterCount("#GeeKs01fOr@gEEks07");
+		
+		System.out.println("Longest subsequence where every character appears at-least k times : ");
+		StringHelper.printLongestSubSeq("geeksforgeek", 2);
 	}
 	
 }

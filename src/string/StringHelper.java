@@ -395,6 +395,26 @@ public class StringHelper {
 		return input;
 	}
 	
+	
+	public static void printLongestSubSeq(String str, int k) {
+		
+		int[] freq = new int[26];
+		
+		for (int i = 0; i < str.length(); i++) {
+			freq[str.charAt(i)-'a']++; 
+		}
+		
+		StringBuilder strBuilder = new StringBuilder();
+		for(int i = 0; i < str.length(); i ++) {
+			if (freq[str.charAt(i)-'a'] >= k) {
+				strBuilder.append(str.charAt(i));
+			}
+		}
+		
+		System.out.println(strBuilder.toString());
+		
+	}
+	
 	static class IntCompare implements Comparator<Integer>{ 
         @Override
         public int compare(Integer arg0, Integer arg1) { 
@@ -406,5 +426,8 @@ public class StringHelper {
                 return 0; 
         } 
     } 
+	
+	
+	
 
 }
