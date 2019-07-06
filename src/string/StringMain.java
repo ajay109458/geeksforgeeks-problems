@@ -55,6 +55,8 @@ public class StringMain {
 		
 		StringHelper.printMaxMinLenWords("This is a test string");
 		
+		System.out.println("Count of substrings with equal begin and end : " + StringHelper.countSubstringWithSameBeginAndEnd("abcab"));
+		
 		
 	}
 	
