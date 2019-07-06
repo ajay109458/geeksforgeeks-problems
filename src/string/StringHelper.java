@@ -1,11 +1,16 @@
 package string;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringHelper {
+	
+	public static int OUT = 0;
+	public static int IN = 1;
 	
 	/**
 	 * @param n
@@ -437,6 +442,74 @@ public class StringHelper {
 	public static boolean isSubSeqRec(String a, String b) {
 		return isSubSeqRec(a, b, a.length(), b.length());
 	}	
+	
+	public static int wordCount(String str) {
+		
+		int count = 0;
+		int state = IN;
+		
+		for (int i = 0 ; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			
+			if (ch == '\t' || ch == ' ' || ch == '\n') {
+				state = OUT;
+			} else if (state == OUT) {
+				state = IN;
+				count++;
+			}
+		}
+		
+		if (state == IN)
+			count++;
+		
+		return count;
+	}
+	
+	
+	public static int countWordsPresentInString(String input, String[] words) {
+		
+		Set<String> sWords = getWordsFromString(input);
+		
+		int count = 0;
+		
+		for (String word : words) {
+			if (sWords.contains(word)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
+	public static Set<String> getWordsFromString(String input) {
+		Set<String> set = new HashSet<>();
+		
+		int state = IN;
+		
+		String word = "";
+		
+		for (int i = 0 ; i < input.length(); i++) {
+			char ch = input.charAt(i);
+			
+			if (ch == '\t' || ch == ' ' || ch == '\n') {
+				state = OUT;
+			} else if (state == OUT) {
+				state = IN;
+				set.add(word);
+				word = "";
+			} 
+			
+			if (state == IN) {
+				word += ch;
+			}
+		}
+		
+		if (state == IN) {
+			set.add(word);
+		}
+		
+		return set;
+	}
 	
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 		
