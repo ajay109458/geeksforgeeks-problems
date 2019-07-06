@@ -53,6 +53,9 @@ public class StringMain {
 		System.out.println("Words present in the string : " + StringHelper.countWordsPresentInString(inputStr, words));
 		
 		
+		StringHelper.printMaxMinLenWords("This is a test string");
+		
+		
 	}
 	
 }

@@ -481,6 +481,35 @@ public class StringHelper {
 		return count;
 	}
 	
+	public static void printMaxMinLenWords(String input) {
+		
+		Set<String> words = getWordsFromString(input);
+		
+		String maxWord = "";
+		String minWord = "";
+		
+		int minLen = Integer.MAX_VALUE;
+		int maxLen = Integer.MIN_VALUE;
+		
+		for(String word : words) {
+			
+			if (word.length() > maxLen) {
+				maxLen = word.length();
+				maxWord = word;
+			}
+			
+			if (word.length() < minLen) {
+				minLen = word.length();
+				minWord = word;
+			}
+			
+		}
+		
+	System.out.println("Word with min length : " + minWord);
+	System.out.println("Word with max length : " + maxWord);
+		
+	}
+	
 	public static Set<String> getWordsFromString(String input) {
 		Set<String> set = new HashSet<>();
 		
