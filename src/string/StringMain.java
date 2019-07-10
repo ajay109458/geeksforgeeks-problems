@@ -57,7 +57,7 @@ public class StringMain {
 		
 		System.out.println("Count of substrings with equal begin and end : " + StringHelper.countSubstringWithSameBeginAndEnd("abcab"));
 		
-		
+		System.out.println("Count of the non-empty substrings : " + StringHelper.countOfNonEmptySubStrings("abcd"));
 	}
 	
 }

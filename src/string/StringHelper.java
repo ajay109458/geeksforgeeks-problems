@@ -547,6 +547,16 @@ public class StringHelper {
 
 		return set;
 	}
+	
+	public static int countOfNonEmptySubStrings(String input) {
+		
+		if (input == null)
+			return 0;
+		
+		int n = input.length();
+		
+		return n * (n+1) /2;
+	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
