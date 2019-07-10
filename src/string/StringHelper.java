@@ -517,6 +517,55 @@ public class StringHelper {
 		
 		return count;
 	}
+	
+	public static int countDistinctSubstringsWithEvenOdd(String[] arr) {
+		
+		int count  = 0;
+		
+		Set<String> encodedStringSet = new HashSet<>();
+		
+		for (int i = 0; i < arr.length; i++) {
+			String encodedString = getEvenOddEncodedString(arr[i]);
+			
+			if (!encodedStringSet.contains(encodedString)) {
+				encodedStringSet.add(encodedString);
+			}
+		}
+		
+		return encodedStringSet.size();
+	} 
+	
+	private static String getEvenOddEncodedString(String input) {
+		
+		int[] evenHash = new int[26];
+		int[] oddHash = new int[26];
+		
+		for (int i = 0; i < input.length(); i++) {
+			char ch = input.charAt(i);
+			
+			if ((i & 1) != 0)
+			{
+				oddHash[ch - 'a']++;
+			} else {
+				evenHash[ch - 'a']++;
+			}
+		}
+		
+		String encodedString = "";
+		
+		for(int i= 0; i < evenHash.length; i++) {
+			encodedString += evenHash[i];
+		}
+		
+		encodedString += "-";
+		
+		for(int i=0; i < oddHash.length; i++) {
+			encodedString += oddHash[i];
+		}
+		
+		return encodedString;
+		
+	}
 
 	public static Set<String> getWordsFromString(String input) {
 		Set<String> set = new HashSet<>();
