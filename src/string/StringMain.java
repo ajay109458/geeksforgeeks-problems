@@ -44,6 +44,20 @@ public class StringMain {
 		
 		System.out.println("Check if first string is subsequence of string 2 : " + StringHelper.isSubSeqRec("AXY", "ADXCPY"));
 		System.out.println("Check if first string is subsequence of string 2 : " + StringHelper.isSubStringItr("AXY", "ADXCPY"));
+		
+		System.out.println("Word count in the string : " + StringHelper.wordCount("One two     three\n four\tfive"));
+
+		String[] words = { "welcome", "to", "geeks", "portal"};
+		String inputStr = "geeksforgeeks is a computer science portal for geeks";
+		
+		System.out.println("Words present in the string : " + StringHelper.countWordsPresentInString(inputStr, words));
+		
+		
+		StringHelper.printMaxMinLenWords("This is a test string");
+		
+		System.out.println("Count of substrings with equal begin and end : " + StringHelper.countSubstringWithSameBeginAndEnd("abcab"));
+		
+		
 	}
 	
 }
