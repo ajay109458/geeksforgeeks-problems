@@ -674,6 +674,44 @@ public class StringHelper {
 		
 		return count;
 	}
+	
+	/**
+	 * https://www.geeksforgeeks.org/check-whether-str1-can-be-converted-to-str2-with-the-given-operations/
+	 * 
+	 * @param s1
+	 * @param s2
+	 * @return
+	 */
+	public static boolean checkIfS1canBeConvertedToS2(String s1, String s2) {
+		
+		int m = s1.length();
+		int n = s2.length();
+		
+		if (m < n)
+			return false;
+		
+		int i = 0; 
+		int j = 0;
+		
+		while (i < m && j < n) {
+			
+			if (s1.charAt(i) == s2.charAt(j)) {
+				i++;
+				j++;
+			} else {
+				
+				if( i + 1 < m && s1.charAt(i) == '0' && s1.charAt(i+1) == '0' && s2.charAt(j) == '1') {
+					i = i + 2;
+					j ++;
+				} else {
+					return false;
+				}
+			}
+			
+		}
+		
+		return (i == m && j == n);
+	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 

@@ -68,6 +68,8 @@ public class StringMain {
 		System.out.println("Longest length of the string : " + StringHelper.longestStringOf0("100001", 3));
 		
 		System.out.println("Count non overlapping string : " + StringHelper.countNonOverlapping101or010("10101010101"));
+		
+		System.out.println("Check if a string can be converted : " + StringHelper.checkIfS1canBeConvertedToS2("00100", "111"));
 	}
 	
 }
