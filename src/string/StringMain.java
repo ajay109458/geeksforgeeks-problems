@@ -72,6 +72,8 @@ public class StringMain {
 		System.out.println("Check if a string can be converted : " + StringHelper.checkIfS1canBeConvertedToS2("00100", "111"));
 		
 		System.out.println("Odd parity max length : " + StringHelper.getMaxLenOddParityStringLen("1001110"));
+		
+		System.out.println("Min operations for transformation  : " + StringHelper.minOperationForTransform("1001011001", 3, 6));
 	}
 	
 }

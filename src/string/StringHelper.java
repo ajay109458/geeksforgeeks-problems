@@ -751,6 +751,36 @@ public class StringHelper {
 		}
 		
 	}
+	
+	public static int minOperationForTransform(String input, int a, int b) {
+		
+		int count = 0;
+		
+		int m = input.length();
+		
+		int i = m - 1; 
+		
+		while (i >= m - b ) {
+			
+			char ch = input.charAt(i);
+			
+			
+			
+			if (i != m - a - 1) {
+				if (ch == '1')
+					count++;
+			} else {
+				if (ch == '0')
+					count++;
+			}
+			
+			i--;
+			
+		}
+		
+		
+		return count;
+	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
