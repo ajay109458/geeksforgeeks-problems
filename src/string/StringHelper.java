@@ -208,8 +208,7 @@ public class StringHelper {
 	}
 
 	/**
-	 * Calculate maximum value using ‘+’ or ‘*’ sign between two numbers in
-	 * a string
+	 * Calculate maximum value using ‘+’ or ‘*’ sign between two numbers in a string
 	 * 
 	 * @param input
 	 * @return
@@ -502,69 +501,68 @@ public class StringHelper {
 		System.out.println("Word with max length : " + maxWord);
 
 	}
-	
+
 	public static int countSubstringWithSameBeginAndEnd(String input) {
-		
+
 		int count = 0;
-		
+
 		for (int i = 0; i < input.length(); i++) {
-			for (int j = i ; j < input.length(); j++ ) {
+			for (int j = i; j < input.length(); j++) {
 				if (input.charAt(i) == input.charAt(j)) {
-					count ++ ;
+					count++;
 				}
 			}
 		}
-		
+
 		return count;
 	}
-	
+
 	public static int countDistinctSubstringsWithEvenOdd(String[] arr) {
-		
-		int count  = 0;
-		
+
+		int count = 0;
+
 		Set<String> encodedStringSet = new HashSet<>();
-		
+
 		for (int i = 0; i < arr.length; i++) {
 			String encodedString = getEvenOddEncodedString(arr[i]);
-			
+
 			if (!encodedStringSet.contains(encodedString)) {
 				encodedStringSet.add(encodedString);
 			}
 		}
-		
+
 		return encodedStringSet.size();
-	} 
-	
+	}
+
 	private static String getEvenOddEncodedString(String input) {
-		
+
 		int[] evenHash = new int[26];
 		int[] oddHash = new int[26];
-		
+
 		for (int i = 0; i < input.length(); i++) {
 			char ch = input.charAt(i);
-			
-			if ((i & 1) != 0)
-			{
+
+			if ((i & 1) != 0) {
 				oddHash[ch - 'a']++;
 			} else {
 				evenHash[ch - 'a']++;
 			}
 		}
-		
+
 		String encodedString = "";
-		
-		for(int i= 0; i < evenHash.length; i++) {
+
+		for (int i = 0; i < evenHash.length; i++) {
 			encodedString += evenHash[i];
 		}
-		
+
 		encodedString += "-";
-		
-		for(int i=0; i < oddHash.length; i++) {
+
+		for (int i = 0; i < oddHash.length; i++) {
 			encodedString += oddHash[i];
 		}
-		
+
 		return encodedString;
-		
+
 	}
 
 	public static Set<String> getWordsFromString(String input) {
@@ -596,15 +594,85 @@ public class StringHelper {
 
 		return set;
 	}
-	
+
 	public static int countOfNonEmptySubStrings(String input) {
-		
+
 		if (input == null)
 			return 0;
+
+		int n = input.length();
+
+		return n * (n + 1) / 2;
+	}
+
+	
+	
+	/**
+	 * https://www.geeksforgeeks.org/longest-sub-string-of-0s-in-a-binary-string-which-is-repeated-k-times/
+	 * 
+	 * @param input
+	 * @param k
+	 * @return
+	 */
+	public static int longestStringOf0(String input, int k) {
+
+		input = (k == 1) ? input : (input + input);
+
+		int count = 0;
+		int maxCount = 0;
+		for (int i = 0; i < input.length(); i++) {
+			char ch = input.charAt(i);
+
+			if (ch == '0') {
+				count++;
+			} else {
+				maxCount = Math.max(maxCount, count);
+				count = 0;
+			}
+		}
+
+		if (k == 1) {
+			return maxCount;
+		} else {
+			if (maxCount == input.length() * 2) {
+				return k * maxCount;
+			} else {
+				return maxCount;
+			}
+		}
+	}
+	
+	/**
+	 * https://www.geeksforgeeks.org/count-of-non-overlapping-sub-strings-101-and-010-in-the-given-binary-string/
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public static int countNonOverlapping101or010(String input) {
 		
 		int n = input.length();
+		int count = 0;
+		int i = 0;
 		
-		return n * (n+1) /2;
+		while (i < n) {
+			
+			if (i + 2 < n) {
+				
+				String subStr = input.substring(i, i+3);
+				if ("101".equals(subStr) || "010".equals(subStr)) {
+					count++;
+					i = i + 3;
+				} else {
+					i++;
+				}
+				
+			} else {
+				break;
+			}
+			
+		}
+		
+		return count;
 	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
