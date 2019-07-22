@@ -712,6 +712,45 @@ public class StringHelper {
 		
 		return (i == m && j == n);
 	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public static int getMaxLenOddParityStringLen(String input) {
+		
+		int count = 0;
+		
+		int firstIndex = -1;
+		int lastIndex = -1;
+		
+		
+		for (int i = 0; i < input.length(); i++) {
+			if (input.charAt(i) == '1') {
+				
+				if (firstIndex == -1) {
+					firstIndex = i;
+				}
+				
+				lastIndex = i;
+				count++;
+			}
+		}
+		
+		if (count == 0) {
+			return 0;
+		}	else if (count % 2 != 0) {
+			return input.length();
+		} else {
+			
+			return Math.max(lastIndex, input.length() - firstIndex - 1);
+			
+		}
+		
+	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
