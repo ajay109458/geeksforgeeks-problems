@@ -781,6 +781,38 @@ public class StringHelper {
 		
 		return count;
 	}
+	
+	public static int calculateScoreOfString(String input) {
+		
+		int score = 0;
+		
+		Character prev = null;
+		int count = 0;
+		int i = 0;
+		
+		for (i = 0; i < input.length(); i++) {
+			
+			char ch = input.charAt(i);
+			
+			if (prev != null && prev != ch) {
+				
+				int n = count * count;
+				score = score + ( (prev == '0') ? -n : n);
+				count = 0;
+			}
+			
+			prev = ch;
+			count++;
+		}
+		
+		if (i == input.length() && prev != null) {
+			int n = count * count;
+			score = score + ((prev == '0') ? -n : n);
+		}
+		
+		return score;
+	}
+	
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 

@@ -74,6 +74,8 @@ public class StringMain {
 		System.out.println("Odd parity max length : " + StringHelper.getMaxLenOddParityStringLen("1001110"));
 		
 		System.out.println("Min operations for transformation  : " + StringHelper.minOperationForTransform("1001011001", 3, 6));
+		
+		System.out.println("Score of the string : " +  StringHelper.calculateScoreOfString("11011"));
 	}
 	
 }
