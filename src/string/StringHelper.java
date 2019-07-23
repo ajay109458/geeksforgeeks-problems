@@ -605,8 +605,6 @@ public class StringHelper {
 		return n * (n + 1) / 2;
 	}
 
-	
-	
 	/**
 	 * https://www.geeksforgeeks.org/longest-sub-string-of-0s-in-a-binary-string-which-is-repeated-k-times/
 	 * 
@@ -641,7 +639,7 @@ public class StringHelper {
 			}
 		}
 	}
-	
+
 	/**
 	 * https://www.geeksforgeeks.org/count-of-non-overlapping-sub-strings-101-and-010-in-the-given-binary-string/
 	 * 
@@ -649,32 +647,32 @@ public class StringHelper {
 	 * @return
 	 */
 	public static int countNonOverlapping101or010(String input) {
-		
+
 		int n = input.length();
 		int count = 0;
 		int i = 0;
-		
+
 		while (i < n) {
-			
+
 			if (i + 2 < n) {
-				
-				String subStr = input.substring(i, i+3);
+
+				String subStr = input.substring(i, i + 3);
 				if ("101".equals(subStr) || "010".equals(subStr)) {
 					count++;
 					i = i + 3;
 				} else {
 					i++;
 				}
-				
+
 			} else {
 				break;
 			}
-			
+
 		}
-		
+
 		return count;
 	}
-	
+
 	/**
 	 * https://www.geeksforgeeks.org/check-whether-str1-can-be-converted-to-str2-with-the-given-operations/
 	 * 
@@ -683,36 +681,36 @@ public class StringHelper {
 	 * @return
 	 */
 	public static boolean checkIfS1canBeConvertedToS2(String s1, String s2) {
-		
+
 		int m = s1.length();
 		int n = s2.length();
-		
+
 		if (m < n)
 			return false;
-		
-		int i = 0; 
+
+		int i = 0;
 		int j = 0;
-		
+
 		while (i < m && j < n) {
-			
+
 			if (s1.charAt(i) == s2.charAt(j)) {
 				i++;
 				j++;
 			} else {
-				
-				if( i + 1 < m && s1.charAt(i) == '0' && s1.charAt(i+1) == '0' && s2.charAt(j) == '1') {
+
+				if (i + 1 < m && s1.charAt(i) == '0' && s1.charAt(i + 1) == '0' && s2.charAt(j) == '1') {
 					i = i + 2;
-					j ++;
+					j++;
 				} else {
 					return false;
 				}
 			}
-			
+
 		}
-		
+
 		return (i == m && j == n);
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -721,51 +719,48 @@ public class StringHelper {
 	 * @return
 	 */
 	public static int getMaxLenOddParityStringLen(String input) {
-		
+
 		int count = 0;
-		
+
 		int firstIndex = -1;
 		int lastIndex = -1;
-		
-		
+
 		for (int i = 0; i < input.length(); i++) {
 			if (input.charAt(i) == '1') {
-				
+
 				if (firstIndex == -1) {
 					firstIndex = i;
 				}
-				
+
 				lastIndex = i;
 				count++;
 			}
 		}
-		
+
 		if (count == 0) {
 			return 0;
-		}	else if (count % 2 != 0) {
+		} else if (count % 2 != 0) {
 			return input.length();
 		} else {
-			
+
 			return Math.max(lastIndex, input.length() - firstIndex - 1);
-			
+
 		}
-		
+
 	}
-	
+
 	public static int minOperationForTransform(String input, int a, int b) {
-		
+
 		int count = 0;
-		
+
 		int m = input.length();
-		
-		int i = m - 1; 
-		
-		while (i >= m - b ) {
-			
+
+		int i = m - 1;
+
+		while (i >= m - b) {
+
 			char ch = input.charAt(i);
-			
-			
-			
+
 			if (i != m - a - 1) {
 				if (ch == '1')
 					count++;
@@ -773,47 +768,99 @@ public class StringHelper {
 				if (ch == '0')
 					count++;
 			}
-			
+
 			i--;
-			
+
 		}
-		
-		
+
 		return count;
 	}
-	
+
 	public static int calculateScoreOfString(String input) {
-		
+
 		int score = 0;
-		
+
 		Character prev = null;
 		int count = 0;
 		int i = 0;
-		
+
 		for (i = 0; i < input.length(); i++) {
-			
+
 			char ch = input.charAt(i);
-			
+
 			if (prev != null && prev != ch) {
-				
+
 				int n = count * count;
-				score = score + ( (prev == '0') ? -n : n);
+				score = score + ((prev == '0') ? -n : n);
 				count = 0;
 			}
-			
+
 			prev = ch;
 			count++;
 		}
-		
+
 		if (i == input.length() && prev != null) {
 			int n = count * count;
 			score = score + ((prev == '0') ? -n : n);
 		}
-		
+
 		return score;
 	}
-	
 
+	public static boolean is1Equidistant(String input) {
+		
+		Integer distance = null; 
+		
+		Integer prevIndex = null;
+		
+		for (int i = 0; i < input.length(); i++) {
+			
+			char ch = input.charAt(i);
+			
+			if (ch == '1') {
+				if (prevIndex != null ) {
+					
+					if (distance == null) {
+						distance = i - prevIndex;
+					} else {						
+						if (distance != i - prevIndex)
+							return false;
+					}
+					
+				} 
+				
+				prevIndex = i;
+			}
+			
+		}
+		
+		return true;
+	}
+
+	public static boolean isPanagram(String input) {
+		
+		int[] cache = new int[26];
+		
+		input = input.toLowerCase();
+		
+		for (int i = 0; i < input.length(); i++) {
+			
+			char ch = input.charAt(i);
+		
+			if (Character.isAlphabetic(ch)) {
+				cache[ch - 'a'] ++;
+			}
+			
+		}
+		
+		for (int i = 0; i < 26; i++) {
+			if (cache[i] == 0)
+				return false;
+		}
+		
+		return true;
+	}
+	
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
 		if (m == 0 && n == 0)

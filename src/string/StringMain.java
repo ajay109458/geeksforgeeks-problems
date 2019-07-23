@@ -76,6 +76,10 @@ public class StringMain {
 		System.out.println("Min operations for transformation  : " + StringHelper.minOperationForTransform("1001011001", 3, 6));
 		
 		System.out.println("Score of the string : " +  StringHelper.calculateScoreOfString("11011"));
+		
+		System.out.println("Is equidistant one : " + StringHelper.is1Equidistant("00111000"));
+		
+		System.out.println("Is Panagram : " + StringHelper.isPanagram("The quick brown fox jumps over the lazy dog"));
 	}
 	
 }
