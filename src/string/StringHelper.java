@@ -911,6 +911,11 @@ public class StringHelper {
 
 		return zeroCount == 1;
 	}
+	
+	public static String removeAllPunc(String input) {
+		input = input.replaceAll("\\p{Punct}","");
+		return input;
+	}
 
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
