@@ -861,6 +861,33 @@ public class StringHelper {
 		return true;
 	}
 	
+	public static String getMissingCharactersFromPanagram(String input) {
+		
+		int[] cache = new int[26];
+		
+		input = input.toLowerCase();
+		
+		String output = "";
+		
+		for (int i = 0; i < input.length(); i++) {
+			
+			char ch = input.charAt(i);
+		
+			if (Character.isAlphabetic(ch)) {
+				cache[ch - 'a'] ++;
+			}
+			
+		}
+		
+		for (int i = 0; i < 26; i++) {
+			if (cache[i] == 0)
+				output = output + ((char)(i + 'a'));
+		}
+		
+		return output;
+		
+	}
+	
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
 		if (m == 0 && n == 0)
