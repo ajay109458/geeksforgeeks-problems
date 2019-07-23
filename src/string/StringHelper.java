@@ -808,86 +808,110 @@ public class StringHelper {
 	}
 
 	public static boolean is1Equidistant(String input) {
-		
-		Integer distance = null; 
-		
+
+		Integer distance = null;
+
 		Integer prevIndex = null;
-		
+
 		for (int i = 0; i < input.length(); i++) {
-			
+
 			char ch = input.charAt(i);
-			
+
 			if (ch == '1') {
-				if (prevIndex != null ) {
-					
+				if (prevIndex != null) {
+
 					if (distance == null) {
 						distance = i - prevIndex;
-					} else {						
+					} else {
 						if (distance != i - prevIndex)
 							return false;
 					}
-					
-				} 
-				
+
+				}
+
 				prevIndex = i;
 			}
-			
+
 		}
-		
+
 		return true;
 	}
 
 	public static boolean isPanagram(String input) {
-		
+
 		int[] cache = new int[26];
-		
+
 		input = input.toLowerCase();
-		
+
 		for (int i = 0; i < input.length(); i++) {
-			
+
 			char ch = input.charAt(i);
-		
+
 			if (Character.isAlphabetic(ch)) {
-				cache[ch - 'a'] ++;
+				cache[ch - 'a']++;
 			}
-			
+
 		}
-		
+
 		for (int i = 0; i < 26; i++) {
 			if (cache[i] == 0)
 				return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	public static String getMissingCharactersFromPanagram(String input) {
-		
+
 		int[] cache = new int[26];
-		
+
 		input = input.toLowerCase();
-		
+
 		String output = "";
-		
+
 		for (int i = 0; i < input.length(); i++) {
-			
+
 			char ch = input.charAt(i);
-		
+
 			if (Character.isAlphabetic(ch)) {
-				cache[ch - 'a'] ++;
+				cache[ch - 'a']++;
 			}
-			
+
 		}
-		
+
 		for (int i = 0; i < 26; i++) {
 			if (cache[i] == 0)
-				output = output + ((char)(i + 'a'));
+				output = output + ((char) (i + 'a'));
 		}
-		
+
 		return output;
-		
+
 	}
-	
+
+	public static boolean isPanagramicLipogram(String input) {
+		int[] cache = new int[26];
+
+		input = input.toLowerCase();
+
+		for (int i = 0; i < input.length(); i++) {
+
+			char ch = input.charAt(i);
+
+			if (Character.isAlphabetic(ch)) {
+				cache[ch - 'a']++;
+			}
+
+		}
+
+		int zeroCount = 0;
+		for (int i = 0; i < 26; i++) {
+			if (cache[i] == 0)
+				zeroCount++;
+		}
+
+		return zeroCount == 1;
+	}
+
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
 		if (m == 0 && n == 0)
