@@ -84,6 +84,15 @@ public class StringMain {
 		System.out.println("Missing character from  Panagram : " + StringHelper.getMissingCharactersFromPanagram("welcome to geeksforgeeks"));
 		
 		System.out.println("Is string panagramic lipogram : " + StringHelper.isPanagramicLipogram("The quick brown fox jumped over the lazy dog"));
+		
+		
+		/******************************************************************
+		 *             ANAGRAM QUESTIONS                                  *
+		 ******************************************************************/
+		
+		System.out.println("Is anagram : " + StringHelper.isAnagram("test", "ttew"));
+		
+		
 	}
 	
 }

@@ -917,6 +917,21 @@ public class StringHelper {
 		return input;
 	}
 
+	public static boolean isAnagram(String s1, String s2) {
+		
+		int[] cache = new int[256];
+		
+		for(int i = 0; i < s1.length(); i++) {
+			cache[s1.charAt(i)]++;
+		}
+		
+		for(int i = 0; i < s1.length(); i++) {
+			cache[s1.charAt(i)]--;
+		}
+		
+		return true;
+	}
+	
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
 		if (m == 0 && n == 0)
@@ -941,4 +956,6 @@ public class StringHelper {
 		}
 	}
 
+	
+	
 }
