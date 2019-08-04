@@ -1,7 +1,11 @@
 package string;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -930,6 +934,63 @@ public class StringHelper {
 		}
 		
 		return true;
+	}
+	
+	public static void printAnagramsTogther(String[] words) {
+		List<String> allWords = getAllAnagrams(words);
+		
+		for(String word : allWords) {
+			System.out.print(word + "  ");
+		}
+		
+		System.out.println();
+	}
+	
+	public static List<String> getAllAnagrams(String[] words) {
+		List<String> result = new ArrayList<String>();
+		
+		Map<String, List<String>> stringsByHashMap = new HashMap<>();
+		
+		for(int i = 0; i < words.length; i++) {
+			String hash = getSortedHash(words[i]);
+			
+			if (!stringsByHashMap.containsKey(hash)) {
+				stringsByHashMap.put(hash, new ArrayList<String>());
+			}
+			
+			stringsByHashMap.get(hash).add(words[i]);
+		}
+		
+		for(Map.Entry<String, List<String>> entry : stringsByHashMap.entrySet()) {
+			
+			for (String word : entry.getValue()) {
+				result.add(word);
+			}
+			
+		}
+		
+		return result;
+	} 
+	
+	private static String getSortedHash(String input) {
+		int[] cache = new int[26];
+		
+		for(int i = 0; i < input.length(); i++) {
+			char ch = input.charAt(i);
+			
+			cache[ch - 'a']++;
+		}
+		
+		String hash = "";
+		for(int i = 0; i < input.length(); i++) {
+			
+			if (cache[i] > 0) {
+				hash += ((char)(cache[i] + 'a'));
+			}
+		
+		}
+		
+		return hash;
 	}
 	
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {

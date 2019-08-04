@@ -93,6 +93,9 @@ public class StringMain {
 		System.out.println("Is anagram : " + StringHelper.isAnagram("test", "ttew"));
 		
 		
+		String[] words1 = {"cat", "dog", "tac", "god", "act"}; 
+		StringHelper.printAnagramsTogther(words1);
+		
 	}
 	
 }
