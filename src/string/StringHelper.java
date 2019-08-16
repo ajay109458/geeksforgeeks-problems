@@ -1,6 +1,7 @@
 package string;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -915,84 +916,108 @@ public class StringHelper {
 
 		return zeroCount == 1;
 	}
-	
+
 	public static String removeAllPunc(String input) {
-		input = input.replaceAll("\\p{Punct}","");
+		input = input.replaceAll("\\p{Punct}", "");
 		return input;
 	}
 
 	public static boolean isAnagram(String s1, String s2) {
-		
+
 		int[] cache = new int[256];
-		
-		for(int i = 0; i < s1.length(); i++) {
+
+		for (int i = 0; i < s1.length(); i++) {
 			cache[s1.charAt(i)]++;
 		}
-		
-		for(int i = 0; i < s1.length(); i++) {
+
+		for (int i = 0; i < s1.length(); i++) {
 			cache[s1.charAt(i)]--;
 		}
-		
+
 		return true;
 	}
-	
+
 	public static void printAnagramsTogther(String[] words) {
 		List<String> allWords = getAllAnagrams(words);
-		
-		for(String word : allWords) {
+
+		for (String word : allWords) {
 			System.out.print(word + "  ");
 		}
-		
+
 		System.out.println();
 	}
-	
+
+	public static void searchAnagram(String text, String pattern) {
+
+		int n = text.length();
+		int m = pattern.length();
+
+		int[] textCount = new int[256];
+		int[] patternCount = new int[256];
+
+		int i = 0;
+		for (; i < m; i++) {
+			textCount[text.charAt(i)]++;
+			patternCount[pattern.charAt(i)]++;
+		}
+
+		for (; i < n; i++) {
+
+			if (Arrays.equals(textCount, patternCount)) {
+				System.out.println("Pattern starts at index : " + (i - m));
+				return;
+			}
+
+		}
+	}
+
 	public static List<String> getAllAnagrams(String[] words) {
 		List<String> result = new ArrayList<String>();
-		
+
 		Map<String, List<String>> stringsByHashMap = new HashMap<>();
-		
-		for(int i = 0; i < words.length; i++) {
+
+		for (int i = 0; i < words.length; i++) {
 			String hash = getSortedHash(words[i]);
-			
+
 			if (!stringsByHashMap.containsKey(hash)) {
 				stringsByHashMap.put(hash, new ArrayList<String>());
 			}
-			
+
 			stringsByHashMap.get(hash).add(words[i]);
 		}
-		
-		for(Map.Entry<String, List<String>> entry : stringsByHashMap.entrySet()) {
-			
+
+		for (Map.Entry<String, List<String>> entry : stringsByHashMap.entrySet()) {
+
 			for (String word : entry.getValue()) {
 				result.add(word);
 			}
-			
+
 		}
-		
+
 		return result;
-	} 
-	
+	}
+
 	private static String getSortedHash(String input) {
 		int[] cache = new int[26];
-		
-		for(int i = 0; i < input.length(); i++) {
+
+		for (int i = 0; i < input.length(); i++) {
 			char ch = input.charAt(i);
-			
+
 			cache[ch - 'a']++;
 		}
-		
+
 		String hash = "";
-		for(int i = 0; i < input.length(); i++) {
-			
+		for (int i = 0; i < input.length(); i++) {
+
 			if (cache[i] > 0) {
-				hash += ((char)(cache[i] + 'a'));
+				hash += ((char) (cache[i] + 'a'));
 			}
-		
+
 		}
-		
+
 		return hash;
 	}
-	
+
 	private static boolean isSubSeqRec(String a, String b, int m, int n) {
 
 		if (m == 0 && n == 0)
@@ -1017,6 +1042,19 @@ public class StringHelper {
 		}
 	}
 
+	public static String reverseWords(String input) {
+
+		String[] words = input.split("\\.");
 	
-	
+		String result = "";
+		
+		for(int i = words.length - 1; i >= 0; i--) {
+			
+			result = result + (("".equals(result)) ? "" : ".") + words[i]; 
+			
+		}
+		
+		return result;
+		
+	}
 }

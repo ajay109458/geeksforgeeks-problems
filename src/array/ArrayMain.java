@@ -56,6 +56,12 @@ public class ArrayMain {
 		
 		ArrayHelper.printUnionOfTwoSortedArray(arr6, arr7);
 		
+		System.out.println();
+		
+		int[] arr8 = {1,2,3, 5};
+		
+		System.out.println("Missing element : " + ArrayHelper.findMissingElement(arr8));
+		
 	}
 	
 }

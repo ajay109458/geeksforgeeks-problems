@@ -445,5 +445,19 @@ public class ArrayHelper {
 			}
 		}
 	}
+	
+	public static int findMissingElement(int[] arr) {
+		int N = arr.length + 1;
+		
+		int sum = ( N * (N + 1)) / 2;
+		
+		int arrSum = 0;
+		
+		for(int val : arr ) {
+			arrSum += val;
+		}
+		
+		return sum - arrSum;
+	}
 
 }

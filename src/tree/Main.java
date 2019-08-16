@@ -183,8 +183,11 @@ public class Main {
 	    /**
 	     * Print diagnoal sum of the tree
 	     */
+	    
+	    TreeNode rootDia = TreeCreator.createTreeForDiagonalSum();
+	    
 	    System.out.println("Print diagonal sum of the tree : ");
-	    BinaryTreeSumationHelper.printDiagonalSum(root);
+	    BinaryTreeSumationHelper.printDiagonalSum(rootDia);
 	    
 	    /**
 	     * Find if there is a pair in root to a leaf path with sum equals to root’s data

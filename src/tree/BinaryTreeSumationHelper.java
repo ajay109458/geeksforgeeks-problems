@@ -88,7 +88,7 @@ public class BinaryTreeSumationHelper {
 		Map<Integer, Integer> diagonalSumByIndexMap = new HashMap<>();
 		populateDiagonalSum(root, diagonalSumByIndexMap, 0, 0);
 
-		List<Integer> keys = new ArrayList(diagonalSumByIndexMap.keySet());
+		List<Integer> keys = new ArrayList<Integer>(diagonalSumByIndexMap.keySet());
 		Collections.sort(keys);
 
 		for (Integer key : keys) {

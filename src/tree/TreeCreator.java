@@ -21,6 +21,17 @@ public class TreeCreator {
 
 		return root;
 	}
+	
+	public static TreeNode createTreeForDiagonalSum() {
+		TreeNode root = new TreeNode(10);
+		root.left = new TreeNode(8);
+		root.left.left = new TreeNode(3);
+		root.left.right = new TreeNode(5);
+		root.right = new TreeNode(2);
+		root.right.left = new TreeNode(2);
+
+		return root;
+	}
 
 	public static TreeNode createTreeForCousinCheck() {
 		TreeNode root = new TreeNode(1);

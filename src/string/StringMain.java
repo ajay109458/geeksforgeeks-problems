@@ -96,6 +96,10 @@ public class StringMain {
 		String[] words1 = {"cat", "dog", "tac", "god", "act"}; 
 		StringHelper.printAnagramsTogther(words1);
 		
+		String str1 = "i.like.this.program.very.much";
+		
+		System.out.println(StringHelper.reverseWords(str1));
+		
 	}
 	
 }
