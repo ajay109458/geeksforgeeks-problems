@@ -1057,4 +1057,31 @@ public class StringHelper {
 		return result;
 		
 	}
+	
+	public static void printFrequency(int[] arr, int N) {
+		
+		Map<Integer, Integer> map = getFrequency(arr);
+		
+		for(int i = 1; i <= N; i++) {
+			System.out.print(map.get(i) + " ");
+		}
+		System.out.println();
+		
+	}
+	
+	public static Map<Integer, Integer> getFrequency(int[] arr) {
+		
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		
+		for(int val : arr) {
+			Integer count = map.get(val);
+			
+			count = (count == null) ? 1 : count + 1;
+			
+			map.put(val, count);
+		}
+		
+		return map;
+		
+	}
 }
