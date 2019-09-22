@@ -66,6 +66,13 @@ public class ArrayMain {
 		int[] arr9 = {5, 4, 3, 1, 2};
 		ArrayHelper.bubbleSort(arr9);
 		System.out.println("Bubble sort : " + Arrays.toString(arr9));
+		
+		int[] arr10 = {10, 22, 28, 29, 30, 40};
+		ArrayHelper.printPairWithSumClosestToX(arr10, 54);
+		
+		int[] arr11 = {10, 5, 6, 3, 2, 20, 100, 88};
+		ArrayHelper.sortArrayInWaveForm(arr11);
+		System.out.println("Array sorted in wave format : " + Arrays.toString(arr11));
 	}
 	
 	

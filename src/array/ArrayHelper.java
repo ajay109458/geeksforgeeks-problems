@@ -470,5 +470,62 @@ public class ArrayHelper {
 			}
 		}
 	}
+	
+	/**
+	 * Sorted array find a pair such that sum is closest to x
+	 * @param arr
+	 * @param x
+	 */
+	public static void printPairWithSumClosestToX(int[] arr, int x) {
+		
+		int left =0;
+		int right = arr.length - 1;
+		
+		int minDiff = Integer.MAX_VALUE;
+		int leftI = -1;
+		int rightI = -1;
+		
+		while(left < right) {
+			
+			int sum = arr[left] + arr[right];
+			int diff = sum - x;
+			
+			if (Math.abs(diff) < minDiff) {
+				minDiff = Math.abs(diff);
+				leftI = left;
+				rightI = right;
+			}
+			
+			if (diff < 0) {
+				right--;
+			} else {
+				left++;
+			}
+			
+		}
+		
+		System.out.println("Index with min diff are -  (" + leftI + ", " + rightI + ")");
+		
+	}
+	
+	public static void sortArrayInWaveForm(int[] arr) {
+		
+		int len = arr.length;
+		
+		if (len < 2)
+			return;
+		
+		for(int i = 1; i < arr.length; i = i + 2) {
+			
+			if (arr[i-1] > arr[i]) {
+				swap(arr, i -1, i);
+			}
+			
+			if (i + 1 < arr.length && arr[i+1] > arr[i]) {
+				swap(arr, i, i + 1);
+			}
+		}
+		
+	} 
 
 }
