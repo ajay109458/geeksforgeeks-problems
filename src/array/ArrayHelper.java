@@ -527,5 +527,30 @@ public class ArrayHelper {
 		}
 		
 	} 
+	
+	public static boolean checkIfTwoIntervalsOverlap(Pair[] intervals) {
+		
+		Arrays.sort(intervals, new Comparator<Pair>() {
+
+			@Override
+			public int compare(Pair o1, Pair o2) {
+				if (o1.y > o2.y)
+					return 1;
+				else if (o1.y < o2.y)
+					return -1;
+				
+				return 0;
+			}
+		});
+		
+		for(int i = 0; i < intervals.length - 1; i++) {
+			if (intervals[i].y > intervals[i+1].x) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
 
 }

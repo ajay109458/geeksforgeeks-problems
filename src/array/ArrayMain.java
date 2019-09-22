@@ -1,6 +1,6 @@
 package array;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+import utils.*;
 
 public class ArrayMain {
 
@@ -73,6 +73,14 @@ public class ArrayMain {
 		int[] arr11 = {10, 5, 6, 3, 2, 20, 100, 88};
 		ArrayHelper.sortArrayInWaveForm(arr11);
 		System.out.println("Array sorted in wave format : " + Arrays.toString(arr11));
+		
+		Pair[] pairs = new Pair[4];
+		pairs[0] = new Pair(1,3);
+		pairs[1] = new Pair(5,7);
+		pairs[2] = new Pair(2, 4);
+		pairs[3] = new Pair(6, 8);
+		
+		System.out.println("Is interval overlap : " + ArrayHelper.checkIfTwoIntervalsOverlap(pairs));
 	}
 	
 	
