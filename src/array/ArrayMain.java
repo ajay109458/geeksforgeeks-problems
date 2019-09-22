@@ -63,7 +63,12 @@ public class ArrayMain {
 		
 		System.out.println("Missing element : " + ArrayHelper.findMissingElement(arr8));
 		
+		int[] arr9 = {5, 4, 3, 1, 2};
+		ArrayHelper.bubbleSort(arr9);
+		System.out.println("Bubble sort : " + Arrays.toString(arr9));
 	}
+	
+	
 	
 	public static void inputUtils() {
 		Scanner sc = new Scanner(System.in);
