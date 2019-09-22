@@ -33,4 +33,22 @@ public class DPHelper {
 		if(n <= 1) return 1;
 		return -1;
 	}
+	
+	public static void printParanthesis(int n) {
+		printParanthesis(n, "", 0, 0);
+	}
+	
+	private static void printParanthesis(int n, String res, int s, int e) {
+		if (s == n && e == n) {
+			System.out.println(res);
+		}
+		
+		if (s < n) {
+			printParanthesis(n, res + "(", s + 1, e);
+		}
+		
+		if (e < s && e < n) {
+			printParanthesis(n, res + ")", s, e + 1);
+		}
+	}
 }
