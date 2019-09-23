@@ -16,6 +16,11 @@ public class DPMain {
 		
 		System.out.println("LCS recursive : " + DPHelper.LCS(first, second));
 		System.out.println("LCS DP : " + DPHelper.LCSDP(first, second));
+		
+		first = "cat";
+		second = "cut";
+		
+		System.out.println("Edit distance recursive : " + DPHelper.editDistance(first, second));
 	}
 	
 }

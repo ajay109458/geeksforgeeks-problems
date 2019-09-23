@@ -141,4 +141,29 @@ public class DPHelper {
 		
 		return dp[M][N];
 	}
+	
+	/**
+	 * Recursive edit distance problem
+	 */
+	public static int editDistance(String first, String second) {
+		return editDistance(first, second, first.length() -1 , second.length() -1);
+	}
+	
+	
+	private static int editDistance(String first, String second, int m, int n) {
+		
+		if (m  < 0 || n  < 0) {
+			return 0;
+		}
+		
+		if (first.charAt(m) == second.charAt(n)) {
+			return editDistance(first, second, m -1, n -1);
+		} else {
+			return Math.min(
+						Math.min(editDistance(first, second, m - 1, n), editDistance(first, second, m, n -1)),
+						editDistance(first, second, m -1, n -1 )
+					) + 1;
+		}
+		
+	}
 }
