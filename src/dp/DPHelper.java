@@ -228,4 +228,26 @@ public class DPHelper {
 
 		return Math.max(knapsack(W, wts, val, n - 1), val[n - 1] + knapsack(W - wts[n - 1], wts, val, n - 1));
 	}
+	
+	public static int knapsackDP(int W, int[] wts, int[] vals, int n) {
+		
+		int[][] dp = new int[n+1][W+1];
+		
+		for (int i = 0; i <= n; i++) {
+			for (int w = 0; w <= W; w++) {
+				
+				if (i == 0 || w == 0) {
+					dp[i][w] = 0;
+				} else if (wts[i-1] > w) {
+					dp[i][w] = dp[i-1][w];
+				} else {
+					dp[i][w] = Math.max(dp[i-1][w], vals[i-1] +  dp[i-1][w - wts[i-1]]);
+				}
+				
+			}
+		}
+		
+		return dp[n][W];
+		
+	}
 }

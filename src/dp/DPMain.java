@@ -30,7 +30,7 @@ public class DPMain {
 		int[] weights = {10, 20, 30};
 		
 		System.out.println("Knapsack recursive - max weight : " + DPHelper.knapsack(50, weights, values, values.length));
-		
+		System.out.println("Knapsack DP - max weight : " + DPHelper.knapsackDP(50, weights, values, values.length));
 	}
 	
 }
