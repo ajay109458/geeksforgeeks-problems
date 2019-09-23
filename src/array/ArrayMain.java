@@ -100,7 +100,10 @@ public class ArrayMain {
 		ArrayHelper.sortEvenOddElements(arr17);
 		System.out.println("Sort even odd : " + Arrays.toString(arr17));
 		
+		int[] arr18 = {2, 1, 3};
+		int[] arr19 = {7, 8, 9};
 		
+		System.out.println("Is possible permutation that sum at each index greater than k : " + ArrayHelper.isPossiblePermutationGreaterThanK(arr18, arr19, 10));
 	}
 	
 	

@@ -136,7 +136,19 @@ public class ArrayHelper {
 	   
 	}
 	
-	
+	public static boolean isPossiblePermutationGreaterThanK(int[] a, int[] b, int k) {
+		
+		Arrays.sort(a);
+		Arrays.sort(b);
+		reverseArray(b);
+		
+		for(int i = 0; i < a.length; i++) {
+			if (a[i] + b[i] < k)
+				return false;
+		}
+		
+		return true;
+	}
 	
 	public static int minDiffChocolateDistribution(int[] arr,  int m) {
 		int n = arr.length;
