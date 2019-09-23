@@ -92,6 +92,24 @@ public class ArrayHelper {
 		return Math.min(count1, count2);
 		
 	}
+	
+	public static int positionAfterStableSort(int[] arr, int index) {
+		
+		int smallerElementsCount = 0;
+		int sameElementsCount = 0;
+		int x = arr[index];
+		
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < x) {
+				smallerElementsCount++;
+			} else if (arr[i] == x && i != index) {
+				sameElementsCount ++ ;
+			}
+		}
+		
+		return smallerElementsCount + sameElementsCount;
+		
+	}
 
 	/**
 	 * 

@@ -89,6 +89,9 @@ public class ArrayMain {
 		int[] arr14 = {7, 12, 5};
 		
 		System.out.println("Product dearrangments : " + ArrayHelper.minDearrangementsForProductArray(arrr13, arr14));
+		
+		int[] arr15 = {3, 4, 3, 5, 2, 3, 4, 3, 1, 2, 5};
+		System.out.println("Position after stable sort : " + ArrayHelper.positionAfterStableSort(arr15, 5));
 	}
 	
 	
