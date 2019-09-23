@@ -21,6 +21,8 @@ public class DPMain {
 		second = "cut";
 		
 		System.out.println("Edit distance recursive : " + DPHelper.editDistance(first, second));
+		System.out.println("Edit distance DP : " + DPHelper.editDistanceDP(first, second));
+		
 	}
 	
 }

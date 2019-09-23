@@ -166,4 +166,38 @@ public class DPHelper {
 		}
 		
 	}
+	
+	public static int editDistanceDP(String first, String second) {
+		int M = first.length();
+		int N = second.length();
+		
+		int[][] dp = new int[M + 1][N + 1];
+		
+		// rows
+		for(int i = 0; i < M; i++) {
+			dp[i][0] = i;
+		}
+		
+		// cols
+		for (int j = 0; j < N; j++) {
+			dp[0][j] = j;
+		}
+		
+		for (int i = 1; i <= M; i++) {
+			for (int j = 1; j <= N; j++) {
+				
+				if (first.charAt(i-1) == second.charAt(j-1)) {
+					dp[i][j] = dp[i-1][j-1];
+				} else {
+					dp[i][j] = Math.min(
+								Math.min(dp[i][j-1], dp[i-1][j]),
+								dp[i-1][j-1]
+							) + 1;
+				}
+				
+			}
+		}
+		
+		return dp[M][N];
+	}
 }
