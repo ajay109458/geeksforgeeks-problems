@@ -23,6 +23,14 @@ public class DPMain {
 		System.out.println("Edit distance recursive : " + DPHelper.editDistance(first, second));
 		System.out.println("Edit distance DP : " + DPHelper.editDistanceDP(first, second));
 		
+		System.out.println("Bionomial coff recursive : " + DPHelper.bionomialCoff(5, 3));
+		System.out.println("Bionomial coff DP : " + DPHelper.binonomialCoffDP(5, 3));
+		
+		int[] values = {60, 100, 120};
+		int[] weights = {10, 20, 30};
+		
+		System.out.println("Knapsack recursive - max weight : " + DPHelper.knapsack(50, weights, values, values.length));
+		
 	}
 	
 }
