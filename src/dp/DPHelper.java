@@ -1,21 +1,20 @@
 package dp;
 
-import java.util.Arrays;
-
 public class DPHelper {
 
+	/**
+	 * Recursive function for Fibonacci series is below
+	 */
 	public static int fibRecursion(int n) {
 		if(n <= 1)
 			return n;
 		return fibRecursion(n-1) + fibRecursion(n-2);
 	}
 	
-	/**
-	 * Nth fibonacii series number
-	 * 
-	 * @param n
-	 * @return
-	 */
+	
+	
+	
+	
 	public static int fib(int n) {
 		
 		int[] fibArr = new int[n+2];
