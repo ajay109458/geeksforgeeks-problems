@@ -110,4 +110,35 @@ public class DPHelper {
 			return Math.max(LCS(first, second, m - 1, n), LCS(first, second, m, n-1));
 		}	
 	}
+	
+	public static int LCSDP(String first, String second) {
+		int M = first.length(); 
+		int N = second.length();
+		
+		int[][] dp = new int[M+1][N+1];
+		
+		for (int i = 0; i < M; i++) {
+			dp[i][0] = 0;
+		}
+		
+		for (int j = 0; j < N; j++) {
+			dp[0][j] = 0;
+		}
+		
+		System.out.println("--------DP table-----------");
+		for(int i = 1; i <= M; i++) {
+			for (int j = 1; j <= N; j++) {
+				if (first.charAt(i-1) == second.charAt(j-1)) {
+					dp[i][j] = dp[i-1][j-1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+				}
+				System.out.print(dp[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("------------------------------");
+		
+		return dp[M][N];
+	}
 }

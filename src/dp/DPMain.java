@@ -15,6 +15,7 @@ public class DPMain {
 		String second = "abxdfg";
 		
 		System.out.println("LCS recursive : " + DPHelper.LCS(first, second));
+		System.out.println("LCS DP : " + DPHelper.LCSDP(first, second));
 	}
 	
 }
