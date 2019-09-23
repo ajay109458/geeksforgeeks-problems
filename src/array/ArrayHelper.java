@@ -1,6 +1,7 @@
 package array;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,88 @@ import java.util.Map.Entry;
 import utils.Pair;
 
 public class ArrayHelper {
+	
+	public static int countDearrangementsInAP(int[] arr) {
+		int n = arr.length;
+		
+		int[] temp = new int[n];
+		
+		for(int i = 0; i < n; i++) {
+			temp[i] = arr[i];
+		}
+		
+		Arrays.sort(temp);
+		
+		int count1 = 0;
+		for(int i = 0; i < n; i++) {
+			if (temp[i] != arr[i]) {
+				count1++;
+			}
+		}
+		
+		reverseArray(temp);
+		
+		int count2 = 0;
+		for(int i = 0; i < n; i++) {
+			if (temp[i] != arr[i]) {
+				count2++;
+			}
+		}
+		
+		return Math.min(count1, count2);
+	}
+	
+	public static int minDearrangementsForProductArray(int[] a, int[] b) {
+		
+		int[] temp1 = new int[a.length];
+		int[] temp2 = new int[b.length];
+		
+		for(int i = 0; i < a.length; i++) {
+			temp1[i] = a[i];
+		}
+		
+		for(int i = 0; i < b.length; i++) {
+			temp2[i] = b[i];
+		}
+		
+		Arrays.sort(temp1);
+		Arrays.sort(temp2);
+		reverseArray(temp2);
+		
+		int count1 = 0;
+		
+		for(int i = 0; i < a.length; i++) {
+			if (temp1[i] != a[i]) {
+				count1++;
+			}
+		}
+		
+		for(int i = 0; i < b.length; i++) {
+			if (temp2[i] != b[i]) {
+				count1++;
+			}
+		}
+		
+		reverseArray(temp1);
+		reverseArray(temp2);
+		
+		int count2 = 0;
+		
+		for(int i = 0; i < a.length; i++) {
+			if (temp1[i] != a[i]) {
+				count2++;
+			}
+		}
+		
+		for(int i = 0; i < b.length; i++) {
+			if (temp2[i] != b[i]) {
+				count2++;
+			}
+		}
+		
+		return Math.min(count1, count2);
+		
+	}
 
 	/**
 	 * 

@@ -81,6 +81,14 @@ public class ArrayMain {
 		pairs[3] = new Pair(6, 8);
 		
 		System.out.println("Is interval overlap : " + ArrayHelper.checkIfTwoIntervalsOverlap(pairs));
+		
+		int[] arr12 = {8, 6, 10, 4, 2};
+		System.out.println("AP dearrangements : " + ArrayHelper.countDearrangementsInAP(arr12));
+		
+		int[] arrr13 = {4, 3, 2};
+		int[] arr14 = {7, 12, 5};
+		
+		System.out.println("Product dearrangments : " + ArrayHelper.minDearrangementsForProductArray(arrr13, arr14));
 	}
 	
 	
