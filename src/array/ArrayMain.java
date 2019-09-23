@@ -92,6 +92,15 @@ public class ArrayMain {
 		
 		int[] arr15 = {3, 4, 3, 5, 2, 3, 4, 3, 1, 2, 5};
 		System.out.println("Position after stable sort : " + ArrayHelper.positionAfterStableSort(arr15, 5));
+		
+		int[] arr16 = {7, 3, 2, 4, 9, 12, 56};
+		System.out.println("Min diff chocolate distribution : " + ArrayHelper.minDiffChocolateDistribution(arr16, 3));
+		
+		int[] arr17 = {0, 1, 2, 3, 4, 5, 6, 7};
+		ArrayHelper.sortEvenOddElements(arr17);
+		System.out.println("Sort even odd : " + Arrays.toString(arr17));
+		
+		
 	}
 	
 	

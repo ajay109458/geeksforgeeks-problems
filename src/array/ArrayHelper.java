@@ -1,11 +1,12 @@
 package array;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
 
 import utils.Pair;
 
@@ -108,7 +109,51 @@ public class ArrayHelper {
 		}
 		
 		return smallerElementsCount + sameElementsCount;
+	}
+	
+	public static void sortEvenOddElements(int[] arr) {
+		Set<Integer> evenTreeSet = new TreeSet<Integer>();
+		Set<Integer> oddTreeSet = new TreeSet<Integer>();
 		
+		for(int val : arr) {
+			if (val % 2 == 0) {
+				evenTreeSet.add(val);
+			} else {
+				oddTreeSet.add(val);
+			}
+		}
+		
+	    int index = 0;
+	    
+	    for(int val : evenTreeSet) {
+	    	arr[index++] = val;
+	    }
+	    
+	    for(int val : oddTreeSet) {
+	    	arr[index++] = val;
+	    }
+	    
+	   
+	}
+	
+	
+	
+	public static int minDiffChocolateDistribution(int[] arr,  int m) {
+		int n = arr.length;
+		
+		if ( m == 0 || n == 0) {
+			return 0;
+		}
+		
+		Arrays.sort(arr);
+		
+		int minDiff = Integer.MAX_VALUE;
+		
+		for(int i = 0; i < n && i + m - 1 < n; i++) {
+			minDiff = Math.min(minDiff, arr[i+m - 1] - arr[i]);
+		}
+		
+		return minDiff;
 	}
 
 	/**
