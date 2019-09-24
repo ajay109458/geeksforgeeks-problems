@@ -410,7 +410,7 @@ public class DPHelper {
 		
 		for (int i = 1; i < m; i++) {		
 			for (int j = 0; j < i; j++) {
-				if (rotatedBoxes[i].w * rotatedBoxes[i].l < rotatedBoxes[j].w * rotatedBoxes[j].l) {
+				if (rotatedBoxes[i].w < rotatedBoxes[j].w && rotatedBoxes[i].l < rotatedBoxes[j].l) {
 					dp[i] = Math.max(dp[i], dp[j] + rotatedBoxes[j].h);
 				}
 			}
@@ -423,5 +423,24 @@ public class DPHelper {
 		}
 		
 		return maxResult;
+	}
+	
+	public static int largestSumContigiousSubarray(int[] arr) {
+		
+		int sumSoFar = 0;
+		
+		int maxSumSoFar = 0;
+		
+		for (int i = 0; i < arr.length; i++) {
+			sumSoFar += arr[i];
+			
+			maxSumSoFar = Math.max(sumSoFar, maxSumSoFar);
+			
+			if (sumSoFar < 0) {
+				sumSoFar = 0;
+			}
+ 		}
+		
+		return maxSumSoFar;
 	}
 }

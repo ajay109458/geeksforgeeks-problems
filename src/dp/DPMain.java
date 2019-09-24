@@ -58,6 +58,9 @@ public class DPMain {
         boxes[3] = new Box(10, 12, 32);
         
         System.out.println("Max height of box stack : " + DPHelper.maxHeightOfBoxStacks(boxes));
+        
+        int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
+        System.out.println("Max sum so far : " + DPHelper.largestSumContigiousSubarray(arr));
 	}
 	
 }
