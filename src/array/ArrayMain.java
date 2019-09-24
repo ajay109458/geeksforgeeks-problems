@@ -104,6 +104,10 @@ public class ArrayMain {
 		int[] arr19 = {7, 8, 9};
 		
 		System.out.println("Is possible permutation that sum at each index greater than k : " + ArrayHelper.isPossiblePermutationGreaterThanK(arr18, arr19, 10));
+		
+		int[] arr20 = {7, 1, 2, 3, 4, 5, 6};
+		ArrayHelper.alternateSort(arr20);
+		System.out.println("Alternate sort : " + Arrays.toString(arr20));
 	}
 	
 	

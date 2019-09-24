@@ -711,6 +711,30 @@ public class ArrayHelper {
 		
 	}
 	
-	
+	public static void alternateSort(int[] arr) {
+		Arrays.sort(arr);
+		
+		int i = 0;
+		int j = arr.length - 1;
+		
+		int[] temp = new int[arr.length];
+		
+		int index = 0;
+		while( i  <= j) {
+			if(i == j) {
+				temp[index++] = arr[i];
+				break;
+			}
+			
+			temp[index++] = arr[i];
+			temp[index++] = arr[j];
+			i++;
+			j--;
+		}
+		
+		for( i = 0; i < arr.length; i++) {
+			arr[i] = temp[i];
+		}
+	}
 
 }
