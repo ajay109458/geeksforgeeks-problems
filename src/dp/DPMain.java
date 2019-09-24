@@ -33,6 +33,7 @@ public class DPMain {
 		System.out.println("Knapsack DP - max weight : " + DPHelper.knapsackDP(50, weights, values, values.length));
 		
 		System.out.println("Longest palindrome seq : " + DPHelper.longestPalindromeSeq("dadbabcbab"));
+		System.out.println("Longest palindrome seq DP : " + DPHelper.longestPalSeqDP("dadbabcbab"));
 	}
 	
 }
