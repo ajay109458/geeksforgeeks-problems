@@ -65,6 +65,9 @@ public class DPMain {
         int[] coins = {10, 25, 5};
         System.out.println("Minimum number of coins : " + DPHelper.numberOfCoins(30, coins));
         System.out.println("Minimum number of coins DP : " + DPHelper.numberOfCoinsDP (coins, 30));
+        
+        System.out.println("Tiling problem recursive : " + DPHelper.tilingProblem(4));
+        System.out.println("Tiling problem recursive : " + DPHelper.tilingProblemDP(4));
 	}
 	
 }
