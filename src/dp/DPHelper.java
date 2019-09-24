@@ -1,5 +1,7 @@
 package dp;
 
+import utils.Pair;
+
 public class DPHelper {
 
 	/**
@@ -300,5 +302,64 @@ public class DPHelper {
 		}
 		
 		return dp[0][input.length()-1];
+	}
+	
+	public static int longestBiotonicSubseq(int[] arr) {
+		
+		int n = arr.length;
+		
+		// compute LIS
+		int[] lis = new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			lis[i] = 1;
+		}
+		
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < i; j++) {
+				if (arr[i] > arr[j]) {
+					lis[i] = Math.max(lis[i], 1 + lis[j]);
+				}
+			}
+		}
+		
+		// Compute LDS
+		int[] lds = new int[n];
+		
+		for (int i = n -1; i >=0; i--) {
+			for (int j  = n -1; j > i; j--) {
+				if (arr[i] > arr[j]) {
+					lds[i] = Math.max(lds[i], 1 + lds[j]);
+				}
+			}
+		}
+		
+		int result = 1;
+		for(int i = 0; i < n; i++) {
+			result = Math.max(result, lis[i] + lis[i] - 1);
+		}
+		
+		return result;
+	}
+	
+	public static int longestChainOfPairDP(Pair[] pairs) {
+		
+		int n = pairs.length;
+		
+		int[] dp = new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			dp[i] = 1;
+		}
+		
+		for (int i = 1; i < pairs.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (pairs[i].x > pairs[j].y) {
+					dp[i] = Math.max(dp[i], dp[j]  + 1);
+				}
+			}
+		}
+		
+		return dp[n-1];
 	}
 }
