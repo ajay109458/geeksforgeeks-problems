@@ -1,5 +1,6 @@
 package dp;
 
+import utils.Box;
 import utils.Pair;
 
 public class DPMain {
@@ -48,6 +49,15 @@ public class DPMain {
 		pairs[4] = new Pair(50, 40);
 		
 		System.out.println("Longest chain of pairs : " + DPHelper.longestChainOfPairDP(pairs));
+		
+		
+		Box[] boxes = new Box[4]; 
+        boxes[0] = new Box(4, 6, 7); 
+        boxes[1] = new Box(1, 2, 3); 
+        boxes[2] = new Box(4, 5, 6); 
+        boxes[3] = new Box(10, 12, 32);
+        
+        System.out.println("Max height of box stack : " + DPHelper.maxHeightOfBoxStacks(boxes));
 	}
 	
 }

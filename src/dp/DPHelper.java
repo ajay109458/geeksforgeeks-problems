@@ -1,5 +1,9 @@
 package dp;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
+import utils.Box;
 import utils.Pair;
 
 public class DPHelper {
@@ -361,5 +365,63 @@ public class DPHelper {
 		}
 		
 		return dp[n-1];
+	}
+	
+	public static int maxHeightOfBoxStacks(Box[] boxes) {
+		
+		int n = boxes.length;
+		
+		Box[] rotatedBoxes = new Box[3 * n];
+		
+		int index = 0;
+		for(int i = 0; i < n; i++) {
+			Box cBox = boxes[i];
+			rotatedBoxes[index++] = cBox;
+			
+			// Make length as height
+			Box box = new Box(cBox.l, Math.max(cBox.h, cBox.w), Math.min(cBox.h, cBox.w));
+			rotatedBoxes[index++] = box;
+			
+			box = new Box(cBox.w, Math.max(cBox.h, cBox.l), Math.min(cBox.h, cBox.l));
+			rotatedBoxes[index++] = box;
+		}
+		
+		Arrays.sort(rotatedBoxes, new Comparator<Box>() {
+
+			@Override
+			public int compare(Box o1, Box o2) {
+				if (o1.w * o1.l > o2.w * o2.l) {
+					return 1;
+				} else if (o1.w * o1.l < o2.w * o2.l) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+		});
+		
+		int m = rotatedBoxes.length;
+		
+		int[] dp = new int[m];
+		
+		for (int i = 0; i < m; i++) {
+			dp[i] = rotatedBoxes[i].h;
+		}
+		
+		for (int i = 1; i < m; i++) {		
+			for (int j = 0; j < i; j++) {
+				if (rotatedBoxes[i].w * rotatedBoxes[i].l < rotatedBoxes[j].w * rotatedBoxes[j].l) {
+					dp[i] = Math.max(dp[i], dp[j] + rotatedBoxes[j].h);
+				}
+			}
+		}
+		
+		int maxResult = 0;
+		
+		for (int i= 0; i < m; i++) {
+			maxResult = Math.max(maxResult, dp[i]);
+		}
+		
+		return maxResult;
 	}
 }
