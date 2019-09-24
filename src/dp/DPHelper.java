@@ -443,4 +443,54 @@ public class DPHelper {
 		
 		return maxSumSoFar;
 	}
+	
+	public static int numberOfCoins(int V, int[] coins) {
+		if (V == 0 ) {
+			return 0;
+		}
+		
+		int result = Integer.MAX_VALUE;
+		
+		for (int i = 0; i < coins.length; i++) {
+			
+			if (V >=  coins[i]) {
+				int subResult = numberOfCoins(V - coins[i], coins);
+				
+				if (subResult != Integer.MAX_VALUE && subResult + 1 < result) {
+					result = 1 + subResult;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	public static int numberOfCoinsDP(int[] coins, int V) {
+		
+		int[] dp = new int[V+1];
+		
+		dp[0] = 0;
+		
+		for (int i = 1; i <= V; i++) {
+			dp[i] = Integer.MAX_VALUE;
+		}
+		
+		for (int v = 1; v <= V; v++) {
+			for (int j = 0; j < coins.length; j++) {
+				if (coins[j] <= v) {
+					
+					int subResult = dp[v - coins[j]];
+					
+					if (subResult != Integer.MAX_VALUE && subResult + 1 < dp[v]) {
+						dp[v] = 1 + subResult;
+					}
+					
+				}
+			}
+		}
+		
+		return dp[V];
+		
+	}
+	
 }

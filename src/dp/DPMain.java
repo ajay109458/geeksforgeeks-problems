@@ -61,6 +61,10 @@ public class DPMain {
         
         int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
         System.out.println("Max sum so far : " + DPHelper.largestSumContigiousSubarray(arr));
+        
+        int[] coins = {10, 25, 5};
+        System.out.println("Minimum number of coins : " + DPHelper.numberOfCoins(30, coins));
+        System.out.println("Minimum number of coins DP : " + DPHelper.numberOfCoinsDP (coins, 30));
 	}
 	
 }
