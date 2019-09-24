@@ -31,6 +31,8 @@ public class DPMain {
 		
 		System.out.println("Knapsack recursive - max weight : " + DPHelper.knapsack(50, weights, values, values.length));
 		System.out.println("Knapsack DP - max weight : " + DPHelper.knapsackDP(50, weights, values, values.length));
+		
+		System.out.println("Longest palindrome seq : " + DPHelper.longestPalindromeSeq("dadbabcbab"));
 	}
 	
 }

@@ -250,4 +250,24 @@ public class DPHelper {
 		return dp[n][W];
 		
 	}
+	
+	public static int longestPalindromeSeq(String input) {
+		return longestPalindromeSeq(input, 0, input.length() - 1);
+	}
+	
+	public static int longestPalindromeSeq(String input, int left, int right) {
+		
+		if (right < left)
+			return 0;
+		
+		if (left == right)
+			return 1;
+		
+		if (input.charAt(left) == input.charAt(right)) {
+			return longestPalindromeSeq(input, left + 1, right -1) + 2;
+		} else {
+			return Math.max(longestPalindromeSeq(input, left + 1, right), longestPalindromeSeq(input, left, right - 1));
+		}
+		
+	}
 }
