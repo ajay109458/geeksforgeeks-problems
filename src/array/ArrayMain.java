@@ -108,6 +108,10 @@ public class ArrayMain {
 		int[] arr20 = {7, 1, 2, 3, 4, 5, 6};
 		ArrayHelper.alternateSort(arr20);
 		System.out.println("Alternate sort : " + Arrays.toString(arr20));
+		
+		int[] arr21 = {6, 5, 3, 2, 8, 10, 9};
+		ArrayHelper.sortNearlySortArray(arr21, 3);
+	    System.out.println(Arrays.toString(arr21));
 	}
 	
 	

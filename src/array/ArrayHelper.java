@@ -5,166 +5,166 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeSet;
 
 import utils.Pair;
 
 public class ArrayHelper {
-	
+
 	public static int countDearrangementsInAP(int[] arr) {
 		int n = arr.length;
-		
+
 		int[] temp = new int[n];
-		
-		for(int i = 0; i < n; i++) {
+
+		for (int i = 0; i < n; i++) {
 			temp[i] = arr[i];
 		}
-		
+
 		Arrays.sort(temp);
-		
+
 		int count1 = 0;
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			if (temp[i] != arr[i]) {
 				count1++;
 			}
 		}
-		
+
 		reverseArray(temp);
-		
+
 		int count2 = 0;
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			if (temp[i] != arr[i]) {
 				count2++;
 			}
 		}
-		
+
 		return Math.min(count1, count2);
 	}
-	
+
 	public static int minDearrangementsForProductArray(int[] a, int[] b) {
-		
+
 		int[] temp1 = new int[a.length];
 		int[] temp2 = new int[b.length];
-		
-		for(int i = 0; i < a.length; i++) {
+
+		for (int i = 0; i < a.length; i++) {
 			temp1[i] = a[i];
 		}
-		
-		for(int i = 0; i < b.length; i++) {
+
+		for (int i = 0; i < b.length; i++) {
 			temp2[i] = b[i];
 		}
-		
+
 		Arrays.sort(temp1);
 		Arrays.sort(temp2);
 		reverseArray(temp2);
-		
+
 		int count1 = 0;
-		
-		for(int i = 0; i < a.length; i++) {
+
+		for (int i = 0; i < a.length; i++) {
 			if (temp1[i] != a[i]) {
 				count1++;
 			}
 		}
-		
-		for(int i = 0; i < b.length; i++) {
+
+		for (int i = 0; i < b.length; i++) {
 			if (temp2[i] != b[i]) {
 				count1++;
 			}
 		}
-		
+
 		reverseArray(temp1);
 		reverseArray(temp2);
-		
+
 		int count2 = 0;
-		
-		for(int i = 0; i < a.length; i++) {
+
+		for (int i = 0; i < a.length; i++) {
 			if (temp1[i] != a[i]) {
 				count2++;
 			}
 		}
-		
-		for(int i = 0; i < b.length; i++) {
+
+		for (int i = 0; i < b.length; i++) {
 			if (temp2[i] != b[i]) {
 				count2++;
 			}
 		}
-		
+
 		return Math.min(count1, count2);
-		
+
 	}
-	
+
 	public static int positionAfterStableSort(int[] arr, int index) {
-		
+
 		int smallerElementsCount = 0;
 		int sameElementsCount = 0;
 		int x = arr[index];
-		
+
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] < x) {
 				smallerElementsCount++;
 			} else if (arr[i] == x && i != index) {
-				sameElementsCount ++ ;
+				sameElementsCount++;
 			}
 		}
-		
+
 		return smallerElementsCount + sameElementsCount;
 	}
-	
+
 	public static void sortEvenOddElements(int[] arr) {
 		Set<Integer> evenTreeSet = new TreeSet<Integer>();
 		Set<Integer> oddTreeSet = new TreeSet<Integer>();
-		
-		for(int val : arr) {
+
+		for (int val : arr) {
 			if (val % 2 == 0) {
 				evenTreeSet.add(val);
 			} else {
 				oddTreeSet.add(val);
 			}
 		}
-		
-	    int index = 0;
-	    
-	    for(int val : evenTreeSet) {
-	    	arr[index++] = val;
-	    }
-	    
-	    for(int val : oddTreeSet) {
-	    	arr[index++] = val;
-	    }
-	    
-	   
+
+		int index = 0;
+
+		for (int val : evenTreeSet) {
+			arr[index++] = val;
+		}
+
+		for (int val : oddTreeSet) {
+			arr[index++] = val;
+		}
+
 	}
-	
+
 	public static boolean isPossiblePermutationGreaterThanK(int[] a, int[] b, int k) {
-		
+
 		Arrays.sort(a);
 		Arrays.sort(b);
 		reverseArray(b);
-		
-		for(int i = 0; i < a.length; i++) {
+
+		for (int i = 0; i < a.length; i++) {
 			if (a[i] + b[i] < k)
 				return false;
 		}
-		
+
 		return true;
 	}
-	
-	public static int minDiffChocolateDistribution(int[] arr,  int m) {
+
+	public static int minDiffChocolateDistribution(int[] arr, int m) {
 		int n = arr.length;
-		
-		if ( m == 0 || n == 0) {
+
+		if (m == 0 || n == 0) {
 			return 0;
 		}
-		
+
 		Arrays.sort(arr);
-		
+
 		int minDiff = Integer.MAX_VALUE;
-		
-		for(int i = 0; i < n && i + m - 1 < n; i++) {
-			minDiff = Math.min(minDiff, arr[i+m - 1] - arr[i]);
+
+		for (int i = 0; i < n && i + m - 1 < n; i++) {
+			minDiff = Math.min(minDiff, arr[i + m - 1] - arr[i]);
 		}
-		
+
 		return minDiff;
 	}
 
@@ -563,9 +563,11 @@ public class ArrayHelper {
 	}
 
 	/**
-	 * Print the elements of an array in the decreasing frequency if 2 numbers have same frequency then print the one which came first.
+	 * Print the elements of an array in the decreasing frequency if 2 numbers have
+	 * same frequency then print the one which came first.
 	 * 
-	 * Input:  arr[] = {2, 5, 2, 8, 5, 6, 8, 8}    Output: arr[] = {8, 8, 8, 2, 2, 5, 5, 6}
+	 * Input: arr[] = {2, 5, 2, 8, 5, 6, 8, 8} Output: arr[] = {8, 8, 8, 2, 2, 5, 5,
+	 * 6}
 	 * 
 	 * @param arr
 	 */
@@ -593,101 +595,101 @@ public class ArrayHelper {
 			}
 		});
 
-		
 		index = 0;
-		for(Pair p : sortedFreqArr) {
+		for (Pair p : sortedFreqArr) {
 			int count = freqByEleMap.get(p.x);
-			
-			while(count-- > 0) {
+
+			while (count-- > 0) {
 				arr[index++] = p.x;
 			}
 		}
 	}
-	
+
 	public static int findMissingElement(int[] arr) {
 		int N = arr.length + 1;
-		
-		int sum = ( N * (N + 1)) / 2;
-		
+
+		int sum = (N * (N + 1)) / 2;
+
 		int arrSum = 0;
-		
-		for(int val : arr ) {
+
+		for (int val : arr) {
 			arrSum += val;
 		}
-		
+
 		return sum - arrSum;
 	}
-	
+
 	public static void bubbleSort(int[] arr) {
-		
-		for(int i = 0; i < arr.length; i++) {
-			
-			for (int j = 0; j < arr.length - i -1; j++) {
-				if (arr[j] > arr[j+1])
-					swap(arr, j, j+1);
+
+		for (int i = 0; i < arr.length; i++) {
+
+			for (int j = 0; j < arr.length - i - 1; j++) {
+				if (arr[j] > arr[j + 1])
+					swap(arr, j, j + 1);
 			}
 		}
 	}
-	
+
 	/**
 	 * Sorted array find a pair such that sum is closest to x
+	 * 
 	 * @param arr
 	 * @param x
 	 */
 	public static void printPairWithSumClosestToX(int[] arr, int x) {
-		
-		int left =0;
+
+		int left = 0;
 		int right = arr.length - 1;
-		
+
 		int minDiff = Integer.MAX_VALUE;
 		int leftI = -1;
 		int rightI = -1;
-		
-		while(left < right) {
-			
+
+		while (left < right) {
+
 			int sum = arr[left] + arr[right];
 			int diff = sum - x;
-			
+
 			if (Math.abs(diff) < minDiff) {
 				minDiff = Math.abs(diff);
 				leftI = left;
 				rightI = right;
 			}
-			
+
 			if (diff < 0) {
 				right--;
 			} else {
 				left++;
 			}
-			
+
 		}
-		
+
 		System.out.println("Index with min diff are -  (" + leftI + ", " + rightI + ")");
-		
+
 	}
-	
+
 	public static void sortArrayInWaveForm(int[] arr) {
-		
+
 		int len = arr.length;
-		
+
 		if (len < 2)
 			return;
-		
-		for(int i = 1; i < arr.length; i = i + 2) {
-			
-			if (arr[i-1] > arr[i]) {
-				swap(arr, i -1, i);
+
+		for (int i = 1; i < arr.length; i = i + 2) {
+
+			if (arr[i - 1] > arr[i]) {
+				swap(arr, i - 1, i);
 			}
-			
-			if (i + 1 < arr.length && arr[i+1] > arr[i]) {
+
+			if (i + 1 < arr.length && arr[i + 1] > arr[i]) {
 				swap(arr, i, i + 1);
 			}
 		}
-		
-	} 
-	
+
+	}
+
 	public static boolean checkIfTwoIntervalsOverlap(Pair[] intervals) {
-		
+
 		Arrays.sort(intervals, new Comparator<Pair>() {
 
 			@Override
@@ -696,44 +698,75 @@ public class ArrayHelper {
 					return 1;
 				else if (o1.y < o2.y)
 					return -1;
-				
+
 				return 0;
 			}
 		});
-		
-		for(int i = 0; i < intervals.length - 1; i++) {
-			if (intervals[i].y > intervals[i+1].x) {
+
+		for (int i = 0; i < intervals.length - 1; i++) {
+			if (intervals[i].y > intervals[i + 1].x) {
 				return true;
 			}
 		}
-		
+
 		return false;
-		
+
 	}
-	
+
 	public static void alternateSort(int[] arr) {
 		Arrays.sort(arr);
-		
+
 		int i = 0;
 		int j = arr.length - 1;
-		
+
 		int[] temp = new int[arr.length];
-		
+
 		int index = 0;
-		while( i  <= j) {
-			if(i == j) {
+		while (i <= j) {
+			if (i == j) {
 				temp[index++] = arr[i];
 				break;
 			}
-			
+
 			temp[index++] = arr[i];
 			temp[index++] = arr[j];
 			i++;
 			j--;
 		}
-		
-		for( i = 0; i < arr.length; i++) {
+
+		for (i = 0; i < arr.length; i++) {
 			arr[i] = temp[i];
+		}
+	}
+
+	/**
+	 * Sort a nearly sorted array in which each element is at max k distance from it
+	 * correct position
+	 * 
+	 * @param arr
+	 */
+	public static void sortNearlySortArray(int[] arr, int k) {
+
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+
+		int n = arr.length;
+		int i = 0;
+		for (i = 0; i < n && i <= k; i++) {
+			pq.add(arr[i]);
+		}
+
+		int index = 0;
+
+		while (i < n) {
+			int top = pq.remove();
+
+			arr[index++] = top;
+			pq.add(arr[i++]);
+		}
+
+		while (!pq.isEmpty()) {
+			int top = pq.remove();
+			arr[index++] = top;
 		}
 	}
 
