@@ -181,11 +181,59 @@ public class TreeHelper {
 						queue.add(currentNode.right);
 					}
 				}
-				
-
-				
 			}
 		}
+	}
+	
+	public static void leverOrderTraversalReverse(TreeNode root) {
+		
+		if (root == null)
+			return;
+
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		queue.add(root);
+		queue.add(null);
+		
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+
+		while (!queue.isEmpty()) {
+
+			TreeNode currentNode = queue.remove();
+
+			if (currentNode == null) {
+				
+				System.out.println();
+				
+				if (!queue.isEmpty()) {
+					queue.add(null);
+					stack.add(null);
+				}
+				
+			} else {
+				stack.add(currentNode);
+				if (currentNode.right != null) {
+					queue.add(currentNode.right);
+				}
+
+				if (currentNode.left != null) {
+					queue.add(currentNode.left);
+				}
+
+			}
+		}
+		
+		while(!stack.isEmpty()) {
+			
+			TreeNode node = stack.pop();
+			
+			if (node == null) {
+				System.out.println();
+			} else {
+				System.out.print(node.data + " ");
+			}
+			
+		}
+		
 	}
 
 }
