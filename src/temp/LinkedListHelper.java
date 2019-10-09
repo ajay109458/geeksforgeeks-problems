@@ -101,6 +101,26 @@ public class LinkedListHelper {
 		return null;
 	}
 	
+	public static LLNode moveLastElementInFront(LLNode head) {
+		
+		if (head == null || head.next == null)
+			return head;
+		
+		LLNode p = head;
+		
+		while(p != null && p.next != null && p.next.next != null) {
+			p = p.next;
+		}
+		
+		LLNode temp = p.next;
+		p.next = null;
+		temp.next = head;
+		head = temp;
+		
+		return head;
+		
+	}
+	
 	public static int getLength(LLNode head) {
 		
 		LLNode p = head;
@@ -115,5 +135,7 @@ public class LinkedListHelper {
 		return len;
 		
 	}
+	
+	
 	
 }
