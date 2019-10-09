@@ -136,6 +136,20 @@ public class LinkedListHelper {
 		
 	}
 	
-	
+	public static LLNode pairWiseSwap(LLNode head) {
+		
+		if (head == null || head.next == null)
+			return head;
+		
+		LLNode temp = head.next;
+		head.next = temp.next;
+		temp.next = head;
+		head = temp;
+		
+		head.next.next = pairWiseSwap(head.next.next);
+		
+		return head;
+		
+	}
 	
 }
