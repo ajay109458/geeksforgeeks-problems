@@ -378,11 +378,13 @@ public class ArrayHelper {
 
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[Math.abs(arr[i])] < 0) {
-				System.out.println(Math.abs(arr[i]));
+				System.out.print(Math.abs(arr[i]) + " ");
 			} else {
 				arr[Math.abs(arr[i])] *= -1;
 			}
 		}
+		
+		System.out.println();
 
 	}
 
@@ -392,7 +394,7 @@ public class ArrayHelper {
 	 * 
 	 * @param arr
 	 */
-	public static void minimumLengthUnsortedArray(int[] arr) {
+	public static int getMinimumLengthUnsortedArray(int[] arr) {
 
 		int s = 0;
 
@@ -438,7 +440,7 @@ public class ArrayHelper {
 				break;
 		}
 
-		System.out.println("Max length : " + (t - s + 1));
+		return t-s+1;
 	}
 
 	/**
