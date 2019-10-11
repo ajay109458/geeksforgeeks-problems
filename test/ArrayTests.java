@@ -1,4 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 
@@ -197,8 +199,42 @@ class ArrayTests {
 		int actualMinDiff = ArrayHelper.minDiffChocolateDistribution(arr16, 3);
 		int exxpectedMinDiff = 2;
 		assertEquals(exxpectedMinDiff, actualMinDiff);
+	}
+	
+	@Test
+	@DisplayName("Test: Sort even and odd numbers")
+	void checkSortEvenOdd() {
+		int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+		ArrayHelper.sortEvenOddElements(arr);
+		
+		assertArrayEquals(new int[] {0, 2, 4, 6, 1, 3, 5, 7}, arr);
 		
 	}
 	
+	@Test
+	@DisplayName("Test : Possible permutation with sum at each index > k")
+	void checkPossibleSumGreaterThanK() {
+		int[] arr1 = {2, 1, 3};
+		int[] arr2 = {7, 8, 9};
+		
+		assertTrue(ArrayHelper.isPossiblePermutationGreaterThanK(arr1, arr2, 10));
+	}
+	
+	@Test
+	@DisplayName("Test : Alternate sort")
+	void checkAlternateSort() {
+		int[] arr = {7, 1, 2, 3, 4, 5, 6};
+		ArrayHelper.alternateSort(arr);
+		
+		assertArrayEquals(new int[] {1, 7, 2, 6, 3, 5, 4}, arr);
+	}
+	
+	@Test
+	@DisplayName("Test : Sort a nearly sorted array")
+	void checkSortNearlySortedArray() {
+		int[] arr = {6, 5, 3, 2, 8, 10, 9};
+		ArrayHelper.sortNearlySortArray(arr, 3);
+		assertArrayEquals(new int[] {2, 3, 5, 6, 8, 9, 10}, arr);
+	}
 	
 }
