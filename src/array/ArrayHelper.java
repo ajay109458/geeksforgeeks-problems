@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -770,6 +771,26 @@ public class ArrayHelper {
 			int top = pq.remove();
 			arr[index++] = top;
 		}
+	}
+	
+	public static void inputUtils() {
+		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt();
+		
+		while(T-- > 0) {
+			
+			int N = sc.nextInt();
+			
+			int[] arr = new int[N];
+			
+			for (int i = 0; i < arr.length; i++) {
+				arr[i] = sc.nextInt();
+			}
+			
+		}
+		
+		sc.close();
 	}
 
 }
