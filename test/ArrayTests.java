@@ -235,4 +235,12 @@ class ArrayTests {
 		assertArrayEquals(new int[] {2, 3, 5, 6, 8, 9, 10}, arr);
 	}
 	
+	@Test
+	@DisplayName("Test : Count good pairs in array")
+	void checkGoodPairs() {
+		int[] arr = {2, 3, 2};
+		int actual = ArrayHelper.countGoodPairs(arr);
+		assertEquals(2, actual);
+	}
+	
 }

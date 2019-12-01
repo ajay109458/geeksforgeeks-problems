@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import utils.Pair;
@@ -384,7 +385,7 @@ public class ArrayHelper {
 				arr[Math.abs(arr[i])] *= -1;
 			}
 		}
-		
+
 		System.out.println();
 
 	}
@@ -441,7 +442,7 @@ public class ArrayHelper {
 				break;
 		}
 
-		return t-s+1;
+		return t - s + 1;
 	}
 
 	/**
@@ -772,25 +773,48 @@ public class ArrayHelper {
 			arr[index++] = top;
 		}
 	}
-	
+
 	public static void inputUtils() {
 		Scanner sc = new Scanner(System.in);
-		
+
 		int T = sc.nextInt();
-		
-		while(T-- > 0) {
-			
+
+		while (T-- > 0) {
+
 			int N = sc.nextInt();
-			
+
 			int[] arr = new int[N];
-			
+
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = sc.nextInt();
 			}
-			
+
 		}
-		
+
 		sc.close();
 	}
 
+	public static int countGoodPairs(int[] arr) {
+		TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+	    
+	    for (int val : arr ) {
+	        Integer count = map.get(val);
+	        
+	        if (count == null) {
+	            map.put(val, 1);
+	        } else {
+	            map.put(val, count + 1);
+	        }
+	    }
+	    
+	    int size = map.size();
+	    int result = 0;
+	    
+	    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+	    	result += (entry.getValue() * (size-1));
+	    	size--;
+	    }
+	    
+	    return result;
+	}
 }
