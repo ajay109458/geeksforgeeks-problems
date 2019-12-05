@@ -18,44 +18,25 @@ public class SearchTests {
 	}
 	
 	@Test
-	void checkElementInPivotedArray() {
-		int[] arr2 =  {5, 6, 7, 8, 9, 10, 1, 2, 3};
-		int actualSearchIndex = ArrayHelper.searchElementInPivotedArray(arr2, 3);
-	
+	void searchInPivotedArray() {
+		int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+		
+		int actualIndex = SearchHelper.findInSortedRotatedArray(arr, 3);
+		assertEquals(8, actualIndex);
 	}
 
-	public static void main(String[] args) {
-		
-		
-		
-		
-		
-		
-		/*int[] arr3 = {1, 60, -10, 70, -80, 85}; 
-		SearchHelper.printPairWithSumClosestToZero(arr3);
-		
-		System.out.println("Second largets element in the given array : " + SearchHelper.findSecondLargest(arr3));
-		
-		System.out.println("Print k largest elements");
-		SearchHelper.printKLargest(arr2, 3);
-		
-		
-		/**
-		 * Get median of two sorted array of different size 
-		 */
-		/*int ar4[] = {900};  
-	    int ar5[] = {5, 8, 10, 20};  
-		System.out.println("Median of the above arrays : " + SearchHelper.getMedian1(ar4, ar5));
-		*/
-		
-		/**
-		 * Get peak element in the array
-		 */
-		//int[] arr6 = {1, 3, 20, 4, 1, 0}; 
-		//System.out.println("Get peak element in the array linearly : " + SearchHelper.findPeakLinearly(arr6));
-		//System.out.println("Get peak element in the array BS : " + SearchHelper.findPeakBS(arr6));
-		
-		
+	@Test
+	void checkTestMedian() {
+		int arr1[] = {1, 12, 15, 26, 38}; 
+	    int arr2[] = {2, 13, 17, 30, 45}; 
+	    
+	    float median = SearchHelper.findMedian(arr1, arr2);
+	    
+	    System.out.println(median);
+	    
+	    assertEquals(16, median);
 	}
+	
+	
 	
 }

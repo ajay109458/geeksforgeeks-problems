@@ -2,6 +2,8 @@ package Search;
 
 import java.util.Arrays;
 
+import array.ArrayHelper;
+
 public class SearchHelper {
 
 	/**
@@ -25,6 +27,50 @@ public class SearchHelper {
 		int sumN = (n * (n + 1)) / 2;
 
 		return sumN - sumOfArray;
+	}
+
+	public static int findInSortedRotatedArray(int[] arr, int val) {
+
+		int pivotIndex = ArrayHelper.findPivotIndex(arr);
+
+		if (pivotIndex != -1) {
+			int searchIndex = ArrayHelper.binarySearch(arr, 0, pivotIndex, val);
+			if (searchIndex != -1) {
+				return searchIndex;
+			}
+		}
+
+		return ArrayHelper.binarySearch(arr, pivotIndex + 1, arr.length, val);
+
+	}
+
+	/**
+	 * Find median in two sorted array of same size
+	 * 
+	 * @param arr1
+	 * @param arr2
+	 * @return
+	 */
+	public static float findMedian(int[] arr1, int[] arr2) {
+
+		int i = 0;
+		int j = 0;
+
+		int n = arr1.length - 1;
+
+		for (int count = 0; count < n; count++) {
+			if (arr1[i] < arr2[j]) {
+
+				i = (count == n) ? i : i + 1;
+			} else {
+				j = (count == n) ? j : j + 1;
+			}
+		}
+
+		System.out.println("ELements are : " + arr1[i] + ",  " + arr2[j]);
+
+		return (arr1[i] + arr2[j]) / 2;
+
 	}
 
 	public static void printPairWithSumClosestToZero(int[] arr) {
@@ -121,45 +167,43 @@ public class SearchHelper {
 		return (totalSize % 2 == 1) ? m1 : (m1 + m2) / 2;
 
 	}
-	
-	
+
 	public static int findPeakLinearly(int[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			boolean isPeak = true;
-			
-			if ( i > 0) {
-				isPeak = (arr[i] > arr[i-1]);
+
+			if (i > 0) {
+				isPeak = (arr[i] > arr[i - 1]);
 			}
-			
+
 			if (i < arr.length - 1) {
-				isPeak = (arr[i] > arr[i+1]);
+				isPeak = (arr[i] > arr[i + 1]);
 			}
-			
+
 			if (isPeak)
 				return arr[i];
-			
+
 		}
-		
-		return -1; 
+
+		return -1;
 	}
-	
+
 	public static int findPeakBS(int[] arr) {
 		return findPeakBS(arr, 0, arr.length - 1);
 	}
-	
+
 	private static int findPeakBS(int[] arr, int left, int right) {
-		
+
 		int mid = (left + right) / 2;
-		
-		
-		if ((mid == 0 || arr[mid-1] < arr[mid]) && (mid == arr.length -1 || arr[mid+1] < arr[mid])) {
+
+		if ((mid == 0 || arr[mid - 1] < arr[mid]) && (mid == arr.length - 1 || arr[mid + 1] < arr[mid])) {
 			return arr[mid];
-		} else if (mid > 0 && arr[mid-1] > arr[mid]) {
-			return findPeakBS(arr, left, mid -1 );
+		} else if (mid > 0 && arr[mid - 1] > arr[mid]) {
+			return findPeakBS(arr, left, mid - 1);
 		} else {
 			return findPeakBS(arr, mid + 1, right);
 		}
-		
+
 	}
 
 }
