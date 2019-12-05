@@ -73,6 +73,59 @@ public class SearchHelper {
 
 	}
 
+	public static float findMedian1(int[] arr1, int[] arr2) {
+		return findMedian1(arr1, arr2, 0, 0, arr1.length);
+	}
+
+	private static float findMedian1(int[] arr1, int[] arr2, int left1, int left2, int n) {
+
+		if (n == 0) {
+			return -1;
+		} else if (n == 1) {
+			return (arr1[left1] + arr2[left2]) / 2;
+		} else if (n == 2) {
+			return (Math.max(arr1[left1], arr2[left2]) + Math.min(arr1[left1 + 1], arr2[left2 + 1])) / 2;
+		}
+
+		float m1 = getMedian(arr1, left1, n);
+		float m2 = getMedian(arr2, left2, n);
+
+		if (m1 == m2) {
+			return m1;
+		}
+
+		if (m1 < m2) {
+
+			if (n % 2 == 0) {
+				return findMedian1(arr1, arr2, left1 + n / 2 - 1, left2, n - n / 2 + 1);
+			} else {
+				return findMedian1(arr1, arr2, left1 + n / 2, left2, n - n / 2);
+			}
+		}
+
+		if (n % 2 == 0) {
+			return findMedian1(arr1, arr2, left1, left2 + n / 2 - 1, n - n / 2 + 1);
+		} else {
+			return findMedian1(arr1, arr2, left1, left2 + n / 2, n - n / 2);
+		}
+	}
+
+	public static float getMedian(int[] arr, int left, int n) {
+
+		if (n == 0)
+			return -1;
+
+		if (n == 1) {
+			return arr[left];
+		}
+
+		if (n % 2 == 0) {
+			return (arr[left + n / 2 - 1] + arr[left + n / 2 + 1]);
+		} else {
+			return arr[left + n / 2];
+		}
+	}
+
 	public static void printPairWithSumClosestToZero(int[] arr) {
 
 		Arrays.sort(arr);

@@ -30,7 +30,7 @@ public class SearchTests {
 		int arr1[] = {1, 12, 15, 26, 38}; 
 	    int arr2[] = {2, 13, 17, 30, 45}; 
 	    
-	    float median = SearchHelper.findMedian(arr1, arr2);
+	    float median = SearchHelper.findMedian1(arr1, arr2);
 	    
 	    System.out.println(median);
 	    
