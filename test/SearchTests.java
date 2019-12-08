@@ -67,7 +67,7 @@ public class SearchTests {
 		
 		int actualKthSmallest = SearchHelper.findKthSmallest(mat, 7);
 		
-		System.out.println(actualKthSmallest);
+		//System.out.println(actualKthSmallest);
 		
 		assertEquals(30, actualKthSmallest);
 	}
@@ -78,5 +78,17 @@ public class SearchTests {
 	               45, 48, 50, 53, 55, 56}; 
 		SearchHelper.printKclosestElements(arr, 35, 4);
 	}
+	
+	@Test
+	void checkSearchInAltSwapArray() {
+		int arr[] = {3, 2, 10, 4, 40};
+		int x = 4;
+		
+		int actualIndex = SearchHelper.searchInAltSwapArray(arr, x);
+		
+		System.out.println(actualIndex);
+		
+		assertEquals(3, actualIndex);
+	} 
 
 }

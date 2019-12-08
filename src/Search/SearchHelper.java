@@ -286,7 +286,7 @@ public class SearchHelper {
 			if (leftDiff < rightDiff) {
 				System.out.print(arr[left--] + " ");
 			} else {
-				System.out.print(arr[right++]+ " ");
+				System.out.print(arr[right++] + " ");
 			}
 
 			count++;
@@ -301,7 +301,6 @@ public class SearchHelper {
 			System.out.print(arr[right++] + " ");
 			count++;
 		}
-		
 
 	}
 
@@ -338,6 +337,32 @@ public class SearchHelper {
 			return findPeakBS(arr, mid + 1, right);
 		}
 
+	}
+
+	public static int searchInAltSwapArray(int[] arr, int val) {
+
+		int left = 0;
+		int right = arr.length;
+
+		while (left <= right) {
+
+			int mid = (left + right) / 2;
+
+			if (arr[mid] == val) {
+				return mid;
+			} else if  (mid != 0 && arr[mid - 1] == val) {
+				return mid -1;
+			} else if (mid != arr.length - 1 && arr[mid + 1] == val) {
+				return mid + 1;
+			} else if (val < arr[mid]) {
+				right = mid - 1;
+			} else {
+				left = mid + 1;
+			}
+
+		}
+
+		return -1;
 	}
 
 }
