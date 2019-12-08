@@ -1,8 +1,11 @@
 package Search;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 import array.ArrayHelper;
+import utils.HeapNode;
+import utils.Pair;
 
 public class SearchHelper {
 
@@ -126,7 +129,7 @@ public class SearchHelper {
 		}
 	}
 
-	public static void printPairWithSumClosestToZero(int[] arr) {
+	public static Pair printPairWithSumClosestToZero(int[] arr) {
 
 		Arrays.sort(arr);
 
@@ -135,8 +138,8 @@ public class SearchHelper {
 
 		int minSum = Integer.MAX_VALUE;
 
-		int minL;
-		int minR;
+		int minL = -1;
+		int minR = -1;
 
 		while (left < right) {
 
@@ -156,7 +159,7 @@ public class SearchHelper {
 
 		}
 
-		System.out.println("Min abs possible sum is : " + minSum);
+		return new Pair(arr[minL], arr[minR]);
 
 	}
 
@@ -244,6 +247,27 @@ public class SearchHelper {
 	public static int findPeakBS(int[] arr) {
 		return findPeakBS(arr, 0, arr.length - 1);
 	}
+
+	public static int findKthSmallest(int[][] mat, int k) {
+
+		PriorityQueue<HeapNode> pq = new PriorityQueue<HeapNode>();
+		
+		for (int j = 0; j < mat[0].length; j++) {
+			HeapNode hNode = new HeapNode(mat[0][j], 0, j);
+			pq.add(hNode);
+		}
+		
+		HeapNode lastNode = null;
+		
+		for (int i = 0; i < k; i++) {
+			lastNode = pq.poll();
+			
+			pq.add(new HeapNode(mat[lastNode.row + 1][lastNode.col], lastNode.row + 1, lastNode.col));
+		}
+
+		return lastNode.val;
+	}
+
 
 	private static int findPeakBS(int[] arr, int left, int right) {
 
