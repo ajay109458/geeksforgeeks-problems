@@ -71,5 +71,12 @@ public class SearchTests {
 		
 		assertEquals(30, actualKthSmallest);
 	}
+	
+	@Test
+	void checkPrintKClosest() {
+		int arr[] ={12, 16, 22, 30, 35, 39, 42, 
+	               45, 48, 50, 53, 55, 56}; 
+		SearchHelper.printKclosestElements(arr, 35, 4);
+	}
 
 }

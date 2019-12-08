@@ -251,23 +251,80 @@ public class SearchHelper {
 	public static int findKthSmallest(int[][] mat, int k) {
 
 		PriorityQueue<HeapNode> pq = new PriorityQueue<HeapNode>();
-		
+
 		for (int j = 0; j < mat[0].length; j++) {
 			HeapNode hNode = new HeapNode(mat[0][j], 0, j);
 			pq.add(hNode);
 		}
-		
+
 		HeapNode lastNode = null;
-		
+
 		for (int i = 0; i < k; i++) {
 			lastNode = pq.poll();
-			
+
 			pq.add(new HeapNode(mat[lastNode.row + 1][lastNode.col], lastNode.row + 1, lastNode.col));
 		}
 
 		return lastNode.val;
 	}
 
+	public static void printKclosestElements(int[] arr, int val, int k) {
+
+		int left = getCrossoverPoint(arr, val);
+		int right = left + 1;
+
+		if (left != -1 && arr[left] == val) {
+			left = left - 1;
+		}
+
+		int count = 0;
+		while (left >= 0 && right < arr.length && count < k) {
+
+			int leftDiff = Math.abs(val - arr[left]);
+			int rightDiff = Math.abs(arr[right] - val);
+
+			if (leftDiff < rightDiff) {
+				System.out.print(arr[left--] + " ");
+			} else {
+				System.out.print(arr[right++]+ " ");
+			}
+
+			count++;
+		}
+
+		while (left >= 0 && count < k) {
+			System.out.print(arr[left--] + " ");
+			count++;
+		}
+
+		while (right < arr.length && count < k) {
+			System.out.print(arr[right++] + " ");
+			count++;
+		}
+		
+
+	}
+
+	public static int getCrossoverPoint(int[] arr, int val) {
+
+		int left = 0;
+		int right = arr.length - 1;
+
+		while (left <= right) {
+			int mid = (left + right) / 2;
+
+			if (arr[mid] <= val && (mid == arr.length || arr[mid + 1] > val)) {
+				return mid;
+			} else if (arr[mid] < val) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+
+		return -1;
+
+	}
 
 	private static int findPeakBS(int[] arr, int left, int right) {
 
