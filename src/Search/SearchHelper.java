@@ -362,7 +362,8 @@ public class SearchHelper {
 
 		}
 
-		return -1;
+		return right;
+
 	}
 
 }
