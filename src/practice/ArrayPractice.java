@@ -36,5 +36,24 @@ public class ArrayPractice {
 
 		System.out.println();
 	}
+	
+	public static void printParanthesis(int n) {
+		printParantesis(0, 0, n, "");
+	}
+	
+	private static void printParantesis(int openCount, int closedCount, int n, String input) {
+		
+		if (closedCount == n) {
+			System.out.println(input);
+		}
+		
+		if (closedCount < openCount) {
+			printParantesis(openCount, closedCount + 1, n, input + ")");
+		}
+
+		if (openCount < n) {
+			printParantesis(openCount + 1, closedCount, n, input + "(");
+		}
+	}
 
 }
