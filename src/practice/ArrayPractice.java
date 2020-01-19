@@ -3,6 +3,8 @@ package practice;
 import java.util.HashMap;
 import java.util.Map;
 
+import array.ArrayHelper;
+
 public class ArrayPractice {
 
 	public static void printDuplicates(int arr[], int n) {
@@ -54,6 +56,25 @@ public class ArrayPractice {
 		if (openCount < n) {
 			printParantesis(openCount + 1, closedCount, n, input + "(");
 		}
+	}
+	
+	
+	/**
+	 * 
+	 * @param arr
+	 */
+	public static void alternateSorting(int[] arr) {
+		
+		for (int i = 1; i < arr.length; i = i + 2) {
+			if (arr[i-1] > arr[i]) {
+				ArrayHelper.swap(arr, i-1, i);
+			}
+			
+			if (i+1 < arr.length && arr[i+1] > arr[i]) {
+				ArrayHelper.swap(arr, i+1, i);
+			}
+		}
+		
 	}
 
 }
