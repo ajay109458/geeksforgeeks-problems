@@ -2,6 +2,7 @@ package practice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 import array.ArrayHelper;
 
@@ -76,5 +77,91 @@ public class ArrayPractice {
 		}
 		
 	}
+	
+	/**
+	 * Sort a array where each element of the array is k distance
+	 * away from its target position
+	 * @param arr
+	 * @param k
+	 */
+	public static void sortKsortedArray(int[] arr, int k) {
+		PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+		
+		int i = 0;
+		for (; i <=k && i<= arr.length; i++) {
+			minHeap.add(arr[i]);
+		}
+		
+		int t=0;
+		
+		for (; i < arr.length; i++) {
+			arr[t++] = minHeap.remove();
+			minHeap.add(arr[i]);
+		}
+		
+		while(!minHeap.isEmpty()) {
+			arr[t++] = minHeap.remove();
+		}
+	}
+	
+	public static int inversionCount(int[] arr) {
+		return mergeSort(arr, 0, arr.length-1);
+	}
+	
+	public static int mergeSort(int[] arr, int left, int right) {
+		
+		int inversionCount = 0;
+		
+		if (left < right) {
+			
+			int mid = (left + right) / 2;
+			
+			
+			
+			inversionCount += mergeSort(arr, left, mid);
+			inversionCount += mergeSort(arr, mid + 1, right);
+			
+			inversionCount += merge(arr, left, mid, right);
+		}
+		
+		return inversionCount;
+	}
+	
+	public static int merge(int[] arr, int left, int mid, int right) {
+		int[] temp = new int[right - left + 1];
+		
+		int count = 0;
+		
+		int i = left;
+		int j = mid + 1;
+		int k = 0;
+		
+		while (i <= mid && j <=  right) {
+			
+			if (arr[i] <= arr[j]) {
+				temp[k++] = arr[i++];
+			} else {
+				temp[k++] = arr[j++];
+				count += (mid - i);
+			}
+		}
+		
+		while (i <= mid) {
+			temp[k++] = arr[i++];
+		}	
+		
+		while(j <= right) {
+			temp[k++] = arr[j++];
+		}
+		
+		for (i = left; i <= right; i++) 
+	        arr[i] = temp[i-left]; 
+		
+		return count;
+	}
+	
+	/***
+	 * 
+	 */
 
 }
