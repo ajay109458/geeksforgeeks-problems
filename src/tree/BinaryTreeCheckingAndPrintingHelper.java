@@ -19,16 +19,12 @@ public class BinaryTreeCheckingAndPrintingHelper {
 	// Reset it always before builidng tree using inorder and pre order traversal
 	public static int preIndex = 0;
 	public static int traversalIndex = 0;
-
-	public static void inorder(TreeNode root) {
-		if (root == null)
-			return;
-
-		inorder(root.left);
-		System.out.print(root.data + " ");
-		inorder(root.right);
-	}
-
+	
+	
+	/**
+	 * 1-2, 10. Check for children sum property in binary search tree
+	 * 
+	 */
 	public static boolean isSumPropertySatisfied(TreeNode root) {
 
 		if (root == null || (root.left == null && root.right == null))
@@ -42,6 +38,20 @@ public class BinaryTreeCheckingAndPrintingHelper {
 
 	}
 
+	public static void inorder(TreeNode root) {
+		if (root == null)
+			return;
+
+		inorder(root.left);
+		System.out.print(root.data + " ");
+		inorder(root.right);
+	}
+
+	
+
+	/**
+	 * 3. Check if sum of covered nodes and uncovered nodes in equal
+	 */
 	public static boolean isCoveredAndUncoveredNodesSumEqual(TreeNode root) {
 
 		int rootSum = 0;
@@ -59,10 +69,24 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		}
 
 		int coveredNodesSum = leftUncovered + rootSum + rightUncovered;
-		int unCoveredNodesSum = totalSum - coveredNodesSum;
+		int unCoveredNodesSum = totalSum - coveredNodesSum; // - sum of non overlapping leaf nodes;
 
 		return coveredNodesSum == unCoveredNodesSum;
 
+	}
+	
+	private static int sumLeftUncovered(TreeNode root) {
+		if (root == null)
+			return 0;
+
+		return root.data + ((root.left != null) ? sumLeftUncovered(root.left) : sumRightUncovered(root.right));
+	}
+
+	private static int sumRightUncovered(TreeNode root) {
+		if (root == null)
+			return 0;
+
+		return root.data + ((root.right != null) ? sumLeftUncovered(root.right) : sumLeftUncovered(root.left));
 	}
 
 	public static int sumOfNodes(TreeNode root) {
@@ -72,6 +96,13 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return root.data + sumOfNodes(root.left) + sumOfNodes(root.right);
 	}
 
+	/**
+	 * 4. Check if two nodes of a tree are cousins or not
+	 */
+	public static boolean isCousinNodes(TreeNode root, int a, int b) {
+		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) && !isSublingNodes(root, a, b));
+	}
+	
 	public static int getLevelOfNode(TreeNode root, int val) {
 		return getLevel(root, 0, val);
 	}
@@ -87,10 +118,8 @@ public class BinaryTreeCheckingAndPrintingHelper {
 				|| isSublingNodes(root.left, a, b) || isSublingNodes(root.right, a, b);
 
 	}
-
-	public static boolean isCousinNodes(TreeNode root, int a, int b) {
-		return (getLevelOfNode(root, a) == getLevelOfNode(root, b) && !isSublingNodes(root, a, b));
-	}
+	
+	
 
 	public static int height(TreeNode root) {
 		if (root == null)
@@ -105,7 +134,29 @@ public class BinaryTreeCheckingAndPrintingHelper {
 
 		return size(root.left) + size(root.right) + 1;
 	}
+	
+	/**
+	 * 5. Check if all leaves at same level
+	 */
+	public static boolean isLeavesAtSameLevel(TreeNode root) {
+		int heightOfTree = height(root);
+		return isLeavesAtSameLevel(root, heightOfTree);
+	}
 
+	public static boolean isLeavesAtSameLevel(TreeNode root, int level) {
+		if (root == null) {
+			return true;
+		}
+
+		if (root.left == null && root.right == null)
+			return level == 1;
+
+		return isLeavesAtSameLevel(root.left, level - 1) && isLeavesAtSameLevel(root.right, level - 1);
+	}
+
+	/**
+	 * 6. Check if removing an edge of the binary tree divides in two equal halves
+	 */
 	public static boolean isAnEdgeDivideTreeEqually(TreeNode root) {
 		int sizeOfTree = size(root);
 		return isSubTreeHalfSized(root, sizeOfTree);
@@ -123,23 +174,18 @@ public class BinaryTreeCheckingAndPrintingHelper {
 
 		return isSubTreeHalfSized(root.left, treeSize) || isSubTreeHalfSized(root.right, treeSize);
 	}
+	
+	
+	/**
+	 * 7. Check if given preorder, inorder and post order traversals are from the same tree. 
+	 */
+	public static boolean isTraversalsFromSameTree(int[] preOrder, int[] inOrder, int[] postOrder) {
+		TreeNode root = buildTree(inOrder, preOrder);
 
-	public static boolean isLeavesAtSameLevel(TreeNode root) {
-		int heightOfTree = height(root);
-		return isLeavesAtSameLevel(root, heightOfTree);
+		int[] postOrderArray = populatePostOrder(root);
+		return Arrays.equals(postOrder, postOrderArray);
 	}
-
-	public static boolean isLeavesAtSameLevel(TreeNode root, int level) {
-		if (root == null) {
-			return true;
-		}
-
-		if (root.left == null && root.right == null)
-			return level == 1;
-
-		return isLeavesAtSameLevel(root.left, level - 1) && isLeavesAtSameLevel(root.right, level - 1);
-	}
-
+	
 	public static void postOrder(TreeNode root) {
 		if (root == null)
 			return;
@@ -147,13 +193,6 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		postOrder(root.left);
 		postOrder(root.right);
 		System.out.println(root.data);
-	}
-
-	public static boolean isTraversalsFromSameTree(int[] preOrder, int[] inOrder, int[] postOrder) {
-		TreeNode root = buildTree(inOrder, preOrder);
-
-		int[] postOrderArray = populatePostOrder(root);
-		return Arrays.equals(postOrder, postOrderArray);
 	}
 
 	public static TreeNode buildTree(int[] inOrder, int[] preOrder) {
@@ -169,6 +208,9 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return arr;
 	}
 
+	/**
+	 * 8. Given level order traversal of tree, check if it satisfies the min heap properties.
+	 */
 	public static boolean isLevelOrderSatisfyMinHeap(int[] levelOrder) {
 
 		for (int i = 0; i < levelOrder.length / 2; i++) {
@@ -185,7 +227,7 @@ public class BinaryTreeCheckingAndPrintingHelper {
 	}
 
 	/**
-	 * Leaf traversal is sequence of leaves traversed from left to right. The
+	 * 9. Leaf traversal is sequence of leaves traversed from left to right. The
 	 * problem is to check if leaf traversals of two given Binary Trees are same or
 	 * not.
 	 * 
@@ -254,6 +296,9 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return (root.left == null && root.right == null);
 	}
 
+	/**
+	 * 14. Check if a tree is a complete tree or not
+	 */
 	public static boolean isCompleteTree(TreeNode root) {
 
 		if (root == null)
@@ -294,6 +339,9 @@ public class BinaryTreeCheckingAndPrintingHelper {
 
 	}
 
+	/**
+	 * 22. Check if two binary tree are identical or not
+	 */
 	public static boolean areIdentical(TreeNode root1, TreeNode root2) {
 		if (root1 == null && root2 == null)
 			return true;
@@ -306,6 +354,9 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return false;
 	}
 
+	/**
+	 * 16. Check if a tree is sub tree of another tree or not
+	 */
 	public static boolean isTreeSubset(TreeNode root, TreeNode sRoot) {
 
 		if (sRoot == null)
@@ -321,11 +372,31 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return isTreeSubset(root.left, sRoot) || isTreeSubset(root.right, sRoot);
 	}
 
+	/**
+	 * 17. Check if a binary tree contains duplicate values or not
+	 */
 	public static boolean containsDuplicateNodes(TreeNode root) {
 		Set<Integer> nodeDataSet = new HashSet<Integer>();
 		return containsDuplicateNodes(root, nodeDataSet);
 	}
+	
+	private static boolean containsDuplicateNodes(TreeNode root, Set<Integer> nodeDataSet) {
 
+		if (root == null)
+			return false;
+
+		if (nodeDataSet.contains(root.data)) {
+			return true;
+		} else {
+			nodeDataSet.add(root.data);
+		}
+
+		return containsDuplicateNodes(root.left, nodeDataSet) || containsDuplicateNodes(root.right, nodeDataSet);
+	}
+
+	/**
+	 * 20. Check if two binary tree are mirror or not
+	 */
 	public static boolean isMirror(TreeNode root1, TreeNode root2) {
 
 		if (root1 == null && root2 == null)
@@ -346,16 +417,25 @@ public class BinaryTreeCheckingAndPrintingHelper {
 		return isMirror(root.left, root.right);
 	}
 
+	/**
+	 * 25. Check if a path exists from root to leaf
+	 */
 	public static boolean isPathExists(TreeNode root, int[] arr) {
 		return isPathExists(root, arr, 0);
 	}
 
+	/**
+	 * 27. Print cousins of a given node
+	 */
 	public static void printCousins(TreeNode root, int val) {
 		int level = getLevelOfNode(root, val);
 		printCousinNodesAtLevel(root, val, level);
 		System.out.println();
 	}
 
+	/**
+	 * 29. Print diameter of tree, Print longest leaf to leaf path
+	 */
 	public static int getMaxDiameter(TreeNode root) {
 		if (root == null)
 			return 0;
@@ -558,19 +638,7 @@ public class BinaryTreeCheckingAndPrintingHelper {
 				&& (isPathExists(root.left, arr, level + 1) || isPathExists(root.right, arr, level + 1));
 	}
 
-	private static boolean containsDuplicateNodes(TreeNode root, Set<Integer> nodeDataSet) {
-
-		if (root == null)
-			return false;
-
-		if (nodeDataSet.contains(root.data)) {
-			return true;
-		} else {
-			nodeDataSet.add(root.data);
-		}
-
-		return containsDuplicateNodes(root.left, nodeDataSet) || containsDuplicateNodes(root.right, nodeDataSet);
-	}
+	
 
 	private static void fillPostOrder(TreeNode root, int[] arr) {
 		if (root == null)
@@ -768,19 +836,5 @@ public class BinaryTreeCheckingAndPrintingHelper {
 			return leftLevel;
 
 		return getLevel(root.right, currentLevel + 1, val);
-	}
-
-	private static int sumLeftUncovered(TreeNode root) {
-		if (root == null)
-			return 0;
-
-		return root.data + ((root.left != null) ? sumLeftUncovered(root.left) : sumRightUncovered(root.right));
-	}
-
-	private static int sumRightUncovered(TreeNode root) {
-		if (root == null)
-			return 0;
-
-		return root.data + ((root.right != null) ? sumLeftUncovered(root.right) : sumLeftUncovered(root.left));
 	}
 }
