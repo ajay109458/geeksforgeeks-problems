@@ -38,9 +38,19 @@ public class PracticeTest {
 	void inversionCount() {
 		int arr[] = { 1, 20, 6, 4, 5 }; 
 		
-		int inversionCount = ArrayPractice.inversionCount(arr);
+		//int inversionCount = ArrayPractice.inversionCount(arr);
 		
 		//assertEquals(5, inversionCount);
+	}
+	
+	@Test
+	@DisplayName("Test: Max subarray product")
+	void checkSubarrayProduct() {
+		int[] arr = {6, -3, -10, 0, 2};
+		
+		int maxProduct = ArrayPractice.maxSubarryProduct(arr);
+		
+		assertEquals(180, maxProduct);
 	}
 
 }

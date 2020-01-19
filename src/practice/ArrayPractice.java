@@ -161,7 +161,66 @@ public class ArrayPractice {
 	}
 	
 	/***
-	 * 
+	 * Rearrange an array st. arr[i] = i
 	 */
+	
+	public static void rearrangeArray(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			
+			int x = arr[i];
+			
+			while ( arr[x] != -1 && arr[x] != x) {
+				int y = arr[x];
+				
+				arr[x] = x;
+				
+				x = y;
+			}
+			
+			arr[x] = x;
+			
+			if (arr[x] != -1) {
+				arr[x] = -1;
+			}
+			
+		}
+	}
+	
+	public static int maxSubarryProduct(int[] arr) {
+		
+		int maxPositive = 1;
+		int minNegetive = 1;
+		int overAllMax = 1;
+		
+		for (int i = 0; i < arr.length; i++) {
+			
+			int val = arr[i];
+			
+			if (val > 0) {
+				
+				maxPositive = maxPositive * arr[i];
+				minNegetive = Math.min(1, minNegetive * val);
+				
+			} else if (val == 0) {
+				
+				maxPositive = 1;
+				minNegetive = 1;
+				
+			} else if (val < 0) {
+				
+				int temp = maxPositive;
+				
+				maxPositive = Math.max(1, minNegetive * val);
+				minNegetive = temp * val;
+			} 
+			
+			if (overAllMax < maxPositive) {
+				overAllMax = maxPositive;
+			}
+		}
+		
+		return overAllMax;
+		
+	}
 
 }
